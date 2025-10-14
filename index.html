@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CUNY Project Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <div class="dashboard-container">
@@ -14,6 +16,7 @@
             <button class="nav-btn" data-view="slate">Slate</button>
             <button class="nav-btn" data-view="fafsa">FAFSA</button>
             <button class="nav-btn" data-view="bot-reso">BoT Reso</button>
+            <button class="nav-btn" data-view="intake-form">Intake Form</button>
         </nav>
 
         <!-- Main Content Area -->
@@ -1017,6 +1020,262 @@
                                         <ul>
                                             <li>Buffer for wrap-up, documentation, and any late-breaking adjustments.</li>
                                             <li>Confirm post-launch support, monitoring, and handoffs.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intake Form Dashboard -->
+            <div id="intake-form" class="dashboard-view">
+                <div class="bg-white min-h-screen w-full p-8">
+                    <div class="max-w-5xl mx-auto relative">
+                        <!-- Header -->
+                        <h1 class="text-2xl font-bold text-center mb-2">
+                            Intake/Form Process: Timeline (Sep 22 – Nov 24, 2025)
+                        </h1>
+                        <p class="text-center text-sm text-gray-600 mb-6">
+                            Weekly cadence (Mondays shown below) with clear milestones through
+                            deployment.
+                        </p>
+
+                        <!-- Legend -->
+                        <div class="flex flex-wrap items-center justify-center gap-4 mb-6 text-sm">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-gray-800"></span> Working Session
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500"></span> Paused
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-green-600"></span> Milestone
+                            </div>
+                        </div>
+
+                        <!-- Timeline -->
+                        <div class="relative mx-auto pl-6">
+                            <div class="absolute left-2 top-0 bottom-0 w-1 bg-gray-200 rounded"></div>
+
+                            <!-- Week 1 -->
+                            <div class="relative mb-4">
+                                <div class="absolute -left-1.5 mt-3 w-4 h-4 rounded-full border-2 bg-gray-800 border-gray-900"></div>
+                                <div class="inline-block ml-6 px-3 py-1 mb-2 text-xs font-medium text-white rounded bg-blue-600">
+                                    Phase 1: Kickoff &amp; Discovery
+                                </div>
+                                <details class="group ml-6 rounded-2xl border border-gray-200 shadow-sm bg-white open:shadow-md" open>
+                                    <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+                                        <span class="font-semibold">Week 1 · Mon, Sep 22</span>
+                                        <svg class="h-4 w-4 transition-transform duration-200 group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="px-4 pb-4">
+                                        <ul class="mt-1 text-sm text-gray-700 list-disc pl-5">
+                                            <li>Hold initial project kickoff meeting.</li>
+                                            <li>Discuss the Academic Technology Request process.</li>
+                                            <li>Begin gathering high-level requirements.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+
+                            <!-- Week 2 -->
+                            <div class="relative mb-4">
+                                <div class="absolute -left-1.5 mt-3 w-4 h-4 rounded-full border-2 bg-gray-800 border-gray-900"></div>
+                                <details class="group ml-6 rounded-2xl border border-gray-200 shadow-sm bg-white">
+                                    <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+                                        <span class="font-semibold">Week 2 · Mon, Sep 29</span>
+                                        <svg class="h-4 w-4 transition-transform duration-200 group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="px-4 pb-4">
+                                        <ul class="mt-1 text-sm text-gray-700 list-disc pl-5">
+                                            <li>Continue requirements gathering.</li>
+                                            <li>Draft the initial flowchart for the intake form.</li>
+                                            <li>Outline the overall process flow diagram.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+
+                            <!-- Week 3 (Paused) -->
+                            <div class="relative mb-4">
+                                <div class="absolute -left-1.5 mt-3 w-4 h-4 rounded-full border-2 bg-red-500 border-red-600"></div>
+                                <div class="inline-block ml-6 px-3 py-1 mb-2 text-xs font-medium text-white rounded bg-red-600">
+                                    Paused
+                                </div>
+                                <details class="group ml-6 rounded-2xl border border-gray-200 shadow-sm bg-white">
+                                    <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+                                        <span class="font-semibold">Week 3 · Mon, Oct 6</span>
+                                        <svg class="h-4 w-4 transition-transform duration-200 group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="px-4 pb-4">
+                                        <ul class="mt-1 text-sm text-gray-700 list-disc pl-5">
+                                            <li>Project paused due to unforeseen event/security concern.</li>
+                                            <li>Focus shifted temporarily to SharePoint.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+
+                            <!-- Week 4 -->
+                            <div class="relative mb-4">
+                                <div class="absolute -left-1.5 mt-3 w-4 h-4 rounded-full border-2 bg-gray-800 border-gray-900"></div>
+                                <div class="inline-block ml-6 px-3 py-1 mb-2 text-xs font-medium text-white rounded bg-yellow-600">
+                                    Phase 2: Design
+                                </div>
+                                <details class="group ml-6 rounded-2xl border border-gray-200 shadow-sm bg-white">
+                                    <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+                                        <span class="font-semibold">Week 4 · Mon, Oct 13</span>
+                                        <svg class="h-4 w-4 transition-transform duration-200 group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="px-4 pb-4">
+                                        <ul class="mt-1 text-sm text-gray-700 list-disc pl-5">
+                                            <li>Resume project activities.</li>
+                                            <li>Finalize the intake form flowchart.</li>
+                                            <li>Review and refine process flow diagram with stakeholders.</li>
+                                            <li>Begin working on intake form design layout and structure.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+
+                            <!-- Week 5 -->
+                            <div class="relative mb-4">
+                                <div class="absolute -left-1.5 mt-3 w-4 h-4 rounded-full border-2 bg-gray-800 border-gray-900"></div>
+                                <details class="group ml-6 rounded-2xl border border-gray-200 shadow-sm bg-white">
+                                    <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+                                        <span class="font-semibold">Week 5 · Mon, Oct 20</span>
+                                        <svg class="h-4 w-4 transition-transform duration-200 group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="px-4 pb-4">
+                                        <ul class="mt-1 text-sm text-gray-700 list-disc pl-5">
+                                            <li>Work on form design.</li>
+                                            <li>Identify key form fields and validation rules.</li>
+                                            <li>Review wireframes with stakeholders.</li>
+                                            <li>Incorporate feedback into updated design.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+
+                            <!-- Week 6 -->
+                            <div class="relative mb-4">
+                                <div class="absolute -left-1.5 mt-3 w-4 h-4 rounded-full border-2 bg-gray-800 border-gray-900"></div>
+                                <div class="inline-block ml-6 px-3 py-1 mb-2 text-xs font-medium text-white rounded bg-green-600">
+                                    Phase 3: Build &amp; Workflow
+                                </div>
+                                <details class="group ml-6 rounded-2xl border border-gray-200 shadow-sm bg-white">
+                                    <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+                                        <span class="font-semibold">Week 6 · Mon, Oct 27</span>
+                                        <svg class="h-4 w-4 transition-transform duration-200 group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="px-4 pb-4">
+                                        <ul class="mt-1 text-sm text-gray-700 list-disc pl-5">
+                                            <li>Start building the form in the development environment.</li>
+                                            <li>Set up basic form logic and data connections.</li>
+                                            <li>Continue development; set up workflow logic for request routing and review/approval.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+
+                            <!-- Week 9 -->
+                            <div class="relative mb-4">
+                                <div class="absolute -left-1.5 mt-3 w-4 h-4 rounded-full border-2 bg-gray-800 border-gray-900"></div>
+                                <div class="inline-block ml-6 px-3 py-1 mb-2 text-xs font-medium text-white rounded bg-green-600">
+                                    Phase 4: Integrations &amp; Testing
+                                </div>
+                                <details class="group ml-6 rounded-2xl border border-gray-200 shadow-sm bg-white">
+                                    <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+                                        <span class="font-semibold">Week 9 · Mon, Nov 3</span>
+                                        <svg class="h-4 w-4 transition-transform duration-200 group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="px-4 pb-4">
+                                        <ul class="mt-1 text-sm text-gray-700 list-disc pl-5">
+                                            <li>Integrate form with backend systems or data sources.</li>
+                                            <li>Test form functionality and field validations.</li>
+                                            <li>Finalize workflow routing logic.</li>
+                                            <li>Conduct internal testing of form and workflow.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+
+                            <!-- Week 10 -->
+                            <div class="relative mb-4">
+                                <div class="absolute -left-1.5 mt-3 w-4 h-4 rounded-full border-2 bg-gray-800 border-gray-900"></div>
+                                <div class="inline-block ml-6 px-3 py-1 mb-2 text-xs font-medium text-white rounded bg-emerald-600">
+                                    Phase 5: Pilot &amp; Documentation
+                                </div>
+                                <details class="group ml-6 rounded-2xl border border-gray-200 shadow-sm bg-white">
+                                    <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+                                        <span class="font-semibold">Week 10 · Mon, Nov 10</span>
+                                        <svg class="h-4 w-4 transition-transform duration-200 group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="px-4 pb-4">
+                                        <ul class="mt-1 text-sm text-gray-700 list-disc pl-5">
+                                            <li>Collect feedback from pilot users or internal reviewers.</li>
+                                            <li>Make adjustments based on usability and functionality issues.</li>
+                                            <li>Prepare documentation for form and workflow.</li>
+                                            <li>Create quick user guide or training materials.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+
+                            <!-- Week 11 -->
+                            <div class="relative mb-4">
+                                <div class="absolute -left-1.5 mt-3 w-4 h-4 rounded-full border-2 bg-gray-800 border-gray-900"></div>
+                                <div class="inline-block ml-6 px-3 py-1 mb-2 text-xs font-medium text-white rounded bg-purple-600">
+                                    Phase 6: Final Review &amp; Sign-Off
+                                </div>
+                                <details class="group ml-6 rounded-2xl border border-gray-200 shadow-sm bg-white">
+                                    <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+                                        <span class="font-semibold">Week 11 · Mon, Nov 17</span>
+                                        <svg class="h-4 w-4 transition-transform duration-200 group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="px-4 pb-4">
+                                        <ul class="mt-1 text-sm text-gray-700 list-disc pl-5">
+                                            <li>Final review and sign-off of intake form and workflow.</li>
+                                            <li>Schedule deployment or handoff to production environment.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+
+                            <!-- Week 12 – Deployment Milestone -->
+                            <div class="relative mb-10">
+                                <div class="absolute -left-1.5 mt-3 w-4 h-4 rounded-full border-2 bg-green-600 border-green-700"></div>
+                                <div class="inline-block ml-6 px-3 py-1 mb-2 text-xs font-medium text-white rounded bg-green-700">
+                                    Phase 7: Deployment
+                                </div>
+                                <details class="group ml-6 rounded-2xl border border-gray-200 shadow-sm bg-white">
+                                    <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+                                        <span class="font-semibold">Week 12 · Mon, Nov 24</span>
+                                        <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded">Milestone</span>
+                                    </summary>
+                                    <div class="px-4 pb-4">
+                                        <ul class="mt-1 text-sm text-gray-700 list-disc pl-5">
+                                            <li>Deployment to the production environment.</li>
                                         </ul>
                                     </div>
                                 </details>
