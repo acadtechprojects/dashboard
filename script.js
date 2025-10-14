@@ -21,11 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up charts
     setupCharts();
     
-    // Set up BoT Reso timeline
-    setupBotResoTimeline();
-    
-    // Set current date
-    setCurrentDate();
+        // Set up BoT Reso timeline
+        setupBotResoTimeline();
+        
+        // Set current date
+        setCurrentDate();
     
     // Also set date after a short delay to ensure DOM is fully loaded
     setTimeout(setCurrentDate, 100);
