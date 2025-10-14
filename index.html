@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUNY Project Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Navigation -->
+        <nav class="dashboard-nav">
+            <button class="nav-btn active" data-view="pillars">Blueprint for Success</button>
+            <button class="nav-btn" data-view="slate">Slate</button>
+            <button class="nav-btn" data-view="fafsa">FAFSA</button>
+            <button class="nav-btn" data-view="bot-reso">BoT Reso</button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-content">
+            <!-- Project Pillars Dashboard (Default View) -->
+            <div id="pillars" class="dashboard-view active">
+                <div class="pillars-container">
+                    <div class="pillars-card">
+                        <div class="pillars-stage">
+                            <div class="pillars-canvas-wrap">
+                                <canvas id="orbital"></canvas>
+                                <div class="pillars-center-badge" aria-hidden="true">
+                                    <h2>Aligned · Disciplined · Connected</h2>
+                                    <p>Governance · Process Mapping · Right SMEs · Dedication</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slate Dashboard -->
+            <div id="slate" class="dashboard-view slate-page">
+                <header class="slate-header-new">
+                    <div>
+                        <h1>Slate Implementation</h1>
+                        <p>Modern CRM to streamline admissions and recruitment</p>
+                    </div>
+                    <div class="status-box-new">
+                        <span>Overall Health of the Project</span>
+                        <span class="status-dot-new"></span>
+                        <span class="status-badge">Status update — <span id="status-date"></span></span>
+                    </div>
+                </header>
+
+                <div class="accordion-new">
+                    <section class="accordion-item-new" data-id="data-flow" aria-expanded="true">
+                        <button class="accordion-trigger-new" aria-controls="data-flow-panel" aria-expanded="true">
+                            <div class="accordion-title-new">
+                                <span class="accordion-bar"></span>
+                                <span class="accordion-text">High‑Level Data Flow</span>
+                            </div>
+                            <svg class="accordion-chevron-new" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 8l4 4 4-4"/>
+                            </svg>
+                        </button>
+                        <div id="data-flow-panel" class="accordion-panel-new">
+                            <div class="data-flow-container-new">
+                                <div class="flow-card-new">
+                                    <div class="flow-card-header-new">
+                                        <span class="flow-dot-new"></span>
+                                        <span class="flow-title-new">CUNYfirst (CF)</span>
+                                    </div>
+                                    <div class="flow-desc-new">Bio/demo, programs, indicators</div>
+                                    <div class="flow-pill-new green">✅ Completed</div>
+                                </div>
+                                <div class="flow-arrow-new">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M5 12h12M13 6l6 6-6 6"/>
+                                    </svg>
+                                </div>
+                                <div class="flow-card-new">
+                                    <div class="flow-card-header-new">
+                                        <span class="flow-dot-new"></span>
+                                        <span class="flow-title-new">Slate</span>
+                                    </div>
+                                    <div class="flow-desc-new">Applications, reviews, decisions</div>
+                                    <div class="flow-pill-new blue">Processing</div>
+                                </div>
+                                <div class="flow-arrow-new">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M5 12h12M13 6l6 6-6 6"/>
+                                    </svg>
+                                </div>
+                                <div class="flow-card-new">
+                                    <div class="flow-card-header-new">
+                                        <span class="flow-dot-new"></span>
+                                        <span class="flow-title-new">CUNYfirst (CF)</span>
+                                    </div>
+                                    <div class="flow-desc-new">Final decisions, audit trail</div>
+                                    <div class="flow-pill-new green">Outcome</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="accordion-item-new" data-id="completed-setup" aria-expanded="false">
+                        <button class="accordion-trigger-new" aria-controls="completed-setup-panel" aria-expanded="false">
+                            <div class="accordion-title-new">
+                                <span class="accordion-bar"></span>
+                                <span class="accordion-text">Completed Setup</span>
+                            </div>
+                            <svg class="accordion-chevron-new" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 8l4 4 4-4"/>
+                            </svg>
+                        </button>
+                        <div id="completed-setup-panel" class="accordion-panel-new">
+                            <div class="setup-grid-new">
+                                <div class="setup-card-new">
+                                    <div class="setup-card-header-new">
+                                        <span class="setup-dot-new"></span>
+                                        <span class="setup-title-new">✅ Decision Codes & Letter Templates</span>
+                                    </div>
+                                    <div class="setup-desc-new">Standard admit/deny codes & letters.</div>
+                                    <div class="setup-pill-new green">Completed</div>
+                                </div>
+                                <div class="setup-card-new">
+                                    <div class="setup-card-header-new">
+                                        <span class="setup-dot-new"></span>
+                                        <span class="setup-title-new">✅ CF → Slate Integration</span>
+                                    </div>
+                                    <div class="setup-desc-new">Student data from CUNYfirst flows into Slate.</div>
+                                    <div class="setup-pill-new green">Completed</div>
+                                </div>
+                                <div class="setup-card-new">
+                                    <div class="setup-card-header-new">
+                                        <span class="setup-dot-new"></span>
+                                        <span class="setup-title-new">✅ System Comms (Apps)</span>
+                                    </div>
+                                    <div class="setup-desc-new">Automated emails & updates to applicants.</div>
+                                    <div class="setup-pill-new green">Completed</div>
+                                </div>
+                                <div class="setup-card-new">
+                                    <div class="setup-card-header-new">
+                                        <span class="setup-dot-new"></span>
+                                        <span class="setup-title-new">✅ Faculty/Application Review</span>
+                                    </div>
+                                    <div class="setup-desc-new">Faculty review & score applications in Slate.</div>
+                                    <div class="setup-pill-new green">Completed</div>
+                                </div>
+                                <div class="setup-card-new">
+                                    <div class="setup-card-header-new">
+                                        <span class="setup-dot-new"></span>
+                                        <span class="setup-title-new">✅ Nelnet Integration</span>
+                                    </div>
+                                    <div class="setup-desc-new">Commitment deposit & application fee processing.</div>
+                                    <div class="setup-pill-new green">Completed</div>
+                                </div>
+                                <div class="setup-card-new">
+                                    <div class="setup-card-header-new">
+                                        <span class="setup-dot-new"></span>
+                                        <span class="setup-title-new">✅ Slate Integration Mapping</span>
+                                    </div>
+                                    <div class="setup-desc-new">Mapping of student data fields between CUNYfirst and Slate.</div>
+                                    <div class="setup-pill-new green">Completed</div>
+                                </div>
+                                <div class="setup-card-new">
+                                    <div class="setup-card-header-new">
+                                        <span class="setup-dot-new"></span>
+                                        <span class="setup-title-new">✅ Standard Reader Workflow</span>
+                                    </div>
+                                    <div class="setup-desc-new">Build Complete; Testing in central instance.</div>
+                                    <div class="setup-pill-new green">Completed</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="accordion-item-new" data-id="go-live-timeline" aria-expanded="false">
+                        <button class="accordion-trigger-new" aria-controls="go-live-timeline-panel" aria-expanded="false">
+                            <div class="accordion-title-new">
+                                <span class="accordion-bar"></span>
+                                <span class="accordion-text">Application Go‑Live Timeline</span>
+                            </div>
+                            <svg class="accordion-chevron-new" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 8l4 4 4-4"/>
+                            </svg>
+                        </button>
+                        <div id="go-live-timeline-panel" class="accordion-panel-new">
+                            <div class="timeline-pills-new">
+                                <span class="timeline-pill-new completed">
+                                    <span class="pill-dot completed"></span>
+                                    9/10/2025 — John Jay
+                                </span>
+                                <span class="timeline-pill-new completed">
+                                    <span class="pill-dot completed"></span>
+                                    9/15/2025 — Hunter, Brooklyn
+                                </span>
+                                <span class="timeline-pill-new completed">
+                                    <span class="pill-dot completed"></span>
+                                    9/16/2025 — GC
+                                </span>
+                                <span class="timeline-pill-new completed">
+                                    <span class="pill-dot completed"></span>
+                                    9/18/2025 — City
+                                </span>
+                                <span class="timeline-pill-new completed">
+                                    <span class="pill-dot completed"></span>
+                                    9/22/2025 — Queens, CSI, Lehman
+                                </span>
+                                <span class="timeline-pill-new completed">
+                                    <span class="pill-dot completed"></span>
+                                    9/24/2025 — SLU
+                                </span>
+                                <span class="timeline-pill-new completed">
+                                    <span class="pill-dot completed"></span>
+                                    9/29/2025 — Baruch
+                                </span>
+                                <span class="timeline-pill-new pending">
+                                    <span class="pill-dot pending"></span>
+                                    10/3/2025 — York
+                                </span>
+                            </div>
+                            <div class="chart-container-new">
+                                <div class="chart-title-new">Colleges Going Live per Date</div>
+                                <div class="chart-wrapper-new">
+                                    <canvas id="goLiveChart" width="800" height="320"></canvas>
+                                </div>
+                            </div>
+                            <div class="chart-container-new">
+                                <div class="chart-title-new">Applications Funnel by College</div>
+                                <div class="data-table-container">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>College</th>
+                                                <th>Application Created</th>
+                                                <th>Application Submitted</th>
+                                                <th>Application Fee Received/Waived</th>
+                                                <th>Ready for Review</th>
+                                                <th>Decision made (incl. withdrawal)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Baruch</td>
+                                                <td>722</td>
+                                                <td>85</td>
+                                                <td>59</td>
+                                                <td>21</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Brooklyn</td>
+                                                <td>739</td>
+                                                <td>154</td>
+                                                <td>101</td>
+                                                <td>27</td>
+                                                <td>22</td>
+                                            </tr>
+                                            <tr>
+                                                <td>City College</td>
+                                                <td>701</td>
+                                                <td>31</td>
+                                                <td>55</td>
+                                                <td>15</td>
+                                                <td>2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>CSI</td>
+                                                <td>101</td>
+                                                <td>19</td>
+                                                <td>11</td>
+                                                <td>3</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Grad Center</td>
+                                                <td>796</td>
+                                                <td>45</td>
+                                                <td>25</td>
+                                                <td>34</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hunter</td>
+                                                <td>1622</td>
+                                                <td>214</td>
+                                                <td>189</td>
+                                                <td>68</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>John Jay</td>
+                                                <td>508</td>
+                                                <td>129</td>
+                                                <td>99</td>
+                                                <td>21</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lehman</td>
+                                                <td>239</td>
+                                                <td>44</td>
+                                                <td>40</td>
+                                                <td>6</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Queens</td>
+                                                <td>314</td>
+                                                <td>40</td>
+                                                <td>33</td>
+                                                <td>4</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>SLU</td>
+                                                <td>26</td>
+                                                <td>14</td>
+                                                <td>5</td>
+                                                <td>2</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>York</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>-</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="accordion-item-new" data-id="milestones" aria-expanded="false">
+                        <button class="accordion-trigger-new" aria-controls="milestones-panel" aria-expanded="false">
+                            <div class="accordion-title-new">
+                                <span class="accordion-bar"></span>
+                                <span class="accordion-text">System‑Wide Milestones</span>
+                            </div>
+                            <svg class="accordion-chevron-new" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 8l4 4 4-4"/>
+                            </svg>
+                        </button>
+                        <div id="milestones-panel" class="accordion-panel-new">
+                            <div class="milestones-grid-new">
+                                <div class="milestone-card-new">
+                                    <div class="milestone-header-new">
+                                        <div>
+                                            <div class="milestone-title-new">Slate → CF Integration</div>
+                                            <div class="milestone-scope-new">All Colleges — 10/9/2025</div>
+                                        </div>
+                                        <div class="milestone-pill-new amber">Final Testing</div>
+                                    </div>
+                                    <div class="milestone-progress-new">
+                                        <div class="progress-bar-new">
+                                            <div class="progress-fill-new" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="milestone-card-new">
+                                    <div class="milestone-header-new">
+                                        <div>
+                                            <div class="milestone-title-new">Anthology Back Up</div>
+                                            <div class="milestone-scope-new">All Colleges — 10/10/2025</div>
+                                        </div>
+                                        <div class="milestone-pill-new gray">Cold Storage by 10/15</div>
+                                    </div>
+                                    <div class="milestone-progress-new">
+                                        <div class="progress-bar-new">
+                                            <div class="progress-fill-new" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="accordion-item-new" data-id="additional-updates" aria-expanded="false">
+                        <button class="accordion-trigger-new" aria-controls="additional-updates-panel" aria-expanded="false">
+                            <div class="accordion-title-new">
+                                <span class="accordion-bar"></span>
+                                <span class="accordion-text">Additional Updates</span>
+                            </div>
+                            <svg class="accordion-chevron-new" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 8l4 4 4-4"/>
+                            </svg>
+                        </button>
+                        <div id="additional-updates-panel" class="accordion-panel-new">
+                            <div class="updates-grid-new">
+                                <div class="update-card-new">
+                                    <div class="update-card-header-new">
+                                        <span class="update-dot-new"></span>
+                                        <span class="update-title-new">Security Integration</span>
+                                    </div>
+                                    <div class="update-desc-new">Delayed but progressing. Completion date: first week of October.</div>
+                                </div>
+                                <div class="update-card-new">
+                                    <div class="update-card-header-new">
+                                        <span class="update-dot-new"></span>
+                                        <span class="update-title-new">OEM Campus Updates</span>
+                                    </div>
+                                    <div class="update-desc-new">OEM is regularly updating campuses on progress.</div>
+                                    <div class="update-list-new">
+                                        <ul>
+                                            <li>Via Teams channel</li>
+                                            <li>Email</li>
+                                            <li>Cohort sessions</li>
+                                            <li>Side meetings</li>
+                                            <li>War rooms</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="update-card-new">
+                                    <div class="update-card-header-new">
+                                        <span class="update-dot-new"></span>
+                                        <span class="update-title-new">Ongoing Work</span>
+                                    </div>
+                                    <div class="update-list-new">
+                                        <ul>
+                                            <li>1935 active Slate users as of last week</li>
+                                            <li>83 recordings currently</li>
+                                            <li>240 tickets; 222 resolved</li>
+                                            <li>Ongoing enablement sessions & Q&A</li>
+                                            <li>Docs & resources updating</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="update-card-new">
+                                    <div class="update-card-header-new">
+                                        <span class="update-dot-new"></span>
+                                        <span class="update-title-new">Refinement and maintenance</span>
+                                    </div>
+                                    <div class="update-list-new">
+                                        <ul>
+                                            <li>Data model enhancements</li>
+                                            <li>Queries/reports</li>
+                                            <li>CUNYfirst integration</li>
+                                            <li>User creation</li>
+                                            <li>Grad app enhancements</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- FAFSA Dashboard -->
+            <div id="fafsa" class="dashboard-view">
+                <div class="fafsa-header">
+                    <div>
+                        <h1>FAFSA Verification Solution Implementation</h1>
+                        <p>Enhancing financial aid services through automation, compliance, and efficiency at CUNY</p>
+                    </div>
+                    <div class="status-box-new">
+                        <span>Overall Health of the Project</span>
+                        <span class="status-dot-new"></span>
+                        <span class="status-badge">Status update — <span id="fafsa-status-date"></span></span>
+                    </div>
+                </div>
+
+                <div class="accordion" id="fafsa-accordion">
+                    <section class="accordion-item" data-id="fafsa-dashboard" aria-expanded="true">
+                        <button class="accordion-trigger" aria-controls="fafsa-dashboard-panel" aria-expanded="true">
+                            <div class="accordion-title">
+                                <span class="accordion-kicker">Dashboard</span>
+                            </div>
+                            <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                            </svg>
+                        </button>
+                        <div id="fafsa-dashboard-panel" class="accordion-panel">
+                            <div class="accordion-panel-inner">
+                                <div class="fafsa-grid">
+                                    <div class="fafsa-card">
+                                        <h3>Project Status Report</h3>
+                                        <ul class="fafsa-list">
+                                            <li><strong>Phase 1</strong> – Jan 20, 2026 <span style="color:orange">(Target)</span></li>
+                                            <li><strong>Phase 2</strong> – May 29, 2026 <span style="color:orange">(Target)</span></li>
+                                            <li><strong>Phase 3</strong> – Aug 29, 2026 <span style="color:orange">(Target)</span></li>
+                                            <li><strong>In Progress:</strong> SFTP (Oct 31)</li>
+                                            <li><strong>Not started:</strong> Staff Training (Oct–Jan)</li>
+                                            <li><strong>Completed:</strong> SMTP (Sept 15)</li>
+                                            <li><strong>Completed:</strong> SSO (Sept 19)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="fafsa-card highlight">
+                                        <h3>Critical Success Factors</h3>
+                                        <ul class="fafsa-list">
+                                            <li>Digitization and mobile-first design</li>
+                                            <li>Single Sign-On (SSO)</li>
+                                            <li>OCR error reduction</li>
+                                            <li>FERPA compliance & verification worksheets</li>
+                                            <li>Efficiency gains & student support</li>
+                                            <li>API integrations & secure file exchanges</li>
+                                            <li>Reporting & data-driven insights</li>
+                                        </ul>
+                                    </div>
+                                    <div class="fafsa-card">
+                                        <h3>Roadmap (Timeline)</h3>
+                                        <ul class="timeline">
+                                            <li class="timeline-item">
+                                                <div class="timeline-content">
+                                                    <div class="timeline-date">Aug 7, 2025</div>
+                                                    Federal Verification & Contract Prep
+                                                </div>
+                                            </li>
+                                            <li class="timeline-item">
+                                                <div class="timeline-content">
+                                                    <div class="timeline-date">Aug 19, 2025</div>
+                                                    Kickoff
+                                                </div>
+                                            </li>
+                                            <li class="timeline-item">
+                                                <div class="timeline-content">
+                                                    <div class="timeline-date">Sep 15, 2025</div>
+                                                    API & Notifications
+                                                </div>
+                                            </li>
+                                            <li class="timeline-item">
+                                                <div class="timeline-content">
+                                                    <div class="timeline-date">Nov 15, 2025</div>
+                                                    CUNYfirst Integration
+                                                </div>
+                                            </li>
+                                            <li class="timeline-item">
+                                                <div class="timeline-content">
+                                                    <div class="timeline-date">Nov 30, 2025</div>
+                                                    System Testing
+                                                </div>
+                                            </li>
+                                            <li class="timeline-item">
+                                                <div class="timeline-content">
+                                                    <div class="timeline-date">Dec 19, 2025</div>
+                                                    User Testing & Training
+                                                </div>
+                                            </li>
+                                            <li class="timeline-item">
+                                                <div class="timeline-content">
+                                                    <div class="timeline-date">Jan 13, 2026</div>
+                                                    Production Readiness
+                                                </div>
+                                            </li>
+                                            <li class="timeline-item">
+                                                <div class="timeline-content">
+                                                    <div class="timeline-date">Jan 20, 2026</div>
+                                                    Phase 1 Go-Live
+                                                </div>
+                                            </li>
+                                            <li class="timeline-item">
+                                                <div class="timeline-content">
+                                                    <div class="timeline-date">— 2026 —</div>
+                                                    Phase 2 — Appeals
+                                                </div>
+                                            </li>
+                                            <li class="timeline-item">
+                                                <div class="timeline-content">
+                                                    <div class="timeline-date">May 30, 2026</div>
+                                                    Phase 2 Go-Live
+                                                </div>
+                                            </li>
+                                            <li class="timeline-item">
+                                                <div class="timeline-content">
+                                                    <div class="timeline-date">— 2026 —</div>
+                                                    Phase 3 — API Development
+                                                </div>
+                                            </li>
+                                            <li class="timeline-item">
+                                                <div class="timeline-content">
+                                                    <div class="timeline-date">Aug 30, 2026</div>
+                                                    Phase 3 Go-Live
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="fafsa-card">
+                                        <h3>Governance Structure</h3>
+                                        <ul class="fafsa-list">
+                                            <li>Governance Group: Sponsor, Steering Committee, Project Owner</li>
+                                            <li>Implementation Teams: Campus Leads & Teams</li>
+                                            <li>Functional Manager: config, integration, training, comms</li>
+                                            <li>Technical PM: CIS Development coordination</li>
+                                            <li>Vendor (ProEd PM): vendor-side leadership</li>
+                                            <li>Change Management: stakeholder enablement</li>
+                                        </ul>
+                                    </div>
+                                    <div class="fafsa-card">
+                                        <h3>Training Plan</h3>
+                                        <ul class="fafsa-list">
+                                            <li>Modules: Four modules to be covered</li>
+                                            <li>Schedule: October–January</li>
+                                            <li>Sessions: Tailored per cohort, recorded, and saved for reference</li>
+                                            <li>Logistics: All training already scheduled; stakeholders invited</li>
+                                            <li>In-Person: January 15 at the 395 Hudson location</li>
+                                        </ul>
+                                    </div>
+                                    <div class="fafsa-card">
+                                        <h3>Readiness Artifacts</h3>
+                                        <ul class="fafsa-list">
+                                            <li>RACI Chart (Completed)</li>
+                                            <li>Governance structure (Completed)</li>
+                                            <li>Team Structure (Completed)</li>
+                                            <li>Project Plan (Updated)</li>
+                                            <li>Performance Testing Plan (Target)</li>
+                                            <li>UAT Plan (Target)</li>
+                                            <li>Raid log - (No major issues)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- BoT Reso Dashboard -->
+            <div id="bot-reso" class="dashboard-view">
+                <div class="bot-reso-container">
+                    <div class="bot-reso-header">
+                        <h1 class="bot-reso-title">BoT Reso Process: Timeline (Aug 29 – Nov 30, 2025)</h1>
+                        <p class="bot-reso-subtitle">Weekly working sessions (Fridays) with periodic governance checkpoints.</p>
+                        <div class="legend-container">
+                            <div class="legend-item">
+                                <span class="legend-dot working"></span>
+                                Working Session
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot governance"></span>
+                                Governance Checkpoint
+                            </div>
+                        </div>
+                        <div class="timeline-container">
+                            <div class="timeline-line"></div>
+                            <div class="phase-label">
+                                <div class="phase-dot working"></div>
+                                <div class="phase-badge phase-1">Phase 1: Working Sessions Begin</div>
+                                <details class="week-card open">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 1 · Fri, Aug 29</span>
+                                        <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>Define key objectives, including the addition of an AI component as a critical enhancement.</li>
+                                            <li>Prototype enhancements; confirm data sources and security.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="phase-label">
+                                <div class="phase-dot working"></div>
+                                <details class="week-card">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 2 · Fri, Sep 5</span>
+                                        <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>Define key objectives, including the addition of an AI component as a critical enhancement.</li>
+                                            <li>Prototype enhancements; confirm data sources and security.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="phase-label">
+                                <div class="phase-dot governance"></div>
+                                <details class="week-card">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 3 · Fri, Sep 12</span>
+                                        <span class="week-badge">
+                                            <span class="governance-badge">Governance Checkpoint (Week of Sep 8 – 11)</span>
+                                            <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>First Governance Checkpoint: Review progress on the newly added AI component (Week of Sep 8 – 11).</li>
+                                            <li>Decision Point: Save files from ProcessMaker into OneDrive as the official storage model.</li>
+                                            <li>
+                                                Decision Points:
+                                                <ul>
+                                                    <li>Confirm DOCX support or stick with PDF.</li>
+                                                    <li>Decide if extra routing (finance, budget, procurement) is in Phase 1 or later.</li>
+                                                    <li>Choose file storage model: ProcessMaker only vs. integrate OneDrive/Dropbox.</li>
+                                                    <li>Define training scope: process owners vs. general users.</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                Suggestions:
+                                                <ul>
+                                                    <li>Test DOCX ingestion early.</li>
+                                                    <li>Plan escalation paths/EVC alerts for Phase 2.</li>
+                                                    <li>Use hybrid storage (ProcessMaker + OneDrive/Dropbox).</li>
+                                                    <li>Present SMTP vs. SendGrid risk/benefit to CIS/CTO now.</li>
+                                                    <li>Add simulation training for process owners.</li>
+                                                    <li>Build buffer time for testing and training.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="phase-label">
+                                <div class="phase-dot working"></div>
+                                <details class="week-card">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 4 · Fri, Sep 19</span>
+                                        <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>Define key objectives, including the addition of an AI component as a critical enhancement.</li>
+                                            <li>Prototype enhancements; confirm data sources and security.</li>
+                                            <li>
+                                                Condensed Meeting Coverage
+                                                <ul>
+                                                    <li>Reviewed updated workflow for resolution process, including AI integration, document routing, and approval steps.</li>
+                                                    <li>Discussed AI tool's role as a checking (not approval) tool and the need for a disclaimer on limitations.</li>
+                                                    <li>Clarified routing logic: documents returned from Chief of Staff/EVC go directly to Programs Unit without re-routing through procurement/budget.</li>
+                                                    <li>Demonstrated front-end forms and user experience for submission, review, and versioning.</li>
+                                                    <li>Agreed on flexibility to adjust workflow and add new offices/routes as needed.</li>
+                                                    <li>Planned presentation materials (screenshots, video walkthrough) for governance checkpoint.</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                Action Items
+                                                <ul>
+                                                    <li>AI Prompt Adjustment: Neh and Marcelo to refine AI prompt for document analysis.</li>
+                                                    <li>Technical Working Session: Neh and Marcelo to meet Monday for deeper AI component review.</li>
+                                                    <li>Disclaimer Draft: Dia to draft disclaimer language for AI tool.</li>
+                                                    <li>Resolution ID Automation: Dia/Justin to define ID format; Marcelo to implement.</li>
+                                                    <li>Screenshots for Presentation: Marcelo to capture and share form screenshots for governance checkpoint.</li>
+                                                    <li>Video Walkthrough: Neh and Jetmir to prepare governance presentation walkthrough.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="phase-label">
+                                <div class="phase-dot working"></div>
+                                <div class="phase-badge phase-2">Phase 2: Integration & Testing</div>
+                                <details class="week-card">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 5 · Fri, Sep 26</span>
+                                        <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>
+                                                Key Updates
+                                                <ul>
+                                                    <li>AI: FlowGenie supports only GPT-4.0; upgrade TBD. Option: CUNY can integrate OpenAI API for newer models. Two AI models added (Tenure Waiver, Degree Program); ~20 types exist, only common ones get templates.</li>
+                                                    <li>Resolution Types: Justin & Mitroya refining official list; some categories share templates.</li>
+                                                    <li>Workflow: COS/EVC can return resolutions to Program Unit; doc history enhanced; only holder uploads revisions.</li>
+                                                    <li>Safeguards: Added Program Unit review after holder's final revision before BoT submission.</li>
+                                                    <li>Archiving: Final BoT resolutions to be saved in both ProcessMaker + OneDrive.</li>
+                                                    <li>Governance: Next checkpoint with happy-path demo video; forms/screenshots on Basecamp.</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                Next Steps
+                                                <ul>
+                                                    <li>Justin & Mitroya: Finalize resolution list, validate AI model needs.</li>
+                                                    <li>Marcelo: Add Program Unit review step; implement Resolution ID automation.</li>
+                                                    <li>Marcelo + IT: Set up dual archiving with OneDrive.</li>
+                                                    <li>Marcelo, Jetmir, Neh: Demo video + checkpoint prep.</li>
+                                                    <li>Mitroya: Confirm budget/procurement with Gary by Wed.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="phase-label">
+                                <div class="phase-dot governance"></div>
+                                <details class="week-card">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 6 · Fri, Oct 3</span>
+                                        <span class="week-badge">
+                                            <span class="governance-badge">Governance Checkpoint (Week of Sep 29 – Oct 2)</span>
+                                            <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>Second Governance Checkpoint: Progress demo and discussion (Week of Sep 29 – Oct 2).</li>
+                                            <li>Collect governance feedback and confirm adjustments.</li>
+                                        </ul>
+                                        <div class="recommendations-section">
+                                            <h4>Recommendations:</h4>
+                                            <ul>
+                                                <li>Confirm document editing and re-upload steps in workflow</li>
+                                                <li>Define Justin/Dia intervention points incl. final quality checks</li>
+                                                <li>Ensure approve/hold/rescind options at all workflow stages</li>
+                                                <li>Address AI pre-screening: model, templates, multiple resolution types</li>
+                                                <li>Finalize resolution ID naming + template update capability</li>
+                                                <li>Plan dashboard for real-time updates (replace manual tracking)</li>
+                                                <li>Integrate stakeholder feedback + AI disclaimers</li>
+                                                <li>Share static workflow docs for review before implementation</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="phase-label">
+                                <div class="phase-dot working"></div>
+                                <details class="week-card">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 7 · Fri, Oct 10</span>
+                                        <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>
+                                                Key Topics
+                                                <ul>
+                                                    <li>AI model upgrade request (currently using 4.0)</li>
+                                                    <li>Resolution types/templates and process flow</li>
+                                                    <li>Final document safeguards (extra review before BoT submission)</li>
+                                                    <li>Archiving in ProcessMaker + OneDrive and dashboard planning</li>
+                                                    <li>Office email policy for approvals</li>
+                                                    <li>Governance review via process video</li>
+                                                    <li>Resolution ID auto-generation with Dia providing naming convention/format</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                Decisions
+                                                <ul>
+                                                    <li>Add final review step before BoT portal submission</li>
+                                                    <li>Archive final documents in both systems</li>
+                                                    <li>Use office emails for approvals (not personal)</li>
+                                                    <li>Build dashboard after process approval</li>
+                                                    <li>Share process video for governance feedback</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                Action Items
+                                                <ul>
+                                                    <li>JC: Follow up on AI model selection timeline</li>
+                                                    <li>Justin: Refine and share resolution types list</li>
+                                                    <li>Marcelo: Update process flow, set up OneDrive archiving, start dashboard, create process video (using Dia's naming convention/format)</li>
+                                                    <li>Mitroya: Update budget/procurement section</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="phase-label">
+                                <div class="phase-dot working"></div>
+                                <details class="week-card">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 8 · Fri, Oct 17</span>
+                                        <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>
+                                                Key Topics
+                                                <ul>
+                                                    <li>AI model upgrade request (currently using 4.0)</li>
+                                                    <li>Resolution types/templates and process flow</li>
+                                                    <li>Final document safeguards (extra review before BoT submission)</li>
+                                                    <li>Archiving in ProcessMaker + OneDrive and dashboard planning</li>
+                                                    <li>Office email policy for approvals</li>
+                                                    <li>Governance review via process video</li>
+                                                    <li>Resolution ID auto-generation with Dia providing naming convention/format</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                Decisions
+                                                <ul>
+                                                    <li>Add final review step before BoT portal submission</li>
+                                                    <li>Archive final documents in both systems</li>
+                                                    <li>Use office emails for approvals (not personal)</li>
+                                                    <li>Build dashboard after process approval</li>
+                                                    <li>Share process video for governance feedback</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                Action Items
+                                                <ul>
+                                                    <li>JC: Follow up on AI model selection timeline</li>
+                                                    <li>Justin: Refine and share resolution types list</li>
+                                                    <li>Marcelo: Update process flow, set up OneDrive archiving, start dashboard, create process video (using Dia's naming convention/format)</li>
+                                                    <li>Mitroya: Update budget/procurement section</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="phase-label">
+                                <div class="phase-dot governance"></div>
+                                <details class="week-card">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 9 · Fri, Oct 24</span>
+                                        <span class="week-badge">
+                                            <span class="governance-badge">Governance Checkpoint (Week of Oct 20 – 23)</span>
+                                            <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>Third Governance Checkpoint: Progress and review (Week of Oct 20 – 23).</li>
+                                            <li>Discuss readiness for finalization phase.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="phase-label">
+                                <div class="phase-dot working"></div>
+                                <div class="phase-badge phase-3">Phase 3: Review & Feedback Integration</div>
+                                <details class="week-card">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 10 · Fri, Oct 31</span>
+                                        <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>Address governance feedback; refine roles, SLAs, and exceptions.</li>
+                                            <li>Prepare end-to-end walkthrough & sign-off materials.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="phase-label">
+                                <div class="phase-dot working"></div>
+                                <details class="week-card">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 11 · Fri, Nov 7</span>
+                                        <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>Address governance feedback; refine roles, SLAs, and exceptions.</li>
+                                            <li>Prepare end-to-end walkthrough & sign-off materials.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="phase-label">
+                                <div class="phase-dot governance"></div>
+                                <details class="week-card">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 12 · Fri, Nov 14</span>
+                                        <span class="week-badge">
+                                            <span class="governance-badge">Governance Checkpoint (Week of Nov 10 – 13)</span>
+                                            <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>Fourth Governance Checkpoint: Pre-finalization review (Week of Nov 10 – 13).</li>
+                                            <li>Confirm readiness for final approvals and implementation.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="phase-label">
+                                <div class="phase-dot working"></div>
+                                <div class="phase-badge phase-4">Phase 4: Finalization, Sign-Off & Implementation</div>
+                                <details class="week-card">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 13 · Fri, Nov 21</span>
+                                        <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>Resolve remaining issues; final approvals & readiness sign-off.</li>
+                                            <li>Production implementation; communication & training rollout.</li>
+                                            <li>Training: Conduct two sessions – one for the process owner and working team, and ensure the process owner has a plan to train stakeholders involved in the process.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="phase-label">
+                                <div class="phase-dot working"></div>
+                                <details class="week-card">
+                                    <summary class="week-summary">
+                                        <span class="week-title">Week 14 · Fri, Nov 28</span>
+                                        <svg class="week-chevron" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </summary>
+                                    <div class="week-content">
+                                        <ul>
+                                            <li>Buffer for wrap-up, documentation, and any late-breaking adjustments.</li>
+                                            <li>Confirm post-launch support, monitoring, and handoffs.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="pillars-tip"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
