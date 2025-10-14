@@ -2139,3 +2139,188 @@ body {
         text-align: left;
     }
 }
+
+/* Intake Form Dashboard - CUNY Branding */
+#intake-form .bot-reso-container {
+    background: white !important;
+    padding: 32px !important;
+}
+
+#intake-form .bot-reso-header {
+    max-width: 1280px !important;
+    margin: 0 auto 2rem auto !important;
+    text-align: center !important;
+    padding-bottom: 1.5rem !important;
+    border-bottom: 2px solid #e5e7eb !important;
+}
+
+#intake-form .bot-reso-title {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: var(--cuny-blue) !important; /* CUNY Blue */
+    margin-bottom: 8px !important;
+}
+
+#intake-form .bot-reso-subtitle {
+    font-size: 14px !important;
+    color: #6b7280 !important;
+    margin-bottom: 0 !important;
+}
+
+#intake-form .bot-reso-timeline {
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+    padding-left: 1.5rem !important;
+    position: relative !important;
+}
+
+#intake-form .timeline-line {
+    position: absolute !important;
+    left: -1.5rem !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 3px !important;
+    background: linear-gradient(to bottom, var(--cuny-blue), var(--cuny-gold)) !important; /* CUNY Blue to Gold gradient */
+    border-radius: 2px !important;
+}
+
+#intake-form .phase-label {
+    position: relative !important;
+    margin-bottom: 1rem !important;
+}
+
+#intake-form .phase-dot {
+    position: absolute !important;
+    left: -1.75rem !important;
+    top: 0.75rem !important;
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 50% !important;
+    border: 3px solid white !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+#intake-form .phase-dot.working {
+    background: var(--cuny-blue) !important; /* CUNY Blue */
+    border-color: var(--cuny-blue) !important;
+}
+
+#intake-form .phase-dot.paused {
+    background: #dc2626 !important; /* Red for paused */
+    border-color: #dc2626 !important;
+}
+
+#intake-form .phase-dot.milestone {
+    background: var(--cuny-gold) !important; /* CUNY Gold */
+    border-color: var(--cuny-gold) !important;
+}
+
+#intake-form .week-card {
+    border-radius: 12px !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 2px 8px rgba(0, 51, 161, 0.08) !important; /* Subtle CUNY Blue shadow */
+    background: white !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    margin-left: 0.5rem !important;
+}
+
+#intake-form .week-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 51, 161, 0.12) !important;
+    border-color: var(--cuny-blue) !important;
+}
+
+#intake-form .week-card[open] {
+    box-shadow: 0 4px 16px rgba(0, 51, 161, 0.15) !important;
+    border-color: var(--cuny-blue) !important;
+}
+
+#intake-form .week-summary {
+    cursor: pointer !important;
+    padding: 1rem 1.25rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    font-weight: 600 !important;
+    color: #374151 !important;
+    transition: all 0.2s ease !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%) !important;
+}
+
+#intake-form .week-summary:hover {
+    background: var(--cuny-blue) !important;
+    color: white !important;
+}
+
+#intake-form .week-title {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+}
+
+#intake-form .week-chevron {
+    width: 16px !important;
+    height: 16px !important;
+    transition: transform 0.2s ease !important;
+    color: #6b7280 !important;
+}
+
+#intake-form .week-summary:hover .week-chevron {
+    color: white !important;
+}
+
+#intake-form .week-card[open] .week-chevron {
+    transform: rotate(180deg) !important;
+}
+
+#intake-form .week-content {
+    padding: 0 1.25rem 1.25rem 1.25rem !important;
+    background: white !important;
+}
+
+#intake-form .week-content ul {
+    margin: 0.5rem 0 0 0 !important;
+    padding-left: 1.25rem !important;
+    font-size: 0.875rem !important;
+    color: #374151 !important;
+}
+
+#intake-form .week-content li {
+    margin-bottom: 0.5rem !important;
+    line-height: 1.5 !important;
+    position: relative !important;
+}
+
+#intake-form .week-content li::marker {
+    color: var(--cuny-blue) !important; /* CUNY Blue bullet points */
+}
+
+/* Responsive Design for Intake Form */
+@media (max-width: 768px) {
+    #intake-form .bot-reso-container {
+        padding: 1rem !important;
+    }
+    
+    #intake-form .bot-reso-title {
+        font-size: 1.25rem !important;
+    }
+    
+    #intake-form .bot-reso-timeline {
+        margin-left: 1rem !important;
+    }
+    
+    #intake-form .timeline-line {
+        left: -1rem !important;
+    }
+    
+    #intake-form .phase-dot {
+        left: -1.25rem !important;
+    }
+    
+    #intake-form .week-summary {
+        padding: 0.75rem 1rem !important;
+    }
+    
+    #intake-form .week-content {
+        padding: 0 1rem 1rem 1rem !important;
+    }
+}
