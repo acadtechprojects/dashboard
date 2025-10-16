@@ -499,14 +499,16 @@ function setCurrentDate() {
     const dateElement = document.getElementById('status-date');
     const fafsaDateElement = document.getElementById('fafsa-status-date');
     
-    // Set specific date: 10/03/2025
-    const specificDate = '10/03/2025';
+    // Set specific dates for each page
+    const slateDate = '10/16/2025';
+    const fafsaDate = '10/17/2025';
     
-    console.log('Setting date to:', specificDate);
+    console.log('Setting Slate date to:', slateDate);
+    console.log('Setting FAFSA date to:', fafsaDate);
     
     // Set date for Slate page
     if (dateElement) {
-        dateElement.textContent = specificDate;
+        dateElement.textContent = slateDate;
         console.log('Slate date element updated');
     } else {
         console.log('Slate date element not found');
@@ -514,7 +516,7 @@ function setCurrentDate() {
     
     // Set date for FAFSA page
     if (fafsaDateElement) {
-        fafsaDateElement.textContent = specificDate;
+        fafsaDateElement.textContent = fafsaDate;
         console.log('FAFSA date element updated');
     } else {
         console.log('FAFSA date element not found');
@@ -523,10 +525,10 @@ function setCurrentDate() {
     // Force update if elements exist but are empty
     setTimeout(() => {
         if (dateElement && !dateElement.textContent) {
-            dateElement.textContent = specificDate;
+            dateElement.textContent = slateDate;
         }
         if (fafsaDateElement && !fafsaDateElement.textContent) {
-            fafsaDateElement.textContent = specificDate;
+            fafsaDateElement.textContent = fafsaDate;
         }
     }, 200);
 }
