@@ -2324,3 +2324,28 @@ body {
         padding: 0 1rem 1rem 1rem !important;
     }
 }
+
+/* SIT Testing - Using Data Table Style */
+.sit-testing-container {
+    background: #ffffff;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.sit-testing-header {
+    margin-bottom: 1.5rem;
+}
+
+.sit-testing-title {
+    color: #0033A1;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+
+.sit-testing-subtitle {
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin: 0;
+}
