@@ -506,10 +506,15 @@ function setCurrentDate() {
     console.log('Setting Slate date to:', slateDate);
     console.log('Setting FAFSA date to:', fafsaDate);
     
+    // Force update with cache busting
+    const timestamp = new Date().getTime();
+    console.log('Cache busting timestamp:', timestamp);
+    
     // Set date for Slate page
     if (dateElement) {
         dateElement.textContent = slateDate;
-        console.log('Slate date element updated');
+        dateElement.setAttribute('data-timestamp', timestamp);
+        console.log('Slate date element updated with timestamp:', timestamp);
     } else {
         console.log('Slate date element not found');
     }
@@ -517,18 +522,24 @@ function setCurrentDate() {
     // Set date for FAFSA page
     if (fafsaDateElement) {
         fafsaDateElement.textContent = fafsaDate;
-        console.log('FAFSA date element updated');
+        fafsaDateElement.setAttribute('data-timestamp', timestamp);
+        console.log('FAFSA date element updated with timestamp:', timestamp);
     } else {
         console.log('FAFSA date element not found');
     }
     
-    // Force update if elements exist but are empty
+    // Force update if elements exist but are empty or have old timestamps
     setTimeout(() => {
-        if (dateElement && !dateElement.textContent) {
+        const currentTimestamp = new Date().getTime();
+        if (dateElement && (!dateElement.textContent || dateElement.getAttribute('data-timestamp') !== timestamp.toString())) {
             dateElement.textContent = slateDate;
+            dateElement.setAttribute('data-timestamp', currentTimestamp);
+            console.log('Force updated Slate date with new timestamp:', currentTimestamp);
         }
-        if (fafsaDateElement && !fafsaDateElement.textContent) {
+        if (fafsaDateElement && (!fafsaDateElement.textContent || fafsaDateElement.getAttribute('data-timestamp') !== timestamp.toString())) {
             fafsaDateElement.textContent = fafsaDate;
+            fafsaDateElement.setAttribute('data-timestamp', currentTimestamp);
+            console.log('Force updated FAFSA date with new timestamp:', currentTimestamp);
         }
     }, 200);
 }
