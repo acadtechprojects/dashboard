@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up new accordion functionality
     setupNewAccordion();
     
+    // Set up CIS accordion functionality
+    setupCISAccordion();
+    
     // Set up tooltips
     setupTooltips();
     
@@ -1221,13 +1224,8 @@ function setupCISAccordion() {
         }
     });
 
-    // Auto-open by default
-    if (document.visibilityState !== 'hidden') {
-        openPanel();
-    }
+    // Start closed by default for better GitHub compatibility
+    closePanel();
 }
 
-// Initialize CIS accordion when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    setupCISAccordion();
-});
+}
