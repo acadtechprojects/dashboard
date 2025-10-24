@@ -58,14 +58,18 @@
                 </header>
 
                 <!-- CIS Remaining Deliverables & Timeline Accordion -->
-                <div class="accordion" id="cisAccordion" style="margin-bottom: 2rem;">
-                    <button class="acc-header" id="accHeader" aria-controls="accPanel" aria-expanded="false" style="display:flex; align-items:center; gap:14px; width:100%; background:linear-gradient(90deg, #0033A1 0%, #1c4ec9 100%); color:#fff; border:0; cursor:pointer; padding:18px 20px; font-size:1.05rem; font-weight:700; border-radius:14px 14px 0 0;">
-                        <span class="pill" aria-hidden="true" style="display:inline-flex; align-items:center; gap:8px; padding:6px 10px; font-size:.85rem; border-radius:999px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25);">Slate • CIS</span>
-                        <span>CIS Remaining Deliverables &amp; Timeline — Slate Integration</span>
-                        <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="margin-left:auto; width:18px; height:18px; display:inline-block; transition:transform .25s ease;"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                    <div class="acc-panel" id="accPanel" role="region" aria-labelledby="accHeader" aria-hidden="true" style="display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; background:#fff;">
-                        <div class="acc-inner" style="overflow:hidden;">
+                <div class="accordion-new" style="margin-bottom: 1.5rem;">
+                    <section class="accordion-item-new" data-id="cis-deliverables" aria-expanded="false">
+                        <button class="accordion-trigger-new" aria-controls="cis-deliverables-panel" aria-expanded="false">
+                            <div class="accordion-title-new">
+                                <span class="accordion-bar"></span>
+                                <span class="accordion-text">CIS Remaining Deliverables &amp; Timeline — Slate Integration</span>
+                            </div>
+                            <svg class="accordion-chevron-new" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 8l4 4 4-4"/>
+                            </svg>
+                        </button>
+                        <div id="cis-deliverables-panel" class="accordion-panel-new">
                             <div class="sheet" id="contentTop" style="padding:24px; display:grid; gap:22px;">
 
                                 <section class="section" style="background:#F7F9FC; border:1px solid #E3E8F0; border-left:6px solid #FFB71B; border-radius:12px; padding:18px; box-shadow:0 2px 10px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);">
@@ -210,7 +214,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
 
                 <div class="accordion-new">
