@@ -2349,3 +2349,36 @@ body {
     font-weight: 400;
     margin: 0;
 }
+
+/* CIS Accordion Responsive Styles */
+@media (max-width: 900px) {
+    .accordion .col-6 {
+        grid-column: span 12 !important;
+    }
+    
+    .accordion .acc-header {
+        padding: 14px 16px !important;
+        font-size: 0.95rem !important;
+    }
+    
+    .accordion .sheet {
+        padding: 18px !important;
+        gap: 16px !important;
+    }
+    
+    .accordion .section {
+        padding: 14px !important;
+    }
+    
+    .accordion .card {
+        padding: 12px 14px !important;
+    }
+    
+    .accordion table {
+        font-size: 0.85rem !important;
+    }
+    
+    .accordion th, .accordion td {
+        padding: 8px 10px !important;
+    }
+}
