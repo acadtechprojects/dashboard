@@ -12,8 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up new accordion functionality
     setupNewAccordion();
     
-    // Set up CIS accordion functionality
-    setupCISAccordion();
     
     // Set up tooltips
     setupTooltips();
@@ -1177,55 +1175,3 @@ function startPillarsAnimation() {
 }
 
 const rand = (a, b) => a + Math.random() * (b - a);
-
-// CIS Accordion Functionality
-function setupCISAccordion() {
-    const header = document.getElementById('accHeader');
-    const panel = document.getElementById('accPanel');
-
-    if (!header || !panel) return;
-
-    function openPanel() {
-        header.setAttribute('aria-expanded', 'true');
-        panel.setAttribute('aria-hidden', 'false');
-        panel.style.gridTemplateRows = '1fr';
-        const chev = header.querySelector('.chev');
-        if (chev) chev.style.transform = 'rotate(180deg)';
-    }
-
-    function closePanel() {
-        header.setAttribute('aria-expanded', 'false');
-        panel.setAttribute('aria-hidden', 'true');
-        panel.style.gridTemplateRows = '0fr';
-        const chev = header.querySelector('.chev');
-        if (chev) chev.style.transform = 'rotate(0deg)';
-    }
-
-    function toggle() {
-        const expanded = header.getAttribute('aria-expanded') === 'true';
-        expanded ? closePanel() : openPanel();
-    }
-
-    header.addEventListener('click', toggle);
-    header.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggle();
-        }
-        if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            openPanel();
-            const contentTop = document.getElementById('contentTop');
-            if (contentTop && contentTop.focus) contentTop.focus();
-        }
-        if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            closePanel();
-        }
-    });
-
-    // Start closed by default for better GitHub compatibility
-    closePanel();
-}
-
-}
