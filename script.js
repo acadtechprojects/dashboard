@@ -1,35 +1,43 @@
 // Dashboard Navigation and Interactivity
+// GitHub Pages compatibility check
+const isGitHubPages = window.location.hostname.includes('github.io') || window.location.hostname.includes('github.com');
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize the dashboard
-    initializeDashboard();
+    // Add delay for GitHub Pages to ensure all resources are loaded
+    const initDelay = isGitHubPages ? 500 : 0;
     
-    // Set up navigation
-    setupNavigation();
-    
-    // Set up accordion functionality
-    setupAccordion();
-    
-    // Set up new accordion functionality
-    setupNewAccordion();
-    
-    
-    // Set up tooltips
-    setupTooltips();
-    
-    // Set up hover effects
-    setupHoverEffects();
-    
-    // Set up charts
-    setupCharts();
-    
-        // Set up BoT Reso timeline
-        setupBotResoTimeline();
+    setTimeout(() => {
+        // Initialize the dashboard
+        initializeDashboard();
         
-        // Set current date
-        setCurrentDate();
-    
-    // Also set date after a short delay to ensure DOM is fully loaded
-    setTimeout(setCurrentDate, 100);
+        // Set up navigation
+        setupNavigation();
+        
+        // Set up accordion functionality
+        setupAccordion();
+        
+        // Set up new accordion functionality
+        setupNewAccordion();
+        
+        
+        // Set up tooltips
+        setupTooltips();
+        
+        // Set up hover effects
+        setupHoverEffects();
+        
+        // Set up charts
+        setupCharts();
+        
+            // Set up BoT Reso timeline
+            setupBotResoTimeline();
+            
+            // Set current date
+            setCurrentDate();
+        
+        // Also set date after a short delay to ensure DOM is fully loaded
+        setTimeout(setCurrentDate, 100);
+    }, initDelay);
 });
 
 function initializeDashboard() {
@@ -203,6 +211,26 @@ function setupHoverEffects() {
 function setupCharts() {
     // Set up HTML-based charts with tooltips
     setupDataVisualizationInteractions();
+    
+    // GitHub Pages compatibility - retry chart drawing if initial attempt fails
+    setTimeout(() => {
+        const goLiveCanvas = document.getElementById('goLiveChart');
+        const funnelCanvas = document.getElementById('funnelChart');
+        
+        if (goLiveCanvas && funnelCanvas) {
+            try {
+                drawGoLiveChart(goLiveCanvas);
+                drawFunnelChart(funnelCanvas);
+            } catch (error) {
+                console.warn('Chart drawing failed, retrying...', error);
+                // Retry after a longer delay
+                setTimeout(() => {
+                    drawGoLiveChart(goLiveCanvas);
+                    drawFunnelChart(funnelCanvas);
+                }, 1000);
+            }
+        }
+    }, isGitHubPages ? 1000 : 100);
 }
 
 function setupDataVisualizationInteractions() {
@@ -284,7 +312,19 @@ function setupDataVisualizationInteractions() {
 }
 
 function drawGoLiveChart(canvas) {
+    // GitHub Pages compatibility check
+    if (!canvas || !canvas.getContext) {
+        console.warn('Canvas not available, skipping chart drawing');
+        return;
+    }
+    
     const ctx = canvas.getContext('2d');
+    
+    // Ensure canvas is properly sized
+    if (canvas.width === 0 || canvas.height === 0) {
+        canvas.width = canvas.offsetWidth || 400;
+        canvas.height = canvas.offsetHeight || 200;
+    }
     const data = [
         { date: '9/10/2025', colleges: 1 },
         { date: '9/15/2025', colleges: 2 },
@@ -327,7 +367,19 @@ function drawGoLiveChart(canvas) {
 }
 
 function drawFunnelChart(canvas) {
+    // GitHub Pages compatibility check
+    if (!canvas || !canvas.getContext) {
+        console.warn('Canvas not available, skipping chart drawing');
+        return;
+    }
+    
     const ctx = canvas.getContext('2d');
+    
+    // Ensure canvas is properly sized
+    if (canvas.width === 0 || canvas.height === 0) {
+        canvas.width = canvas.offsetWidth || 400;
+        canvas.height = canvas.offsetHeight || 200;
+    }
     const data = [
         { college: 'Baruch', created: 0, fee: 0, ready: 0, submitted: 0 },
         { college: 'Brooklyn', created: 494, fee: 62, ready: 45, submitted: 46 },
