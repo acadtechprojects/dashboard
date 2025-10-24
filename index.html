@@ -57,6 +57,162 @@
                     </div>
                 </header>
 
+                <!-- CIS Remaining Deliverables & Timeline Accordion -->
+                <div class="accordion" id="cisAccordion" style="margin-bottom: 2rem;">
+                    <button class="acc-header" id="accHeader" aria-controls="accPanel" aria-expanded="false" style="display:flex; align-items:center; gap:14px; width:100%; background:linear-gradient(90deg, #0033A1 0%, #1c4ec9 100%); color:#fff; border:0; cursor:pointer; padding:18px 20px; font-size:1.05rem; font-weight:700; border-radius:14px 14px 0 0;">
+                        <span class="pill" aria-hidden="true" style="display:inline-flex; align-items:center; gap:8px; padding:6px 10px; font-size:.85rem; border-radius:999px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25);">Slate • CIS</span>
+                        <span>CIS Remaining Deliverables &amp; Timeline — Slate Integration</span>
+                        <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="margin-left:auto; width:18px; height:18px; display:inline-block; transition:transform .25s ease;"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="acc-panel" id="accPanel" role="region" aria-labelledby="accHeader" aria-hidden="true" style="display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; background:#fff;">
+                        <div class="acc-inner" style="overflow:hidden;">
+                            <div class="sheet" id="contentTop" style="padding:24px; display:grid; gap:22px;">
+
+                                <section class="section" style="background:#F7F9FC; border:1px solid #E3E8F0; border-left:6px solid #FFB71B; border-radius:12px; padding:18px; box-shadow:0 2px 10px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);">
+                                    <h3 style="margin:0 0 10px; color:#0033A1; font-size:1.05rem; letter-spacing:.2px;">Context &amp; Current State</h3>
+                                    <ul style="margin:10px 0 0 20px;">
+                                        <li style="margin:8px 0;"><strong>Inbound (Slate → CF, grad data)</strong> — <span style="color:#059669; font-weight:600;">Complete</span></li>
+                                        <li style="margin:8px 0;"><strong>Outbound (CF → Slate)</strong> — <span style="color:#059669; font-weight:600;">Complete (except testing data)</span></li>
+                                        <li style="margin:8px 0;"><strong>Anthology data backup</strong> — ready to move to cold storage (first batch)</li>
+                                        <li style="margin:8px 0;"><strong>Security Integration</strong> — In progress. Prioritized after application data integration</li>
+                                        <li style="margin:8px 0;"><strong>ALM policy</strong> — after go‑live + 2‑week stabilization, all changes must go through ServiceNow</li>
+                                    </ul>
+                                </section>
+
+                                <section class="section" style="background:#F7F9FC; border:1px solid #E3E8F0; border-left:6px solid #FFB71B; border-radius:12px; padding:18px; box-shadow:0 2px 10px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);">
+                                    <h3 style="margin:0 0 10px; color:#0033A1; font-size:1.05rem; letter-spacing:.2px;">CIS Remaining Deliverables</h3>
+                                    <div class="grid" style="display:grid; gap:14px; grid-template-columns:repeat(12, 1fr);">
+                                        <div class="col-6" style="grid-column:span 6;">
+                                            <div class="card" style="background:#fff; border:1px solid #E3E8F0; border-radius:12px; padding:14px 16px; box-shadow:0 2px 10px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);">
+                                                <h4 style="margin:0 0 8px; color:#0c2e73;">1) Cold Storage Move (Legacy ZIPs from Tumbleweed)</h4>
+                                                <p class="meta-line" style="color:#5d6b85; font-size:.9rem;"><strong>Action:</strong> CIS to move files to cold storage</p>
+                                                <p class="meta-line" style="color:#5d6b85; font-size:.9rem;"><strong>Target:</strong> Oct 25 initial move</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6" style="grid-column:span 6;">
+                                            <div class="card" style="background:#fff; border:1px solid #E3E8F0; border-radius:12px; padding:14px 16px; box-shadow:0 2px 10px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);">
+                                                <h4 style="margin:0 0 8px; color:#0c2e73;">2) Enrollment &amp; Testing Data</h4>
+                                                <p class="meta-line" style="color:#5d6b85; font-size:.9rem;"><strong>Enrollment:</strong> validate formats — Oct 31</p>
+                                                <p class="meta-line" style="color:#5d6b85; font-size:.9rem;"><strong>Testing Data:</strong> Finalize schema &amp; data transfers — Oct 27–Nov 6</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-6" style="grid-column:span 6;">
+                                            <div class="card" style="background:#fff; border:1px solid #E3E8F0; border-radius:12px; padding:14px 16px; box-shadow:0 2px 10px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);">
+                                                <h4 style="margin:0 0 8px; color:#0c2e73;">3) Security Bolt‑On / Admin Integration</h4>
+                                                <p class="meta-line" style="color:#5d6b85; font-size:.9rem;"><strong>Action:</strong> OEM and CIS to complete development and testing</p>
+                                                <p class="meta-line" style="color:#5d6b85; font-size:.9rem;"><strong>Target:</strong> Plan by Nov 8, testing by Nov 22</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6" style="grid-column:span 6;">
+                                            <div class="card" style="background:#fff; border:1px solid #E3E8F0; border-radius:12px; padding:14px 16px; box-shadow:0 2px 10px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);">
+                                                <h4 style="margin:0 0 8px; color:#0c2e73;">4) ALM Transition Plan</h4>
+                                                <p class="meta-line" style="color:#5d6b85; font-size:.9rem;"><strong>Action:</strong> OEM and CIS to finalize the plan</p>
+                                                <p class="meta-line" style="color:#5d6b85; font-size:.9rem;"><strong>Target:</strong> After all integrations are live and stabilized</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section class="section" style="background:#F7F9FC; border:1px solid #E3E8F0; border-left:6px solid #FFB71B; border-radius:12px; padding:18px; box-shadow:0 2px 10px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);">
+                                    <h3 style="margin:0 0 10px; color:#0033A1; font-size:1.05rem; letter-spacing:.2px;">Key Dependencies</h3>
+                                    <ul style="margin:10px 0 0 20px;">
+                                        <li style="margin:8px 0;">Final Sign Off by colleges on data back up</li>
+                                        <li style="margin:8px 0;">Data validations based on the current file schema</li>
+                                        <li style="margin:8px 0;">Testing data — Agreement on schema (test types, placements)</li>
+                                        <li style="margin:8px 0;">Security integration — Agreement on schema</li>
+                                    </ul>
+                                </section>
+
+                                <section class="section" style="background:#F7F9FC; border:1px solid #E3E8F0; border-left:6px solid #FFB71B; border-radius:12px; padding:18px; box-shadow:0 2px 10px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);">
+                                    <h3 style="margin:0 0 10px; color:#0033A1; font-size:1.05rem; letter-spacing:.2px;">Risks &amp; Mitigations</h3>
+                                    <table aria-label="Risks and Mitigations" style="width:100%; border-collapse:collapse; background:#fff; box-shadow:0 2px 10px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05); border:1px solid #E3E8F0; border-radius:12px; overflow:hidden;">
+                                        <thead>
+                                            <tr><th scope="col" style="text-align:left; padding:12px 14px; vertical-align:top; background:linear-gradient(0deg, #fff 0%, #f2f6ff 100%); color:#0c2e73; border-top:none;">Risk</th><th scope="col" style="text-align:left; padding:12px 14px; vertical-align:top; background:linear-gradient(0deg, #fff 0%, #f2f6ff 100%); color:#0c2e73; border-top:none;">Mitigation</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="border-top:1px solid #E3E8F0;">
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">Scope creep after stabilization</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">ALM enforcement, strict severity matrix</td>
+                                            </tr>
+                                            <tr style="border-top:1px solid #E3E8F0;">
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">Testing data delays</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">Finalize schema &amp; data transfers — Oct 27–Nov 6</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+
+                                <section class="section" style="background:#F7F9FC; border:1px solid #E3E8F0; border-left:6px solid #FFB71B; border-radius:12px; padding:18px; box-shadow:0 2px 10px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);">
+                                    <h3 style="margin:0 0 10px; color:#0033A1; font-size:1.05rem; letter-spacing:.2px;">Expected Outputs</h3>
+                                    <ul style="margin:10px 0 0 20px;">
+                                        <li style="margin:8px 0;">Cold Storage file move</li>
+                                        <li style="margin:8px 0;">Draft ALM one‑pager + Security Plan outline</li>
+                                        <li style="margin:8px 0;">Testing and validation of the in‑progress data integration elements</li>
+                                    </ul>
+                                </section>
+
+                                <section class="section" style="background:#F7F9FC; border:1px solid #E3E8F0; border-left:6px solid #FFB71B; border-radius:12px; padding:18px; box-shadow:0 2px 10px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);">
+                                    <h3 style="margin:0 0 10px; color:#0033A1; font-size:1.05rem; letter-spacing:.2px;">Issue Tracking & Status</h3>
+                                    <table aria-label="Issue Tracking and Status" style="width:100%; border-collapse:collapse; background:#fff; box-shadow:0 2px 10px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05); border:1px solid #E3E8F0; border-radius:12px; overflow:hidden;">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="text-align:left; padding:12px 14px; vertical-align:top; background:linear-gradient(0deg, #fff 0%, #f2f6ff 100%); color:#0c2e73; border-top:none;">Issue</th>
+                                                <th scope="col" style="text-align:left; padding:12px 14px; vertical-align:top; background:linear-gradient(0deg, #fff 0%, #f2f6ff 100%); color:#0c2e73; border-top:none;">Current Owner</th>
+                                                <th scope="col" style="text-align:left; padding:12px 14px; vertical-align:top; background:linear-gradient(0deg, #fff 0%, #f2f6ff 100%); color:#0c2e73; border-top:none;">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="border-top:1px solid #E3E8F0;">
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">Missing data mappings</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">K&Co</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">In Progress - High Priority</td>
+                                            </tr>
+                                            <tr style="border-top:1px solid #E3E8F0;">
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">CF data not accessible</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">K&Co</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">Ongoing</td>
+                                            </tr>
+                                            <tr style="border-top:1px solid #E3E8F0;">
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">Testing/enrollment mappings</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">K&Co and CIS</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">In Progress - High Priority</td>
+                                            </tr>
+                                            <tr style="border-top:1px solid #E3E8F0;">
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">Data mismatches</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">K&Co</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top; color:#059669; font-weight:600;">Resolved</td>
+                                            </tr>
+                                            <tr style="border-top:1px solid #E3E8F0;">
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">Cross-campus data bleeding</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">K&Co</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top; color:#059669; font-weight:600;">Resolved</td>
+                                            </tr>
+                                            <tr style="border-top:1px solid #E3E8F0;">
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">Incorrect decision values</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">K&Co</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top; color:#059669; font-weight:600;">Resolved</td>
+                                            </tr>
+                                            <tr style="border-top:1px solid #E3E8F0;">
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">Inbound file issues</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">K&Co</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top; color:#059669; font-weight:600;">Resolved</td>
+                                            </tr>
+                                            <tr style="border-top:1px solid #E3E8F0;">
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">Pre-applicant file issues</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">K&Co</td>
+                                                <td style="text-align:left; padding:12px 14px; vertical-align:top;">Paused - Cleanup Underway</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="accordion-new">
                     <section class="accordion-item-new" data-id="data-flow" aria-expanded="true">
                         <button class="accordion-trigger-new" aria-controls="data-flow-panel" aria-expanded="true">
@@ -89,7 +245,7 @@
                                         <span class="flow-title-new">Slate</span>
                                     </div>
                                     <div class="flow-desc-new">Applications, reviews, decisions</div>
-                                    <div class="flow-pill-new blue">Processing</div>
+                                    <div class="flow-pill-new green">✅ Completed</div>
                                 </div>
                                 <div class="flow-arrow-new">
                                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -102,7 +258,7 @@
                                         <span class="flow-title-new">CUNYfirst (CF)</span>
                                     </div>
                                     <div class="flow-desc-new">Final decisions, audit trail</div>
-                                    <div class="flow-pill-new green">Outcome</div>
+                                    <div class="flow-pill-new green">✅ Completed</div>
                                 </div>
                             </div>
                         </div>
@@ -174,6 +330,14 @@
                                         <span class="setup-title-new">✅ Standard Reader Workflow</span>
                                     </div>
                                     <div class="setup-desc-new">Build Complete; Testing in central instance.</div>
+                                    <div class="setup-pill-new green">Completed</div>
+                                </div>
+                                <div class="setup-card-new">
+                                    <div class="setup-card-header-new">
+                                        <span class="setup-dot-new"></span>
+                                        <span class="setup-title-new">✅ Slate → CF Integration</span>
+                                    </div>
+                                    <div class="setup-desc-new">Slate data flows back to CUNYfirst.</div>
                                     <div class="setup-pill-new green">Completed</div>
                                 </div>
                             </div>
@@ -248,89 +412,89 @@
                                         <tbody>
                                             <tr>
                                                 <td>Baruch</td>
-                                                <td>1683</td>
-                                                <td>417</td>
-                                                <td>370</td>
-                                                <td>231</td>
+                                                <td>2021</td>
+                                                <td>479</td>
+                                                <td>423</td>
+                                                <td>281</td>
                                                 <td>1</td>
                                             </tr>
                                             <tr>
                                                 <td>Brooklyn</td>
-                                                <td>1181</td>
-                                                <td>325</td>
-                                                <td>271</td>
-                                                <td>95</td>
-                                                <td>13</td>
+                                                <td>1370</td>
+                                                <td>378</td>
+                                                <td>310</td>
+                                                <td>102</td>
+                                                <td>7</td>
                                             </tr>
                                             <tr>
                                                 <td>City College</td>
-                                                <td>1124</td>
-                                                <td>204</td>
-                                                <td>143</td>
-                                                <td>67</td>
-                                                <td>0</td>
+                                                <td>1371</td>
+                                                <td>265</td>
+                                                <td>189</td>
+                                                <td>91</td>
+                                                <td>5</td>
                                             </tr>
                                             <tr>
                                                 <td>CSI</td>
-                                                <td>170</td>
-                                                <td>41</td>
-                                                <td>30</td>
-                                                <td>14</td>
-                                                <td>0</td>
+                                                <td>245</td>
+                                                <td>216</td>
+                                                <td>39</td>
+                                                <td>18</td>
+                                                <td>4</td>
                                             </tr>
                                             <tr>
                                                 <td>Grad Center</td>
-                                                <td>1465</td>
-                                                <td>102</td>
-                                                <td>71</td>
-                                                <td>13</td>
-                                                <td>0</td>
+                                                <td>1863</td>
+                                                <td>138</td>
+                                                <td>90</td>
+                                                <td>18</td>
+                                                <td>7</td>
                                             </tr>
                                             <tr>
                                                 <td>Hunter</td>
-                                                <td>2396</td>
-                                                <td>526</td>
-                                                <td>479</td>
-                                                <td>263</td>
-                                                <td>0</td>
+                                                <td>2739</td>
+                                                <td>603</td>
+                                                <td>552</td>
+                                                <td>351</td>
+                                                <td>1</td>
                                             </tr>
                                             <tr>
                                                 <td>John Jay</td>
-                                                <td>763</td>
-                                                <td>170</td>
-                                                <td>138</td>
-                                                <td>83</td>
+                                                <td>886</td>
+                                                <td>188</td>
+                                                <td>159</td>
+                                                <td>104</td>
                                                 <td>0</td>
                                             </tr>
                                             <tr>
                                                 <td>Lehman</td>
-                                                <td>386</td>
-                                                <td>114</td>
-                                                <td>102</td>
-                                                <td>31</td>
+                                                <td>467</td>
+                                                <td>124</td>
+                                                <td>112</td>
+                                                <td>47</td>
                                                 <td>0</td>
                                             </tr>
                                             <tr>
                                                 <td>Queens</td>
-                                                <td>614</td>
-                                                <td>112</td>
-                                                <td>92</td>
-                                                <td>20</td>
+                                                <td>766</td>
+                                                <td>159</td>
+                                                <td>139</td>
+                                                <td>39</td>
                                                 <td>0</td>
                                             </tr>
                                             <tr>
                                                 <td>SLU</td>
-                                                <td>32</td>
-                                                <td>9</td>
-                                                <td>5</td>
+                                                <td>39</td>
+                                                <td>10</td>
+                                                <td>6</td>
                                                 <td>2</td>
-                                                <td>0</td>
+                                                <td>1</td>
                                             </tr>
                                             <tr>
                                                 <td>York</td>
-                                                <td>28</td>
-                                                <td>7</td>
-                                                <td>2</td>
+                                                <td>34</td>
+                                                <td>10</td>
+                                                <td>3</td>
                                                 <td>0</td>
                                                 <td>0</td>
                                             </tr>
@@ -356,24 +520,10 @@
                                 <div class="milestone-card-new">
                                     <div class="milestone-header-new">
                                         <div>
-                                            <div class="milestone-title-new">Slate → CF Integration</div>
-                                            <div class="milestone-scope-new">All Colleges — 10/24/2025</div>
-                                        </div>
-                                        <div class="milestone-pill-new amber">Final Testing</div>
-                                    </div>
-                                    <div class="milestone-progress-new">
-                                        <div class="progress-bar-new">
-                                            <div class="progress-fill-new" style="width: 90%"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="milestone-card-new">
-                                    <div class="milestone-header-new">
-                                        <div>
                                             <div class="milestone-title-new">Anthology Back Up</div>
                                             <div class="milestone-scope-new">All Colleges — 10/15/2025 - Completed</div>
                                         </div>
-                                        <div class="milestone-pill-new gray">Cold Storage by 10/24</div>
+                                        <div class="milestone-pill-new gray">Cold Storage by 10/31</div>
                                     </div>
                                     <div class="milestone-progress-new">
                                         <div class="progress-bar-new">
@@ -400,16 +550,22 @@
                                 <div class="update-card-new">
                                     <div class="update-card-header-new">
                                         <span class="update-dot-new"></span>
-                                        <span class="update-title-new">Security Integration</span>
+                                        <span class="update-title-new">Refinement and maintenance</span>
                                     </div>
-                                    <div class="update-desc-new">Delayed but progressing. Completion date: third week of October.</div>
+                                    <div class="update-list-new">
+                                        <ul>
+                                            <li>Data model enhancements</li>
+                                            <li>Queries/reports</li>
+                                            <li>CUNYfirst integration</li>
+                                            <li>User creation</li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="update-card-new">
                                     <div class="update-card-header-new">
                                         <span class="update-dot-new"></span>
                                         <span class="update-title-new">OEM Campus Updates</span>
                                     </div>
-                                    <div class="update-desc-new">OEM is regularly updating campuses on progress.</div>
                                     <div class="update-list-new">
                                         <ul>
                                             <li>Via Teams channel</li>
@@ -427,26 +583,11 @@
                                     </div>
                                     <div class="update-list-new">
                                         <ul>
-                                            <li>2033 active Slate users as of last week</li>
+                                            <li>2200 active Slate users as of last week</li>
                                             <li>101 recordings currently</li>
-                                            <li>320 tickets; 298 resolved</li>
+                                            <li>358 tickets; 336 resolved</li>
                                             <li>Ongoing enablement sessions & Q&A</li>
                                             <li>Docs & resources updating</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="update-card-new">
-                                    <div class="update-card-header-new">
-                                        <span class="update-dot-new"></span>
-                                        <span class="update-title-new">Refinement and maintenance</span>
-                                    </div>
-                                    <div class="update-list-new">
-                                        <ul>
-                                            <li>Data model enhancements</li>
-                                            <li>Queries/reports</li>
-                                            <li>CUNYfirst integration</li>
-                                            <li>User creation</li>
-                                            <li>Grad app enhancements</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1079,26 +1220,24 @@
                                         <ul>
                                             <li>First Governance Checkpoint: Review progress on the newly added AI component (Week of Sep 8 – 11).</li>
                                             <li>Decision Point: Save files from ProcessMaker into OneDrive as the official storage model.</li>
-                                            <li>
-                                                Decision Points:
-                                                <ul>
-                                                    <li>Confirm DOCX support or stick with PDF.</li>
-                                                    <li>Decide if extra routing (finance, budget, procurement) is in Phase 1 or later.</li>
-                                                    <li>Choose file storage model: ProcessMaker only vs. integrate OneDrive/Dropbox.</li>
-                                                    <li>Define training scope: process owners vs. general users.</li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                Suggestions:
-                                                <ul>
-                                                    <li>Test DOCX ingestion early.</li>
-                                                    <li>Plan escalation paths/EVC alerts for Phase 2.</li>
-                                                    <li>Use hybrid storage (ProcessMaker + OneDrive/Dropbox).</li>
-                                                    <li>Present SMTP vs. SendGrid risk/benefit to CIS/CTO now.</li>
-                                                    <li>Add simulation training for process owners.</li>
-                                                    <li>Build buffer time for testing and training.</li>
-                                                </ul>
-                                            </li>
+                                        </ul>
+                                        
+                                        <h4>Decision Points</h4>
+                                        <ul>
+                                            <li>Confirm DOCX support or stick with PDF.</li>
+                                            <li>Decide if extra routing (finance, budget, procurement) is in Phase 1 or later.</li>
+                                            <li>Choose file storage model: ProcessMaker only vs. integrate OneDrive/Dropbox.</li>
+                                            <li>Define training scope: process owners vs. general users.</li>
+                                        </ul>
+                                        
+                                        <h4>Suggestions</h4>
+                                        <ul>
+                                            <li>Test DOCX ingestion early.</li>
+                                            <li>Plan escalation paths/EVC alerts for Phase 2.</li>
+                                            <li>Use hybrid storage (ProcessMaker + OneDrive/Dropbox).</li>
+                                            <li>Present SMTP vs. SendGrid risk/benefit to CIS/CTO now.</li>
+                                            <li>Add simulation training for process owners.</li>
+                                            <li>Build buffer time for testing and training.</li>
                                         </ul>
                                     </div>
                                 </details>
@@ -1116,28 +1255,26 @@
                                         <ul>
                                             <li>Define key objectives, including the addition of an AI component as a critical enhancement.</li>
                                             <li>Prototype enhancements; confirm data sources and security.</li>
-                                            <li>
-                                                Condensed Meeting Coverage
-                                                <ul>
-                                                    <li>Reviewed updated workflow for resolution process, including AI integration, document routing, and approval steps.</li>
-                                                    <li>Discussed AI tool's role as a checking (not approval) tool and the need for a disclaimer on limitations.</li>
-                                                    <li>Clarified routing logic: documents returned from Chief of Staff/EVC go directly to Programs Unit without re-routing through procurement/budget.</li>
-                                                    <li>Demonstrated front-end forms and user experience for submission, review, and versioning.</li>
-                                                    <li>Agreed on flexibility to adjust workflow and add new offices/routes as needed.</li>
-                                                    <li>Planned presentation materials (screenshots, video walkthrough) for governance checkpoint.</li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                Action Items
-                                                <ul>
-                                                    <li>AI Prompt Adjustment: Neh and Marcelo to refine AI prompt for document analysis.</li>
-                                                    <li>Technical Working Session: Neh and Marcelo to meet Monday for deeper AI component review.</li>
-                                                    <li>Disclaimer Draft: Dia to draft disclaimer language for AI tool.</li>
-                                                    <li>Resolution ID Automation: Dia/Justin to define ID format; Marcelo to implement.</li>
-                                                    <li>Screenshots for Presentation: Marcelo to capture and share form screenshots for governance checkpoint.</li>
-                                                    <li>Video Walkthrough: Neh and Jetmir to prepare governance presentation walkthrough.</li>
-                                                </ul>
-                                            </li>
+                                        </ul>
+                                        
+                                        <h4>Condensed Meeting Coverage</h4>
+                                        <ul>
+                                            <li>Reviewed updated workflow for resolution process, including AI integration, document routing, and approval steps.</li>
+                                            <li>Discussed AI tool's role as a checking (not approval) tool and the need for a disclaimer on limitations.</li>
+                                            <li>Clarified routing logic: documents returned from Chief of Staff/EVC go directly to Programs Unit without re-routing through procurement/budget.</li>
+                                            <li>Demonstrated front-end forms and user experience for submission, review, and versioning.</li>
+                                            <li>Agreed on flexibility to adjust workflow and add new offices/routes as needed.</li>
+                                            <li>Planned presentation materials (screenshots, video walkthrough) for governance checkpoint.</li>
+                                        </ul>
+                                        
+                                        <h4>Action Items</h4>
+                                        <ul>
+                                            <li>AI Prompt Adjustment: Neh and Marcelo to refine AI prompt for document analysis.</li>
+                                            <li>Technical Working Session: Neh and Marcelo to meet Monday for deeper AI component review.</li>
+                                            <li>Disclaimer Draft: Dia to draft disclaimer language for AI tool.</li>
+                                            <li>Resolution ID Automation: Dia/Justin to define ID format; Marcelo to implement.</li>
+                                            <li>Screenshots for Presentation: Marcelo to capture and share form screenshots for governance checkpoint.</li>
+                                            <li>Video Walkthrough: Neh and Jetmir to prepare governance presentation walkthrough.</li>
                                         </ul>
                                     </div>
                                 </details>
@@ -1153,28 +1290,23 @@
                                         </svg>
                                     </summary>
                                     <div class="week-content">
+                                        <h4>Key Updates</h4>
                                         <ul>
-                                            <li>
-                                                Key Updates
-                                                <ul>
-                                                    <li>AI: FlowGenie supports only GPT-4.0; upgrade TBD. Option: CUNY can integrate OpenAI API for newer models. Two AI models added (Tenure Waiver, Degree Program); ~20 types exist, only common ones get templates.</li>
-                                                    <li>Resolution Types: Justin & Mitroya refining official list; some categories share templates.</li>
-                                                    <li>Workflow: COS/EVC can return resolutions to Program Unit; doc history enhanced; only holder uploads revisions.</li>
-                                                    <li>Safeguards: Added Program Unit review after holder's final revision before BoT submission.</li>
-                                                    <li>Archiving: Final BoT resolutions to be saved in both ProcessMaker + OneDrive.</li>
-                                                    <li>Governance: Next checkpoint with happy-path demo video; forms/screenshots on Basecamp.</li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                Next Steps
-                                                <ul>
-                                                    <li>Justin & Mitroya: Finalize resolution list, validate AI model needs.</li>
-                                                    <li>Marcelo: Add Program Unit review step; implement Resolution ID automation.</li>
-                                                    <li>Marcelo + IT: Set up dual archiving with OneDrive.</li>
-                                                    <li>Marcelo, Jetmir, Neh: Demo video + checkpoint prep.</li>
-                                                    <li>Mitroya: Confirm budget/procurement with Gary by Wed.</li>
-                                                </ul>
-                                            </li>
+                                            <li>AI: FlowGenie supports only GPT-4.0; upgrade TBD. Option: CUNY can integrate OpenAI API for newer models. Two AI models added (Tenure Waiver, Degree Program); ~20 types exist, only common ones get templates.</li>
+                                            <li>Resolution Types: Justin & Mitroya refining official list; some categories share templates.</li>
+                                            <li>Workflow: COS/EVC can return resolutions to Program Unit; doc history enhanced; only holder uploads revisions.</li>
+                                            <li>Safeguards: Added Program Unit review after holder's final revision before BoT submission.</li>
+                                            <li>Archiving: Final BoT resolutions to be saved in both ProcessMaker + OneDrive.</li>
+                                            <li>Governance: Next checkpoint with happy-path demo video; forms/screenshots on Basecamp.</li>
+                                        </ul>
+                                        
+                                        <h4>Next Steps</h4>
+                                        <ul>
+                                            <li>Justin & Mitroya: Finalize resolution list, validate AI model needs.</li>
+                                            <li>Marcelo: Add Program Unit review step; implement Resolution ID automation.</li>
+                                            <li>Marcelo + IT: Set up dual archiving with OneDrive.</li>
+                                            <li>Marcelo, Jetmir, Neh: Demo video + checkpoint prep.</li>
+                                            <li>Mitroya: Confirm budget/procurement with Gary by Wed.</li>
                                         </ul>
                                     </div>
                                 </details>
@@ -1196,19 +1328,18 @@
                                             <li>Second Governance Checkpoint: Progress demo and discussion (Week of Sep 29 – Oct 2).</li>
                                             <li>Collect governance feedback and confirm adjustments.</li>
                                         </ul>
-                                        <div class="recommendations-section">
-                                            <h4>Recommendations:</h4>
-                                            <ul>
-                                                <li>Confirm document editing and re-upload steps in workflow</li>
-                                                <li>Define Justin/Dia intervention points incl. final quality checks</li>
-                                                <li>Ensure approve/hold/rescind options at all workflow stages</li>
-                                                <li>Address AI pre-screening: model, templates, multiple resolution types</li>
-                                                <li>Finalize resolution ID naming + template update capability</li>
-                                                <li>Plan dashboard for real-time updates (replace manual tracking)</li>
-                                                <li>Integrate stakeholder feedback + AI disclaimers</li>
-                                                <li>Share static workflow docs for review before implementation</li>
-                                            </ul>
-                                        </div>
+                                        
+                                        <h4>Recommendations</h4>
+                                        <ul>
+                                            <li>Confirm document editing and re-upload steps in workflow</li>
+                                            <li>Define Justin/Dia intervention points incl. final quality checks</li>
+                                            <li>Ensure approve/hold/rescind options at all workflow stages</li>
+                                            <li>Address AI pre-screening: model, templates, multiple resolution types</li>
+                                            <li>Finalize resolution ID naming + template update capability</li>
+                                            <li>Plan dashboard for real-time updates (replace manual tracking)</li>
+                                            <li>Integrate stakeholder feedback + AI disclaimers</li>
+                                            <li>Share static workflow docs for review before implementation</li>
+                                        </ul>
                                     </div>
                                 </details>
                             </div>
@@ -1222,7 +1353,7 @@
                                         </svg>
                                     </summary>
                                     <div class="week-content">
-                                        <p><strong>Key meeting summary:</strong></p>
+                                        <h4>Key Meeting Summary</h4>
                                         <ul>
                                             <li><strong>Re-upload:</strong> No re-uploads needed; version history and tracked changes manage updates.</li>
                                             <li><strong>Version History:</strong> Enables tracking and restoring past document versions.</li>
@@ -1237,7 +1368,7 @@
                                             <li><strong>Unique ID:</strong> Manual entry retained for flexibility.</li>
                                         </ul>
                                         
-                                        <p><strong>Next Steps</strong></p>
+                                        <h4>Next Steps</h4>
                                         <ul>
                                             <li><strong>ProcessMaker:</strong> Implement dual notifications, update approval options, enable version history, support "Other" routing, maintain file previews/downloads.</li>
                                             <li><strong>CUNY Central (Justin, Dia, Luce):</strong> Provide resolution list, confirm ID format, validate notification logic.</li>
