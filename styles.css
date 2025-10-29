@@ -2011,7 +2011,7 @@ body {
 
 .pillars-canvas-wrap {
     position: relative;
-    width: min(600px, 80vw);
+    width: min(450px, 60vw);
     aspect-ratio: 1/1;
     display: grid;
     place-items: center;
