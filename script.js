@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set up new accordion functionality
         setupNewAccordion();
         
+        // Set up project status accordion
+        setupStatusAccordion();
+        
+        // Set up archive panel
+        setupArchivePanel();
+        
         
         // Set up tooltips
         setupTooltips();
@@ -61,47 +67,218 @@ function initializeDashboard() {
 
 function setupNavigation() {
     const navButtons = document.querySelectorAll('.nav-btn');
+    const dropdownItems = document.querySelectorAll('.nav-dropdown-item');
     const dashboardViews = document.querySelectorAll('.dashboard-view');
     
+    // Protected pages that require password
+    const protectedPages = ['cunyai', 'pm', 'oem'];
+    
+    // Handle regular nav buttons
     navButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function(e) {
             const targetView = this.getAttribute('data-view');
+            if (!targetView) return; // Skip if no data-view attribute
             
-            // Remove active class from all nav buttons
+            // Check if page is protected
+            if (protectedPages.includes(targetView)) {
+                e.preventDefault();
+                showPasswordModal(targetView, button);
+                return;
+            }
+            
+            // Remove active class from all nav buttons and dropdown items
             navButtons.forEach(btn => btn.classList.remove('active'));
+            dropdownItems.forEach(item => item.classList.remove('active'));
             
             // Add active class to clicked button
             this.classList.add('active');
             
-            // Hide all dashboard views
-            dashboardViews.forEach(view => view.classList.remove('active'));
-            
-            // Show target view
-            const targetDashboard = document.getElementById(targetView);
-            if (targetDashboard) {
-                targetDashboard.classList.add('active');
-                
-                // Initialize specific dashboard if needed
-                if (targetView === 'pillars') {
-                    setTimeout(initPillarsDashboard, 100);
-                } else if (targetView === 'slate') {
-                    setTimeout(drawNewCharts, 100);
-                }
-                
-                // Set current date when switching views
-                setCurrentDate();
-                
-                // Add a subtle animation
-                targetDashboard.style.opacity = '0';
-                targetDashboard.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    targetDashboard.style.opacity = '1';
-                    targetDashboard.style.transform = 'translateY(0)';
-                }, 50);
-            }
+            handleViewSwitch(targetView);
         });
     });
+    
+    // Handle dropdown items
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            const targetView = this.getAttribute('data-view');
+            
+            // Check if page is protected
+            if (protectedPages.includes(targetView)) {
+                e.preventDefault();
+                showPasswordModal(targetView, item);
+                return;
+            }
+            
+            // Remove active class from all nav buttons and dropdown items
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            dropdownItems.forEach(dItem => dItem.classList.remove('active'));
+            
+            // Add active class to clicked dropdown item
+            this.classList.add('active');
+            
+            handleViewSwitch(targetView);
+        });
+    });
+}
+
+// Password Protection Functions
+let pendingViewSwitch = null;
+let pendingButton = null;
+
+function showPasswordModal(targetView, button) {
+    pendingViewSwitch = targetView;
+    pendingButton = button;
+    
+    const modal = document.getElementById('password-modal');
+    const passwordInput = document.getElementById('password-input');
+    const errorDiv = document.getElementById('password-error');
+    
+    // Reset modal state
+    errorDiv.textContent = '';
+    passwordInput.value = '';
+    modal.classList.add('show');
+    passwordInput.focus();
+    
+    // Remove any existing event listeners by removing and re-adding
+    const submitBtn = document.getElementById('password-submit');
+    const cancelBtn = document.getElementById('password-cancel');
+    const closeBtn = document.getElementById('password-modal-close');
+    
+    // Remove old handlers
+    const newSubmitBtn = submitBtn.cloneNode(true);
+    const newCancelBtn = cancelBtn.cloneNode(true);
+    const newCloseBtn = closeBtn.cloneNode(true);
+    submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
+    cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+    closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+    
+    // Update references
+    const submitBtnNew = document.getElementById('password-submit');
+    const cancelBtnNew = document.getElementById('password-cancel');
+    const closeBtnNew = document.getElementById('password-modal-close');
+    
+    // Submit handler
+    const handleSubmit = () => {
+        const password = passwordInput.value.trim();
+        if (password === 'OAII') {
+            // Correct password - proceed with navigation
+            modal.classList.remove('show');
+            proceedWithNavigation();
+        } else {
+            // Incorrect password
+            errorDiv.textContent = 'Incorrect password. Please try again.';
+            passwordInput.value = '';
+            passwordInput.focus();
+        }
+    };
+    
+    // Cancel handler
+    const handleCancel = () => {
+        modal.classList.remove('show');
+        pendingViewSwitch = null;
+        pendingButton = null;
+        passwordInput.value = '';
+        errorDiv.textContent = '';
+    };
+    
+    // Add event listeners
+    submitBtnNew.addEventListener('click', handleSubmit);
+    cancelBtnNew.addEventListener('click', handleCancel);
+    closeBtnNew.addEventListener('click', handleCancel);
+    
+    // Handle Enter key in password input
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit();
+        }
+    };
+    
+    passwordInput.onkeydown = handleKeyDown;
+    
+    // Close on background click
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            handleCancel();
+        }
+    };
+}
+
+function proceedWithNavigation() {
+    if (!pendingViewSwitch || !pendingButton) return;
+    
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const dropdownItems = document.querySelectorAll('.nav-dropdown-item');
+    
+    // Remove active class from all nav buttons and dropdown items
+    navButtons.forEach(btn => btn.classList.remove('active'));
+    dropdownItems.forEach(item => item.classList.remove('active'));
+    
+    // Add active class to clicked button
+    pendingButton.classList.add('active');
+    
+    handleViewSwitch(pendingViewSwitch);
+    
+    // Reset pending values
+    pendingViewSwitch = null;
+    pendingButton = null;
+}
+
+function handleViewSwitch(targetView) {
+    const dashboardViews = document.querySelectorAll('.dashboard-view');
+    
+    // Hide all dashboard views
+    dashboardViews.forEach(view => view.classList.remove('active'));
+    
+    // Show target view
+    const targetDashboard = document.getElementById(targetView);
+    if (targetDashboard) {
+        targetDashboard.classList.add('active');
+        
+        // Initialize specific dashboard if needed
+        if (targetView === 'pillars') {
+            setTimeout(initPillarsDashboard, 100);
+        } else if (targetView === 'slate') {
+            setTimeout(drawNewCharts, 100);
+        } else if (targetView === 'pm') {
+            setTimeout(() => {
+                if (window.initPMDashboard) {
+                    window.initPMDashboard();
+                } else {
+                    console.warn('PM Dashboard initialization function not available yet');
+                    setTimeout(() => {
+                        if (window.initPMDashboard) {
+                            window.initPMDashboard();
+                        }
+                    }, 500);
+                }
+            }, 300);
+        } else if (targetView === 'oem') {
+            setTimeout(() => {
+                if (typeof initOEMDashboard === 'function') {
+                    initOEMDashboard();
+                } else {
+                    console.warn('OEM Dashboard initialization function not available yet');
+                    setTimeout(() => {
+                        if (typeof initOEMDashboard === 'function') {
+                            initOEMDashboard();
+                        }
+                    }, 500);
+                }
+            }, 100);
+        }
+        
+        // Set current date when switching views
+        setCurrentDate();
+        
+        // Add a subtle animation
+        targetDashboard.style.opacity = '0';
+        targetDashboard.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            targetDashboard.style.opacity = '1';
+            targetDashboard.style.transform = 'translateY(0)';
+        }, 50);
+    }
 }
 
 function setupAccordion() {
@@ -381,17 +558,17 @@ function drawFunnelChart(canvas) {
         canvas.height = canvas.offsetHeight || 200;
     }
     const data = [
-        { college: 'Baruch', created: 0, fee: 0, ready: 0, submitted: 0 },
-        { college: 'Brooklyn', created: 494, fee: 62, ready: 45, submitted: 46 },
-        { college: 'City', created: 434, fee: 47, ready: 28, submitted: 2 },
-        { college: 'CSI', created: 58, fee: 6, ready: 2, submitted: 1 },
-        { college: 'GC', created: 493, fee: 22, ready: 8, submitted: 14 },
-        { college: 'Hunter', created: 1121, fee: 116, ready: 75, submitted: 24 },
-        { college: 'John Jay', created: 432, fee: 107, ready: 68, submitted: 21 },
-        { college: 'Lehman', created: 85, fee: 6, ready: 3, submitted: 0 },
-        { college: 'Queens', created: 128, fee: 12, ready: 8, submitted: 1 },
-        { college: 'SLU', created: 21, fee: 14, ready: 5, submitted: 1 },
-        { college: 'York', created: 0, fee: 0, ready: 0, submitted: 0 },
+        { college: 'Baruch', created: 2732, fee: 727, ready: 521, submitted: 806 },
+        { college: 'Brooklyn', created: 1797, fee: 490, ready: 168, submitted: 571 },
+        { college: 'City', created: 1925, fee: 300, ready: 192, submitted: 416 },
+        { college: 'CSI', created: 297, fee: 297, ready: 35, submitted: 83 },
+        { college: 'GC', created: 2774, fee: 192, ready: 55, submitted: 268 },
+        { college: 'Hunter', created: 3563, fee: 839, ready: 585, submitted: 902 },
+        { college: 'John Jay', created: 1123, fee: 245, ready: 171, submitted: 274 },
+        { college: 'Lehman', created: 737, fee: 169, ready: 71, submitted: 188 },
+        { college: 'Queens', created: 1036, fee: 255, ready: 116, submitted: 281 },
+        { college: 'SLU', created: 56, fee: 12, ready: 2, submitted: 16 },
+        { college: 'York', created: 46, fee: 4, ready: 0, submitted: 10 },
     ];
     
     const maxValue = Math.max(...data.map(d => d.created));
@@ -551,13 +728,16 @@ function setupBotResoTimeline() {
 function setCurrentDate() {
     const dateElement = document.getElementById('status-date');
     const fafsaDateElement = document.getElementById('fafsa-status-date');
+    const degreeworksDateElement = document.getElementById('degreeworks-status-date');
     
     // Set specific dates for each page
-    const slateDate = '10/24/2025';
-    const fafsaDate = '10/17/2025';
+    const slateDate = '11/7/2025';
+    const fafsaDate = '11/6/2025';
+    const degreeworksDate = '11/14/2025';
     
     console.log('Setting Slate date to:', slateDate);
     console.log('Setting FAFSA date to:', fafsaDate);
+    console.log('Setting DegreeWorks date to:', degreeworksDate);
     
     // Force update with cache busting
     const timestamp = new Date().getTime();
@@ -579,6 +759,15 @@ function setCurrentDate() {
         console.log('FAFSA date element updated with timestamp:', timestamp);
     } else {
         console.log('FAFSA date element not found');
+    }
+    
+    // Set date for DegreeWorks page
+    if (degreeworksDateElement) {
+        degreeworksDateElement.textContent = degreeworksDate;
+        degreeworksDateElement.setAttribute('data-timestamp', timestamp);
+        console.log('DegreeWorks date element updated with timestamp:', timestamp);
+    } else {
+        console.log('DegreeWorks date element not found');
     }
     
     // Force update if elements exist but are empty or have old timestamps
@@ -795,17 +984,17 @@ function drawNewGoLiveChart(canvas) {
 function drawNewFunnelChart(canvas) {
     const ctx = canvas.getContext('2d');
     const data = [
-        { college: 'Baruch', created: 0, submitted: 0, fee: 0, ready: 0 },
-        { college: 'Brooklyn', created: 494, submitted: 62, fee: 45, ready: 46 },
-        { college: 'City', created: 434, submitted: 47, fee: 28, ready: 2 },
-        { college: 'CSI', created: 58, submitted: 6, fee: 2, ready: 1 },
-        { college: 'GC', created: 493, submitted: 22, fee: 8, ready: 14 },
-        { college: 'Hunter', created: 1121, submitted: 116, fee: 75, ready: 24 },
-        { college: 'John Jay', created: 432, submitted: 107, fee: 68, ready: 21 },
-        { college: 'Lehman', created: 85, submitted: 6, fee: 3, ready: 0 },
-        { college: 'Queens', created: 128, submitted: 12, fee: 8, ready: 1 },
-        { college: 'SLU', created: 21, submitted: 14, fee: 5, ready: 1 },
-        { college: 'York', created: 0, submitted: 0, fee: 0, ready: 0 },
+        { college: 'Baruch', created: 2732, submitted: 806, fee: 727, ready: 521 },
+        { college: 'Brooklyn', created: 1797, submitted: 571, fee: 490, ready: 168 },
+        { college: 'City', created: 1925, submitted: 416, fee: 300, ready: 192 },
+        { college: 'CSI', created: 297, submitted: 83, fee: 297, ready: 35 },
+        { college: 'GC', created: 2774, submitted: 268, fee: 192, ready: 55 },
+        { college: 'Hunter', created: 3563, submitted: 902, fee: 839, ready: 585 },
+        { college: 'John Jay', created: 1123, submitted: 274, fee: 245, ready: 171 },
+        { college: 'Lehman', created: 737, submitted: 188, fee: 169, ready: 71 },
+        { college: 'Queens', created: 1036, submitted: 281, fee: 255, ready: 116 },
+        { college: 'SLU', created: 56, submitted: 16, fee: 12, ready: 2 },
+        { college: 'York', created: 46, submitted: 10, fee: 4, ready: 0 },
     ];
     
     // Clear canvas
@@ -1227,3 +1416,149 @@ function startPillarsAnimation() {
 }
 
 const rand = (a, b) => a + Math.random() * (b - a);
+
+// Archive Panel Functionality
+function setupArchivePanel() {
+    const archiveToggle = document.getElementById('archive-toggle');
+    const archivePanel = document.getElementById('archive-panel');
+    const archiveClose = document.getElementById('archive-close');
+    
+    if (archiveToggle && archivePanel) {
+        archiveToggle.addEventListener('click', function() {
+            const isOpen = archivePanel.style.display === 'block';
+            
+            if (isOpen) {
+                archivePanel.style.display = 'none';
+                archiveToggle.classList.remove('active');
+            } else {
+                archivePanel.style.display = 'block';
+                archiveToggle.classList.add('active');
+            }
+        });
+    }
+    
+    if (archiveClose && archivePanel) {
+        archiveClose.addEventListener('click', function() {
+            archivePanel.style.display = 'none';
+            if (archiveToggle) {
+                archiveToggle.classList.remove('active');
+            }
+        });
+    }
+    
+    // Handle archive item clicks (for items with data-view attributes)
+    const archiveItems = document.querySelectorAll('.archive-item[data-view]');
+    archiveItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            const targetView = this.getAttribute('data-view');
+            if (!targetView) return;
+            
+            // Check if page is protected
+            const protectedPages = ['cunyai', 'pm', 'oem'];
+            if (protectedPages.includes(targetView)) {
+                e.preventDefault();
+                // Close archive panel first
+                if (archivePanel) {
+                    archivePanel.style.display = 'none';
+                    if (archiveToggle) {
+                        archiveToggle.classList.remove('active');
+                    }
+                }
+                // Show password modal
+                showPasswordModal(targetView, this);
+                return;
+            }
+            
+            // Close archive panel
+            if (archivePanel) {
+                archivePanel.style.display = 'none';
+                if (archiveToggle) {
+                    archiveToggle.classList.remove('active');
+                }
+            }
+            
+            // Switch to target view
+            handleViewSwitch(targetView);
+            
+            // Update active nav button
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            const targetNavBtn = document.querySelector(`.nav-btn[data-view="${targetView}"]`);
+            if (targetNavBtn) {
+                targetNavBtn.classList.add('active');
+            }
+        });
+    });
+}
+
+// Project Status Accordion Functionality
+function setupStatusAccordion() {
+    const statusAccordionItems = document.querySelectorAll('.status-accordion-item');
+    
+    statusAccordionItems.forEach(item => {
+        const trigger = item.querySelector('.status-accordion-trigger');
+        const panel = item.querySelector('.status-accordion-panel');
+        
+        if (trigger && panel) {
+            trigger.addEventListener('click', function() {
+                const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+                
+                // Toggle current item
+                if (isExpanded) {
+                    trigger.setAttribute('aria-expanded', 'false');
+                    panel.classList.remove('open');
+                    panel.style.display = 'none';
+                } else {
+                    trigger.setAttribute('aria-expanded', 'true');
+                    panel.style.display = 'block';
+                    // Force reflow to ensure transition works
+                    panel.offsetHeight;
+                    panel.classList.add('open');
+                    
+                    // Animate progress bars when accordion opens
+                    setTimeout(() => {
+                        animateProgressBars();
+                    }, 300);
+                }
+            });
+        }
+    });
+}
+
+// Animate progress bars
+function animateProgressBars() {
+    const progressBars = document.querySelectorAll('.progress-bar-fill');
+    
+    progressBars.forEach(bar => {
+        // Get the target width from the data attribute or parent
+        let targetWidth = bar.style.width || bar.getAttribute('data-width');
+        if (!targetWidth) {
+            const parent = bar.closest('.progress-bar-item');
+            if (parent) {
+                const percent = parent.getAttribute('data-percent');
+                if (percent) {
+                    targetWidth = percent + '%';
+                }
+            }
+        }
+        
+        // Reset and animate
+        bar.style.width = '0%';
+        bar.style.transition = 'width 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        
+        // Use requestAnimationFrame to ensure smooth animation
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                const parent = bar.closest('.progress-bar-item');
+                if (parent) {
+                    const percent = parent.getAttribute('data-percent');
+                    if (percent) {
+                        bar.style.width = percent + '%';
+                    } else if (targetWidth) {
+                        bar.style.width = targetWidth;
+                    }
+                }
+            }, 50);
+        });
+    });
+}
