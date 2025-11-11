@@ -1,1564 +1,2475 @@
-// Dashboard Navigation and Interactivity
-// GitHub Pages compatibility check
-const isGitHubPages = window.location.hostname.includes('github.io') || window.location.hostname.includes('github.com');
+/* CUNY Brand Colors */
+:root {
+    --cuny-blue: #0033A1;
+    --cuny-gold: #FFB71B;
+    --bg: #FFFFFF;
+    --gray-100: #f9fafc;
+    --gray-200: #e5eaf0;
+    --gray-400: #cdd4e0;
+    --text: #1b1f2b;
+    --muted: #5f6b7a;
+    --panel: #fff;
+    --radius: 14px;
+    --shadow: 0 4px 16px rgba(0,0,0,.08);
+    --speed: 300ms;
+}
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Add delay for GitHub Pages to ensure all resources are loaded
-    const initDelay = isGitHubPages ? 500 : 0;
-    
-    setTimeout(() => {
-        // Initialize the dashboard
-        initializeDashboard();
-        
-        // Set up navigation
-        setupNavigation();
-        
-        // Set up accordion functionality
-        setupAccordion();
-        
-        // Set up new accordion functionality
-        setupNewAccordion();
-        
-        // Set up project status accordion
-        setupStatusAccordion();
-        
-        // Set up archive panel
-        setupArchivePanel();
-        
-        
-        // Set up tooltips
-        setupTooltips();
-        
-        // Set up hover effects
-        setupHoverEffects();
-        
-        // Set up charts
-        setupCharts();
-        
-            // Set up BoT Reso timeline
-            setupBotResoTimeline();
-            
-            // Set current date
-            setCurrentDate();
-        
-        // Also set date after a short delay to ensure DOM is fully loaded
-        setTimeout(setCurrentDate, 100);
-    }, initDelay);
-});
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-function initializeDashboard() {
-    // Show the first dashboard by default (Project Pillars)
-    const firstView = document.querySelector('.dashboard-view');
-    if (firstView) {
-        firstView.classList.add('active');
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    min-height: 100vh;
+}
+
+/* Navigation */
+.dashboard-nav {
+    display: flex;
+    gap: 10px;
+    margin: 30px 0;
+    padding: 0 10px;
+}
+
+.nav-btn {
+    background-color: var(--gray-100);
+    color: var(--cuny-blue);
+    border: 2px solid var(--cuny-blue);
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all var(--speed) ease;
+    min-width: 120px;
+}
+
+.nav-btn:hover {
+    background-color: var(--cuny-blue);
+    color: var(--bg);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.nav-btn.active {
+    background-color: var(--cuny-blue);
+    color: var(--bg);
+    box-shadow: var(--shadow);
+}
+
+/* Navigation Dropdown */
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-dropdown-toggle {
+    position: relative;
+}
+
+.nav-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    background-color: var(--panel);
+    border: 2px solid var(--cuny-blue);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    min-width: 150px;
+    z-index: 1000;
+    padding: 4px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity var(--speed) ease, transform var(--speed) ease;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nav-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 12px 24px;
+    background-color: transparent;
+    color: var(--cuny-blue);
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all var(--speed) ease;
+    border-radius: 0;
+}
+
+.nav-dropdown-item:hover {
+    background-color: var(--cuny-blue);
+    color: var(--bg);
+}
+
+.nav-dropdown-item:first-child {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.nav-dropdown-item:last-child {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+/* Dashboard Views */
+.dashboard-view {
+    display: none;
+    animation: fadeIn 0.5s ease-in;
+    background: var(--bg);
+}
+
+.dashboard-view.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Slate Header */
+.slate-header {
+    margin: 30px 0;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.slate-header h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--cuny-blue);
+}
+
+.slate-header p {
+    margin: 6px 0 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+.status-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    font-size: 14px;
+}
+
+.status-dot {
+    width: 14px;
+    height: 14px;
+    background: green;
+    border-radius: 50%;
+}
+
+.status-link {
+    background: #f9f9f9;
+    border: 1px solid var(--gray-200);
+    padding: 4px 8px;
+    border-radius: 12px;
+    color: var(--cuny-blue);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Accordion Styles */
+.accordion {
+    display: grid;
+    gap: 16px;
+}
+
+.accordion-item {
+    background: var(--bg);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform var(--speed);
+}
+
+.accordion-item:hover {
+    transform: translateY(-2px);
+}
+
+.accordion-trigger {
+    width: 100%;
+    background: linear-gradient(90deg, var(--cuny-blue), #0055cc);
+    color: #fff;
+    border: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.accordion-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.accordion-kicker {
+    background: var(--cuny-gold);
+    color: #000;
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.accordion-chevron {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    transition: transform var(--speed);
+}
+
+.accordion-item[aria-expanded="true"] .accordion-chevron {
+    transform: rotate(180deg);
+}
+
+.accordion-panel {
+    grid-template-rows: 0fr;
+    display: grid;
+    transition: grid-template-rows var(--speed) ease, opacity var(--speed);
+    opacity: 0;
+}
+
+.accordion-item[aria-expanded="true"] .accordion-panel {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.accordion-panel-inner {
+    overflow: hidden;
+    background: var(--bg);
+}
+
+.accordion-panel-inner > div {
+    padding: 24px;
+}
+
+/* Data Flow Container */
+.data-flow-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.flow-card {
+    background: var(--bg);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    transition: transform var(--speed), box-shadow var(--speed);
+    position: relative;
+    min-width: 200px;
+}
+
+.flow-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,.12);
+}
+
+.flow-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.flow-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--cuny-blue);
+    border-radius: 50%;
+}
+
+.flow-title {
+    font-weight: 700;
+    color: var(--cuny-blue);
+    font-size: 15px;
+}
+
+.flow-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.flow-pill {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.flow-pill.green {
+    background: #E8F5E8;
+    color: #22C55E;
+    border: 1px solid #22C55E;
+}
+
+.flow-pill.blue {
+    background: #E3F2FD;
+    color: var(--cuny-blue);
+    border: 1px solid var(--cuny-blue);
+}
+
+.flow-arrow {
+    color: var(--cuny-gold);
+    display: flex;
+    align-items: center;
+}
+
+/* Setup Grid */
+.setup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.setup-card {
+    background: var(--bg);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    transition: transform var(--speed), box-shadow var(--speed);
+    position: relative;
+}
+
+.setup-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,.12);
+}
+
+.setup-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.setup-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--cuny-blue);
+    border-radius: 50%;
+}
+
+.setup-title {
+    font-weight: 700;
+    color: var(--cuny-blue);
+    font-size: 15px;
+}
+
+.setup-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.setup-pill {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.setup-pill.green {
+    background: #E8F5E8;
+    color: #22C55E;
+    border: 1px solid #22C55E;
+}
+
+/* Timeline Pills */
+.timeline-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.timeline-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid;
+}
+
+.timeline-pill.completed {
+    background: var(--cuny-blue);
+    color: white;
+    border-color: var(--cuny-blue);
+}
+
+.timeline-pill.pending {
+    background: var(--cuny-gold);
+    color: var(--cuny-blue);
+    border-color: var(--cuny-blue);
+}
+
+/* Chart Container */
+.chart-container {
+    background: var(--bg);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+.chart-title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 15px;
+    color: var(--cuny-blue);
+    border-bottom: 2px solid var(--cuny-gold);
+    padding-bottom: 6px;
+}
+
+.chart-wrapper {
+    width: 100%;
+    height: auto;
+}
+
+/* HTML Bar Chart Styles */
+.bar-chart-html {
+    display: flex;
+    align-items: flex-end;
+    height: 300px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.y-axis-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding-right: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    min-width: 30px;
+}
+
+.chart-area {
+    flex: 1;
+    position: relative;
+    height: 100%;
+    margin-left: 10px;
+}
+
+.grid-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.grid-line {
+    height: 1px;
+    background-color: #e5eaf0;
+    width: 100%;
+}
+
+.bars-container {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    gap: 8px;
+    padding: 0 10px;
+}
+
+.bar-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.bar-wrapper:hover {
+    transform: translateY(-2px);
+}
+
+.bar-fill {
+    width: 100%;
+    background-color: var(--cuny-gold);
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s ease;
+    position: relative;
+    min-height: 4px;
+}
+
+.bar-wrapper:hover .bar-fill {
+    background-color: #e6a200;
+    box-shadow: 0 4px 8px rgba(255, 183, 27, 0.3);
+}
+
+.bar-value {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--cuny-blue);
+    background: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    white-space: nowrap;
+}
+
+.x-axis-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0 10px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* HTML Funnel Chart Styles */
+.funnel-chart-html {
+    display: flex;
+    align-items: flex-end;
+    height: 400px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.y-axis-labels-funnel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding-right: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    min-width: 40px;
+}
+
+.chart-area-funnel {
+    flex: 1;
+    position: relative;
+    height: 100%;
+    margin-left: 10px;
+    overflow-x: auto;
+}
+
+.grid-lines-funnel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.funnel-bars-container {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    gap: 4px;
+    padding: 0 10px;
+    min-width: 1000px;
+}
+
+.funnel-bar-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    min-width: 80px;
+}
+
+.funnel-bar-wrapper:hover {
+    transform: translateY(-2px);
+}
+
+.funnel-bar-segments {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.bar-segment {
+    position: relative;
+    transition: all 0.3s ease;
+    min-height: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.bar-segment.created {
+    background-color: var(--cuny-blue);
+}
+
+.bar-segment.fee-received {
+    background-color: #7DA6FF;
+}
+
+.bar-segment.ready-review {
+    background-color: #22C55E;
+}
+
+.bar-segment.submitted {
+    background-color: var(--cuny-gold);
+}
+
+.funnel-bar-wrapper:hover .bar-segment {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.college-label {
+    margin-top: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cuny-blue);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.funnel-legend-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.funnel-legend-bottom .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.legend-color.created {
+    background-color: var(--cuny-blue);
+}
+
+.legend-color.fee-received {
+    background-color: #7DA6FF;
+}
+
+.legend-color.ready-review {
+    background-color: #22C55E;
+}
+
+.legend-color.submitted {
+    background-color: var(--cuny-gold);
+}
+
+/* Milestones Grid */
+.milestones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.milestone-card {
+    background: var(--bg);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    transition: transform var(--speed), box-shadow var(--speed);
+}
+
+.milestone-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,.12);
+}
+
+.milestone-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.milestone-title {
+    font-weight: 700;
+    color: var(--cuny-blue);
+    font-size: 15px;
+}
+
+.milestone-scope {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.milestone-pill {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.milestone-pill.amber {
+    background: #FFF3CD;
+    color: #856404;
+    border: 1px solid #FFEAA7;
+}
+
+.milestone-pill.gray {
+    background: var(--gray-100);
+    color: var(--muted);
+    border: 1px solid var(--gray-200);
+}
+
+.milestone-progress {
+    margin-top: 15px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--gray-200);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--cuny-gold);
+    transition: width var(--speed) ease;
+}
+
+/* Updates Grid */
+.updates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.update-card {
+    background: var(--bg);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    transition: transform var(--speed), box-shadow var(--speed);
+}
+
+.update-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,.12);
+}
+
+.update-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.update-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--cuny-blue);
+    border-radius: 50%;
+}
+
+.update-title {
+    font-weight: 700;
+    color: var(--cuny-blue);
+    font-size: 15px;
+}
+
+.update-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.update-list ul {
+    font-size: 13px;
+    margin: 0;
+    padding-left: 18px;
+    color: var(--text);
+}
+
+.update-list li {
+    margin-bottom: 6px;
+}
+
+/* FAFSA Dashboard Styles */
+.fafsa-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.fafsa-header h1 {
+    color: #0033A1;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.fafsa-header p {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin: 0.25rem 0 0 0;
+}
+
+/* FAFSA Grid */
+.fafsa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* FAFSA Cards */
+.fafsa-card {
+    background: var(--bg);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    transition: transform var(--speed), box-shadow var(--speed);
+    position: relative;
+}
+
+.fafsa-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,.12);
+}
+
+.fafsa-card h3 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--cuny-blue);
+    border-bottom: 2px solid var(--cuny-gold);
+    padding-bottom: 6px;
+}
+
+.fafsa-card.highlight {
+    background: var(--cuny-gold);
+    color: #000;
+}
+
+.fafsa-card.highlight h3 {
+    color: #000;
+    border-color: #000;
+}
+
+.fafsa-card.highlight ul li {
+    color: #000;
+}
+
+.fafsa-list {
+    font-size: 13px;
+    margin: 0;
+    padding-left: 18px;
+    color: var(--text);
+}
+
+.fafsa-list li {
+    margin-bottom: 6px;
+}
+
+/* Timeline Styles */
+.timeline {
+    position: relative;
+    margin: 20px 0;
+    list-style: none;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-content {
+    background: var(--gray-100);
+    padding: 12px 16px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.12);
+    font-size: 13px;
+    position: relative;
+}
+
+.timeline-date {
+    font-weight: 700;
+    color: var(--cuny-blue);
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 10px;
+    width: 12px;
+    height: 12px;
+    background: var(--cuny-blue);
+    border-radius: 50%;
+}
+
+.timeline-item::after {
+    content: "";
+    position: absolute;
+    left: -14px;
+    top: 22px;
+    width: 2px;
+    height: calc(100% - 22px);
+    background: var(--cuny-blue);
+}
+
+.timeline-item:last-child::after {
+    display: none;
+}
+
+/* BoT Reso Timeline Styles */
+.bot-reso-container {
+    background: var(--bg);
+    min-height: 100vh;
+    width: 100%;
+    padding: 32px;
+}
+
+.bot-reso-header {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.bot-reso-title {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.bot-reso-subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 16px;
+}
+
+.progress-container {
+    margin-bottom: 32px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 4px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 12px;
+    background: var(--gray-200);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill-container {
+    height: 100%;
+    background: #2563eb;
+    border-radius: 6px;
+    transition: width 700ms ease-out;
+}
+
+.legend-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.legend-dot.working {
+    background: #1f2937;
+}
+
+.legend-dot.governance {
+    background: #f59e0b;
+}
+
+.timeline-container {
+    position: relative;
+    margin: 0 auto;
+    padding-left: 24px;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gray-200);
+    border-radius: 1px;
+}
+
+.phase-label {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.phase-dot {
+    position: absolute;
+    left: -20px;
+    top: 12px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid;
+}
+
+.phase-dot.working {
+    background: #1f2937;
+    border-color: #374151;
+}
+
+.phase-dot.governance {
+    background: #f59e0b;
+    border-color: #d97706;
+}
+
+.phase-badge {
+    display: inline-block;
+    margin-left: 24px;
+    margin-bottom: 8px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    border-radius: 6px;
+}
+
+.phase-badge.phase-1 {
+    background: #2563eb;
+}
+
+.phase-badge.phase-2 {
+    background: #059669;
+}
+
+.phase-badge.phase-3 {
+    background: #d97706;
+}
+
+.phase-badge.phase-4 {
+    background: #7c3aed;
+}
+
+.week-item {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.week-dot {
+    position: absolute;
+    left: -20px;
+    top: 12px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid;
+}
+
+.week-dot.working {
+    background: #1f2937;
+    border-color: #374151;
+}
+
+.week-dot.governance {
+    background: #f59e0b;
+    border-color: #d97706;
+}
+
+.week-card {
+    margin-left: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    background: var(--panel);
+    overflow: hidden;
+}
+
+.week-card.open {
+    box-shadow: 0 4px 6px rgba(0,0,0,.1);
+}
+
+.week-summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--panel);
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.week-title {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.week-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.governance-badge {
+    padding: 2px 8px;
+    background: #fef3c7;
+    color: #92400e;
+    border-radius: 4px;
+}
+
+.week-chevron {
+    width: 16px;
+    height: 16px;
+    transition: transform 200ms;
+}
+
+.week-card.open .week-chevron {
+    transform: rotate(180deg);
+}
+
+.week-content {
+    padding: 0 16px 16px;
+}
+
+.week-content ul {
+    margin-top: 4px;
+    font-size: 14px;
+    color: #374151;
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.week-content li {
+    margin-bottom: 4px;
+}
+
+.week-content ul ul {
+    margin-top: 4px;
+    list-style: disc;
+    padding-left: 24px;
+}
+
+.week-highlight,
+.week-action-items {
+    margin-top: 1rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 1rem;
+    background: #f9fafc;
+}
+
+.week-highlight p {
+    margin: 0 0 0.5rem 0;
+    color: #374151;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.week-highlight ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.week-action-items h4 {
+    margin: 0;
+    color: var(--cuny-blue);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.action-item-group {
+    margin-top: 0.75rem;
+}
+
+.action-item-owner {
+    margin: 0 0 0.25rem 0;
+    color: var(--cuny-blue);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.action-item-group ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    background-color: var(--text);
+    color: var(--bg);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.tooltip.show {
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 0 16px;
     }
     
-    // Set up the first nav button as active (Project Pillars)
-    const firstNavBtn = document.querySelector('.nav-btn');
-    if (firstNavBtn) {
-        firstNavBtn.classList.add('active');
+    .slate-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
     }
     
-    // Initialize the pillars dashboard with multiple attempts
-    setTimeout(initPillarsDashboard, 100);
-    setTimeout(initPillarsDashboard, 500);
-    setTimeout(initPillarsDashboard, 1000);
-}
-
-function setupNavigation() {
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const dropdownItems = document.querySelectorAll('.nav-dropdown-item');
-    const dashboardViews = document.querySelectorAll('.dashboard-view');
+    .status-box {
+        margin-left: 0;
+    }
     
-    // Protected pages that require password
-    const protectedPages = ['cunyai', 'pm', 'oem'];
+    .nav-btn {
+        min-width: 100px;
+        padding: 10px 16px;
+        font-size: 1rem;
+    }
     
-    // Handle regular nav buttons
-    navButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            const targetView = this.getAttribute('data-view');
-            if (!targetView) return; // Skip if no data-view attribute
-            
-            // Check if page is protected
-            if (protectedPages.includes(targetView)) {
-                e.preventDefault();
-                showPasswordModal(targetView, button);
-                return;
-            }
-            
-            // Remove active class from all nav buttons and dropdown items
-            navButtons.forEach(btn => btn.classList.remove('active'));
-            dropdownItems.forEach(item => item.classList.remove('active'));
-            
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            handleViewSwitch(targetView);
-        });
-    });
+    .data-flow-container {
+        flex-direction: column;
+        gap: 15px;
+    }
     
-    // Handle dropdown items
-    dropdownItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            const targetView = this.getAttribute('data-view');
-            
-            // Check if page is protected
-            if (protectedPages.includes(targetView)) {
-                e.preventDefault();
-                showPasswordModal(targetView, item);
-                return;
-            }
-            
-            // Remove active class from all nav buttons and dropdown items
-            navButtons.forEach(btn => btn.classList.remove('active'));
-            dropdownItems.forEach(dItem => dItem.classList.remove('active'));
-            
-            // Add active class to clicked dropdown item
-            this.classList.add('active');
-            
-            handleViewSwitch(targetView);
-        });
-    });
-}
-
-// Password Protection Functions
-let pendingViewSwitch = null;
-let pendingButton = null;
-
-function showPasswordModal(targetView, button) {
-    pendingViewSwitch = targetView;
-    pendingButton = button;
+    .flow-arrow {
+        transform: rotate(90deg);
+    }
     
-    const modal = document.getElementById('password-modal');
-    const passwordInput = document.getElementById('password-input');
-    const errorDiv = document.getElementById('password-error');
+    .setup-grid,
+    .milestones-grid,
+    .updates-grid {
+        grid-template-columns: 1fr;
+    }
     
-    // Reset modal state
-    errorDiv.textContent = '';
-    passwordInput.value = '';
-    modal.classList.add('show');
-    passwordInput.focus();
+    .timeline-pills {
+        flex-direction: column;
+        align-items: flex-start;
+    }
     
-    // Remove any existing event listeners by removing and re-adding
-    const submitBtn = document.getElementById('password-submit');
-    const cancelBtn = document.getElementById('password-cancel');
-    const closeBtn = document.getElementById('password-modal-close');
+    .chart-wrapper {
+        overflow-x: auto;
+    }
     
-    // Remove old handlers
-    const newSubmitBtn = submitBtn.cloneNode(true);
-    const newCancelBtn = cancelBtn.cloneNode(true);
-    const newCloseBtn = closeBtn.cloneNode(true);
-    submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
-    cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
-    closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+    /* Chart responsive adjustments */
+    .bar-chart-html {
+        height: 250px;
+    }
     
-    // Update references
-    const submitBtnNew = document.getElementById('password-submit');
-    const cancelBtnNew = document.getElementById('password-cancel');
-    const closeBtnNew = document.getElementById('password-modal-close');
+    .funnel-chart-html {
+        height: 300px;
+    }
     
-    // Submit handler
-    const handleSubmit = () => {
-        const password = passwordInput.value.trim();
-        if (password === 'OAII') {
-            // Correct password - proceed with navigation
-            modal.classList.remove('show');
-            proceedWithNavigation();
-        } else {
-            // Incorrect password
-            errorDiv.textContent = 'Incorrect password. Please try again.';
-            passwordInput.value = '';
-            passwordInput.focus();
-        }
-    };
+    .funnel-bars-container {
+        min-width: 800px;
+        gap: 4px;
+    }
     
-    // Cancel handler
-    const handleCancel = () => {
-        modal.classList.remove('show');
-        pendingViewSwitch = null;
-        pendingButton = null;
-        passwordInput.value = '';
-        errorDiv.textContent = '';
-    };
+    .funnel-bar-wrapper {
+        min-width: 70px;
+    }
     
-    // Add event listeners
-    submitBtnNew.addEventListener('click', handleSubmit);
-    cancelBtnNew.addEventListener('click', handleCancel);
-    closeBtnNew.addEventListener('click', handleCancel);
+    .college-label {
+        font-size: 10px;
+    }
     
-    // Handle Enter key in password input
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            handleSubmit();
-        }
-    };
+    .bar-segment {
+        font-size: 9px;
+    }
     
-    passwordInput.onkeydown = handleKeyDown;
+    .funnel-legend-bottom {
+        flex-direction: column;
+        gap: 10px;
+    }
     
-    // Close on background click
-    modal.onclick = (e) => {
-        if (e.target === modal) {
-            handleCancel();
-        }
-    };
-}
-
-function proceedWithNavigation() {
-    if (!pendingViewSwitch || !pendingButton) return;
+    .bot-reso-container {
+        padding: 16px;
+    }
     
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const dropdownItems = document.querySelectorAll('.nav-dropdown-item');
+    .timeline-container {
+        padding-left: 16px;
+    }
     
-    // Remove active class from all nav buttons and dropdown items
-    navButtons.forEach(btn => btn.classList.remove('active'));
-    dropdownItems.forEach(item => item.classList.remove('active'));
+    .week-card {
+        margin-left: 16px;
+    }
     
-    // Add active class to clicked button
-    pendingButton.classList.add('active');
+    .phase-dot,
+    .week-dot {
+        left: -12px;
+    }
     
-    handleViewSwitch(pendingViewSwitch);
-    
-    // Reset pending values
-    pendingViewSwitch = null;
-    pendingButton = null;
-}
-
-function handleViewSwitch(targetView) {
-    const dashboardViews = document.querySelectorAll('.dashboard-view');
-    
-    // Hide all dashboard views
-    dashboardViews.forEach(view => view.classList.remove('active'));
-    
-    // Show target view
-    const targetDashboard = document.getElementById(targetView);
-    if (targetDashboard) {
-        targetDashboard.classList.add('active');
-        
-        // Initialize specific dashboard if needed
-        if (targetView === 'pillars') {
-            setTimeout(initPillarsDashboard, 100);
-        } else if (targetView === 'slate') {
-            setTimeout(drawNewCharts, 100);
-        } else if (targetView === 'pm') {
-            setTimeout(() => {
-                if (window.initPMDashboard) {
-                    window.initPMDashboard();
-                } else {
-                    console.warn('PM Dashboard initialization function not available yet');
-                    setTimeout(() => {
-                        if (window.initPMDashboard) {
-                            window.initPMDashboard();
-                        }
-                    }, 500);
-                }
-            }, 300);
-        } else if (targetView === 'oem') {
-            setTimeout(() => {
-                if (typeof initOEMDashboard === 'function') {
-                    initOEMDashboard();
-                } else {
-                    console.warn('OEM Dashboard initialization function not available yet');
-                    setTimeout(() => {
-                        if (typeof initOEMDashboard === 'function') {
-                            initOEMDashboard();
-                        }
-                    }, 500);
-                }
-            }, 100);
-        }
-        
-        // Set current date when switching views
-        setCurrentDate();
-        
-        // Add a subtle animation
-        targetDashboard.style.opacity = '0';
-        targetDashboard.style.transform = 'translateY(20px)';
-        
-        setTimeout(() => {
-            targetDashboard.style.opacity = '1';
-            targetDashboard.style.transform = 'translateY(0)';
-        }, 50);
+    .timeline-line {
+        left: 4px;
     }
 }
 
-function setupAccordion() {
-    const accordionItems = document.querySelectorAll('.accordion-item');
-    
-    accordionItems.forEach(item => {
-        const trigger = item.querySelector('.accordion-trigger');
-        const panel = item.querySelector('.accordion-panel');
-        
-        if (trigger && panel) {
-            trigger.addEventListener('click', function() {
-                const isExpanded = item.getAttribute('aria-expanded') === 'true';
-                
-                // Close all other accordion items
-                accordionItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.setAttribute('aria-expanded', 'false');
-                    }
-                });
-                
-                // Toggle current item
-                item.setAttribute('aria-expanded', !isExpanded);
-            });
-        }
-    });
-}
-
-function setupTooltips() {
-    const tooltip = document.getElementById('tooltip');
-    const tooltipElements = document.querySelectorAll('[data-tooltip]');
-    
-    tooltipElements.forEach(element => {
-        element.addEventListener('mouseenter', function(e) {
-            const tooltipText = this.getAttribute('data-tooltip');
-            if (tooltipText) {
-                showTooltip(e, tooltipText);
-            }
-        });
-        
-        element.addEventListener('mouseleave', function() {
-            hideTooltip();
-        });
-        
-        element.addEventListener('mousemove', function(e) {
-            if (tooltip.classList.contains('show')) {
-                updateTooltipPosition(e);
-            }
-        });
-    });
-}
-
-function showTooltip(e, text) {
-    const tooltip = document.getElementById('tooltip');
-    tooltip.textContent = text;
-    tooltip.classList.add('show');
-    
-    updateTooltipPosition(e);
-}
-
-function hideTooltip() {
-    const tooltip = document.getElementById('tooltip');
-    tooltip.classList.remove('show');
-}
-
-function updateTooltipPosition(e) {
-    const tooltip = document.getElementById('tooltip');
-    const x = e.clientX + 10;
-    const y = e.clientY - 10;
-    
-    // Ensure tooltip stays within viewport
-    const tooltipRect = tooltip.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    
-    let finalX = x;
-    let finalY = y;
-    
-    if (x + tooltipRect.width > viewportWidth) {
-        finalX = e.clientX - tooltipRect.width - 10;
+@media (max-width: 480px) {
+    .slate-header h1 {
+        font-size: 24px;
     }
     
-    if (y - tooltipRect.height < 0) {
-        finalY = e.clientY + 20;
+    .fafsa-header h1 {
+        font-size: 24px;
     }
     
-    tooltip.style.left = finalX + 'px';
-    tooltip.style.top = finalY + 'px';
-}
-
-function setupHoverEffects() {
-    // Add hover effects to interactive elements
-    const interactiveElements = document.querySelectorAll('.flow-card, .setup-card, .milestone-card, .update-card, .fafsa-card');
-    
-    interactiveElements.forEach(element => {
-        element.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-4px)';
-            this.style.boxShadow = '0 6px 18px rgba(0, 0, 0, 0.12)';
-        });
-        
-        element.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 2px 8px rgba(0,0,0,.05)';
-        });
-    });
-}
-
-function setupCharts() {
-    // Set up HTML-based charts with tooltips
-    setupDataVisualizationInteractions();
-    
-    // GitHub Pages compatibility - retry chart drawing if initial attempt fails
-    setTimeout(() => {
-        const goLiveCanvas = document.getElementById('goLiveChart');
-        const funnelCanvas = document.getElementById('funnelChart');
-        
-        if (goLiveCanvas && funnelCanvas) {
-            try {
-                drawGoLiveChart(goLiveCanvas);
-                drawFunnelChart(funnelCanvas);
-            } catch (error) {
-                console.warn('Chart drawing failed, retrying...', error);
-                // Retry after a longer delay
-                setTimeout(() => {
-                    drawGoLiveChart(goLiveCanvas);
-                    drawFunnelChart(funnelCanvas);
-                }, 1000);
-            }
-        }
-    }, isGitHubPages ? 1000 : 100);
-}
-
-function setupDataVisualizationInteractions() {
-    // Add enhanced tooltips for bar chart
-    const barWrappers = document.querySelectorAll('.bar-wrapper');
-    barWrappers.forEach(wrapper => {
-        wrapper.addEventListener('mouseenter', function(e) {
-            const tooltip = this.getAttribute('data-tooltip');
-            if (tooltip) {
-                showTooltip(e, tooltip);
-            }
-        });
-        
-        wrapper.addEventListener('mouseleave', function() {
-            hideTooltip();
-        });
-        
-        wrapper.addEventListener('mousemove', function(e) {
-            if (document.getElementById('tooltip').classList.contains('show')) {
-                updateTooltipPosition(e);
-            }
-        });
-    });
-    
-    // Add enhanced tooltips for funnel chart segments
-    const barSegments = document.querySelectorAll('.bar-segment');
-    barSegments.forEach(segment => {
-        segment.addEventListener('mouseenter', function(e) {
-            const tooltip = this.getAttribute('data-tooltip');
-            const college = this.closest('.funnel-bar-wrapper').getAttribute('data-college');
-            if (tooltip) {
-                const enhancedTooltip = `${college}: ${tooltip}`;
-                showTooltip(e, enhancedTooltip);
-            }
-        });
-        
-        segment.addEventListener('mouseleave', function() {
-            hideTooltip();
-        });
-        
-        segment.addEventListener('mousemove', function(e) {
-            if (document.getElementById('tooltip').classList.contains('show')) {
-                updateTooltipPosition(e);
-            }
-        });
-    });
-    
-    // Add enhanced tooltips for funnel chart wrappers (college summary)
-    const funnelWrappers = document.querySelectorAll('.funnel-bar-wrapper');
-    funnelWrappers.forEach(wrapper => {
-        wrapper.addEventListener('mouseenter', function(e) {
-            const college = this.getAttribute('data-college');
-            const segments = this.querySelectorAll('.bar-segment');
-            let summary = `${college} Summary:\n`;
-            
-            segments.forEach(segment => {
-                const tooltip = segment.getAttribute('data-tooltip');
-                if (tooltip) {
-                    summary += `• ${tooltip}\n`;
-                }
-            });
-            
-            showTooltip(e, summary.trim());
-        });
-        
-        wrapper.addEventListener('mouseleave', function() {
-            hideTooltip();
-        });
-        
-        wrapper.addEventListener('mousemove', function(e) {
-            if (document.getElementById('tooltip').classList.contains('show')) {
-                updateTooltipPosition(e);
-            }
-        });
-    });
-    
-    // Add enhanced hover effects for chart elements
-    setupChartHoverEffects();
-}
-
-function drawGoLiveChart(canvas) {
-    // GitHub Pages compatibility check
-    if (!canvas || !canvas.getContext) {
-        console.warn('Canvas not available, skipping chart drawing');
-        return;
+    .bot-reso-title {
+        font-size: 20px;
     }
     
-    const ctx = canvas.getContext('2d');
-    
-    // Ensure canvas is properly sized
-    if (canvas.width === 0 || canvas.height === 0) {
-        canvas.width = canvas.offsetWidth || 400;
-        canvas.height = canvas.offsetHeight || 200;
-    }
-    const data = [
-        { date: '9/10/2025', colleges: 1 },
-        { date: '9/15/2025', colleges: 2 },
-        { date: '9/16/2025', colleges: 1 },
-        { date: '9/18/2025', colleges: 1 },
-        { date: '9/22/2025', colleges: 3 },
-        { date: '9/24/2025', colleges: 1 },
-        { date: '9/29/2025', colleges: 2 },
-    ];
-    
-    const maxValue = Math.max(...data.map(d => d.colleges));
-    const barWidth = canvas.width / data.length * 0.8;
-    const barSpacing = canvas.width / data.length * 0.2;
-    const chartHeight = canvas.height - 60;
-    
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw bars
-    data.forEach((item, index) => {
-        const x = index * (barWidth + barSpacing) + barSpacing / 2;
-        const barHeight = (item.colleges / maxValue) * chartHeight;
-        const y = canvas.height - 40 - barHeight;
-        
-        // Draw bar
-        ctx.fillStyle = '#FFB71B';
-        ctx.fillRect(x, y, barWidth, barHeight);
-        
-        // Draw value on top
-        ctx.fillStyle = '#0033A1';
-        ctx.font = '12px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText(item.colleges.toString(), x + barWidth / 2, y - 5);
-        
-        // Draw date label
-        ctx.fillStyle = '#5f6b7a';
-        ctx.font = '10px Arial';
-        ctx.fillText(item.date.substring(5), x + barWidth / 2, canvas.height - 20);
-    });
-}
-
-function drawFunnelChart(canvas) {
-    // GitHub Pages compatibility check
-    if (!canvas || !canvas.getContext) {
-        console.warn('Canvas not available, skipping chart drawing');
-        return;
-    }
-    
-    const ctx = canvas.getContext('2d');
-    
-    // Ensure canvas is properly sized
-    if (canvas.width === 0 || canvas.height === 0) {
-        canvas.width = canvas.offsetWidth || 400;
-        canvas.height = canvas.offsetHeight || 200;
-    }
-    const data = [
-        { college: 'Baruch', created: 2732, fee: 727, ready: 521, submitted: 806 },
-        { college: 'Brooklyn', created: 1797, fee: 490, ready: 168, submitted: 571 },
-        { college: 'City', created: 1925, fee: 300, ready: 192, submitted: 416 },
-        { college: 'CSI', created: 297, fee: 297, ready: 35, submitted: 83 },
-        { college: 'GC', created: 2774, fee: 192, ready: 55, submitted: 268 },
-        { college: 'Hunter', created: 3563, fee: 839, ready: 585, submitted: 902 },
-        { college: 'John Jay', created: 1123, fee: 245, ready: 171, submitted: 274 },
-        { college: 'Lehman', created: 737, fee: 169, ready: 71, submitted: 188 },
-        { college: 'Queens', created: 1036, fee: 255, ready: 116, submitted: 281 },
-        { college: 'SLU', created: 56, fee: 12, ready: 2, submitted: 16 },
-        { college: 'York', created: 46, fee: 4, ready: 0, submitted: 10 },
-    ];
-    
-    const maxValue = Math.max(...data.map(d => d.created));
-    const barWidth = canvas.width / data.length * 0.8;
-    const barSpacing = canvas.width / data.length * 0.2;
-    const chartHeight = canvas.height - 100;
-    const colors = {
-        created: '#0033A1',
-        fee: '#7DA6FF',
-        ready: '#22C55E',
-        submitted: '#FFB71B'
-    };
-    
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw Y-axis labels
-    ctx.fillStyle = '#5f6b7a';
-    ctx.font = '12px Arial';
-    ctx.textAlign = 'right';
-    const yLabels = [0, 300, 600, 900, 1200];
-    yLabels.forEach((label, index) => {
-        const y = canvas.height - 80 - (index * chartHeight / 4);
-        ctx.fillText(label.toString(), 40, y + 4);
-    });
-    
-    // Draw grid lines
-    ctx.strokeStyle = '#e5eaf0';
-    ctx.lineWidth = 1;
-    yLabels.forEach((label, index) => {
-        const y = canvas.height - 80 - (index * chartHeight / 4);
-        ctx.beginPath();
-        ctx.moveTo(50, y);
-        ctx.lineTo(canvas.width - 20, y);
-        ctx.stroke();
-    });
-    
-    // Draw bars
-    data.forEach((item, index) => {
-        const x = 50 + index * (barWidth + barSpacing) + barSpacing / 2;
-        let currentY = canvas.height - 80;
-        
-        // Draw segments in order: created, fee, ready, submitted
-        const segments = [
-            { key: 'created', value: item.created, color: colors.created },
-            { key: 'fee', value: item.fee, color: colors.fee },
-            { key: 'ready', value: item.ready, color: colors.ready },
-            { key: 'submitted', value: item.submitted, color: colors.submitted }
-        ];
-        
-        segments.forEach(segment => {
-            if (segment.value > 0) {
-                const segmentHeight = (segment.value / maxValue) * chartHeight;
-                currentY -= segmentHeight;
-                
-                ctx.fillStyle = segment.color;
-                ctx.fillRect(x, currentY, barWidth, segmentHeight);
-                
-                // Draw value on segment - always show numbers
-                ctx.fillStyle = 'white';
-                ctx.font = 'bold 9px Arial';
-                ctx.textAlign = 'center';
-                ctx.strokeStyle = 'rgba(0,0,0,0.3)';
-                ctx.lineWidth = 1;
-                
-                const textX = x + barWidth / 2;
-                const textY = currentY + segmentHeight / 2 + 3;
-                
-                // Draw text with stroke for better visibility
-                ctx.strokeText(segment.value.toString(), textX, textY);
-                ctx.fillText(segment.value.toString(), textX, textY);
-            }
-        });
-        
-        // Draw college name
-        ctx.fillStyle = '#0033A1';
-        ctx.font = 'bold 10px Arial';
-        ctx.textAlign = 'center';
-        ctx.strokeStyle = 'white';
-        ctx.lineWidth = 2;
-        ctx.strokeText(item.college, x + barWidth / 2, canvas.height - 20);
-        ctx.fillText(item.college, x + barWidth / 2, canvas.height - 20);
-    });
-    
-    // Draw legend
-    const legendY = canvas.height - 40;
-    const legendX = 50;
-    const legendItems = [
-        { label: 'Created', color: colors.created },
-        { label: 'Fee Received/Waived', color: colors.fee },
-        { label: 'Ready for Review', color: colors.ready },
-        { label: 'Submitted', color: colors.submitted }
-    ];
-    
-    let legendXPos = legendX;
-    legendItems.forEach((item, index) => {
-        // Draw color box
-        ctx.fillStyle = item.color;
-        ctx.fillRect(legendXPos, legendY - 10, 12, 12);
-        
-        // Draw label
-        ctx.fillStyle = '#0033A1';
-        ctx.font = '10px Arial';
-        ctx.textAlign = 'left';
-        ctx.fillText(item.label, legendXPos + 16, legendY - 2);
-        
-        legendXPos += ctx.measureText(item.label).width + 30;
-    });
-}
-
-function setupBotResoTimeline() {
-    // Calculate dynamic progress
-    const start = new Date(2025, 7, 29); // August 29, 2025
-    const totalWeeks = 14;
-    const today = new Date();
-    const msPerWeek = 7 * 24 * 60 * 60 * 1000;
-    const rawWeeks = Math.floor((today.getTime() - start.getTime()) / msPerWeek) + 1;
-    const currentWeek = Math.min(Math.max(rawWeeks, 0), totalWeeks);
-    const percent = Math.round((currentWeek / totalWeeks) * 100);
-    
-    // Update progress display
-    const progressText = document.getElementById('progress-text');
-    const progressFill = document.getElementById('progress-fill');
-    
-    if (progressText) {
-        progressText.textContent = `${percent}% · Week ${currentWeek} of ${totalWeeks}`;
-    }
-    
-    if (progressFill) {
-        progressFill.style.width = `${percent}%`;
-    }
-    
-    // Handle week card interactions
-    const weekCards = document.querySelectorAll('.week-card');
-    
-    weekCards.forEach(card => {
-        const summary = card.querySelector('.week-summary');
-        
-        if (summary) {
-            summary.addEventListener('click', function() {
-                const isOpen = card.classList.contains('open');
-                
-                // Close all other cards
-                weekCards.forEach(otherCard => {
-                    if (otherCard !== card) {
-                        otherCard.classList.remove('open');
-                    }
-                });
-                
-                // Toggle current card
-                card.classList.toggle('open');
-            });
-        }
-    });
-}
-
-function setCurrentDate() {
-    const dateElement = document.getElementById('status-date');
-    const fafsaDateElement = document.getElementById('fafsa-status-date');
-    const degreeworksDateElement = document.getElementById('degreeworks-status-date');
-    
-    // Set specific dates for each page
-    const slateDate = '11/7/2025';
-    const fafsaDate = '11/6/2025';
-    const degreeworksDate = '11/14/2025';
-    
-    console.log('Setting Slate date to:', slateDate);
-    console.log('Setting FAFSA date to:', fafsaDate);
-    console.log('Setting DegreeWorks date to:', degreeworksDate);
-    
-    // Force update with cache busting
-    const timestamp = new Date().getTime();
-    console.log('Cache busting timestamp:', timestamp);
-    
-    // Set date for Slate page
-    if (dateElement) {
-        dateElement.textContent = slateDate;
-        dateElement.setAttribute('data-timestamp', timestamp);
-        console.log('Slate date element updated with timestamp:', timestamp);
-    } else {
-        console.log('Slate date element not found');
-    }
-    
-    // Set date for FAFSA page
-    if (fafsaDateElement) {
-        fafsaDateElement.textContent = fafsaDate;
-        fafsaDateElement.setAttribute('data-timestamp', timestamp);
-        console.log('FAFSA date element updated with timestamp:', timestamp);
-    } else {
-        console.log('FAFSA date element not found');
-    }
-    
-    // Set date for DegreeWorks page
-    if (degreeworksDateElement) {
-        degreeworksDateElement.textContent = degreeworksDate;
-        degreeworksDateElement.setAttribute('data-timestamp', timestamp);
-        console.log('DegreeWorks date element updated with timestamp:', timestamp);
-    } else {
-        console.log('DegreeWorks date element not found');
-    }
-    
-    // Force update if elements exist but are empty or have old timestamps
-    setTimeout(() => {
-        const currentTimestamp = new Date().getTime();
-        if (dateElement && (!dateElement.textContent || dateElement.getAttribute('data-timestamp') !== timestamp.toString())) {
-            dateElement.textContent = slateDate;
-            dateElement.setAttribute('data-timestamp', currentTimestamp);
-            console.log('Force updated Slate date with new timestamp:', currentTimestamp);
-        }
-        if (fafsaDateElement && (!fafsaDateElement.textContent || fafsaDateElement.getAttribute('data-timestamp') !== timestamp.toString())) {
-            fafsaDateElement.textContent = fafsaDate;
-            fafsaDateElement.setAttribute('data-timestamp', currentTimestamp);
-            console.log('Force updated FAFSA date with new timestamp:', currentTimestamp);
-        }
-    }, 200);
-}
-
-// Additional utility functions for enhanced interactivity
-function animateProgressBars() {
-    const progressBars = document.querySelectorAll('.progress-fill');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const progressBar = entry.target;
-                const targetWidth = progressBar.style.width;
-                progressBar.style.width = '0%';
-                
-                setTimeout(() => {
-                    progressBar.style.width = targetWidth;
-                }, 200);
-            }
-        });
-    });
-    
-    progressBars.forEach(bar => {
-        observer.observe(bar);
-    });
-}
-
-// Initialize additional features when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    animateProgressBars();
-});
-
-// Add keyboard navigation support
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Tab') {
-        // Add focus styles for keyboard navigation
-        const focusedElement = document.activeElement;
-        if (focusedElement.classList.contains('nav-btn')) {
-            focusedElement.style.outline = '2px solid var(--cuny-gold)';
-            focusedElement.style.outlineOffset = '2px';
-        }
-    }
-});
-
-// Add window resize handler for responsive behavior
-window.addEventListener('resize', function() {
-    // Recalculate tooltip positions on window resize
-    const tooltip = document.getElementById('tooltip');
-    if (tooltip && tooltip.classList.contains('show')) {
-        // Hide tooltip on resize to prevent positioning issues
-        tooltip.classList.remove('show');
-    }
-    
-    // Redraw charts on resize
-    const goLiveCanvas = document.getElementById('goLiveChart');
-    const funnelCanvas = document.getElementById('funnelChart');
-    
-    if (goLiveCanvas) {
-        drawGoLiveChart(goLiveCanvas);
-    }
-    
-    if (funnelCanvas) {
-        drawFunnelChart(funnelCanvas);
-    }
-});
-
-// New Accordion Functionality
-function setupNewAccordion() {
-    const accordionItems = document.querySelectorAll('.accordion-item-new');
-    
-    accordionItems.forEach(item => {
-        const trigger = item.querySelector('.accordion-trigger-new');
-        const panel = item.querySelector('.accordion-panel-new');
-        
-        if (trigger && panel) {
-            trigger.addEventListener('click', function() {
-                const isExpanded = item.getAttribute('aria-expanded') === 'true';
-                
-                // Close all other accordion items
-                accordionItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.setAttribute('aria-expanded', 'false');
-                        const otherPanel = otherItem.querySelector('.accordion-panel-new');
-                        if (otherPanel) {
-                            otherPanel.style.display = 'none';
-                        }
-                    }
-                });
-                
-                // Toggle current item
-                if (isExpanded) {
-                    item.setAttribute('aria-expanded', 'false');
-                    panel.style.display = 'none';
-                } else {
-                    item.setAttribute('aria-expanded', 'true');
-                    panel.style.display = 'block';
-                    
-                    // Draw charts when timeline panel is opened
-                    if (item.getAttribute('data-id') === 'go-live-timeline') {
-                        setTimeout(() => {
-                            drawNewCharts();
-                        }, 100);
-                    }
-                }
-            });
-        }
-    });
-    
-    // Set initial state - first item open by default
-    const firstItem = accordionItems[0];
-    if (firstItem) {
-        firstItem.setAttribute('aria-expanded', 'true');
-        const firstPanel = firstItem.querySelector('.accordion-panel-new');
-        if (firstPanel) {
-            firstPanel.style.display = 'block';
-        }
+    .nav-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
     }
 }
 
-// New Chart Drawing Functions
-function drawNewCharts() {
-    const goLiveCanvas = document.getElementById('goLiveChart');
-    const funnelCanvas = document.getElementById('funnelChart');
-    
-    if (goLiveCanvas) {
-        drawNewGoLiveChart(goLiveCanvas);
+/* New Slate Dashboard Styles */
+.slate-page {
+    background: var(--bg);
+    min-height: 100vh;
+    padding: 1.5rem 2.5rem;
+}
+
+.slate-header-new {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.slate-header-new h1 {
+    color: #0033A1;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.slate-header-new p {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin: 0.25rem 0 0 0;
+}
+
+.status-box-new {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.status-dot-new {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: #22c55e;
+    display: inline-block;
+}
+
+.status-badge {
+    background: rgba(255, 183, 27, 0.1);
+    color: #0033A1;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    border: 1px solid rgba(0, 51, 161, 0.25);
+}
+
+.completion-indicator {
+    display: flex;
+    align-items: center;
+}
+
+.completion-label {
+    background: rgba(34, 197, 94, 0.1);
+    color: #059669;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid rgba(5, 150, 105, 0.25);
+}
+
+/* Accordion Styles */
+.accordion-new {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.accordion-item-new {
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 51, 161, 0.15);
+    background: var(--bg);
+    overflow: hidden;
+}
+
+.accordion-trigger-new {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1rem;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.accordion-trigger-new:hover {
+    background: rgba(0, 51, 161, 0.02);
+}
+
+.accordion-title-new {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.accordion-bar {
+    width: 0.375rem;
+    height: 1.5rem;
+    background: #0033A1;
+    border-radius: 0.125rem;
+}
+
+.accordion-text {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0033A1;
+}
+
+.accordion-chevron-new {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #0033A1;
+    transition: transform 0.2s ease;
+}
+
+.accordion-item-new[aria-expanded="true"] .accordion-chevron-new {
+    transform: rotate(180deg);
+}
+
+.accordion-panel-new {
+    padding: 0 1rem 1rem 1rem;
+}
+
+/* Data Flow Styles */
+.data-flow-container-new {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 51, 161, 0.15);
+    background: var(--bg);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.flow-card-new {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 51, 161, 0.15);
+    background: var(--bg);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.flow-card-new:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.flow-card-header-new {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: #0033A1;
+}
+
+.flow-dot-new {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: #0033A1;
+    display: inline-block;
+}
+
+.flow-title-new {
+    font-weight: 500;
+    color: #0033A1;
+}
+
+.flow-desc-new {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0.25rem 0 0 0;
+}
+
+.flow-pill-new {
+    margin-top: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid;
+}
+
+.flow-pill-new.green {
+    background: rgba(34, 197, 94, 0.1);
+    color: #166534;
+    border-color: rgba(34, 197, 94, 0.2);
+}
+
+.flow-pill-new.blue {
+    background: rgba(0, 51, 161, 0.1);
+    color: #0033A1;
+    border-color: rgba(0, 51, 161, 0.2);
+}
+
+.flow-arrow-new {
+    color: #FFB71B;
+    flex-shrink: 0;
+}
+
+/* Setup Grid Styles */
+.setup-grid-new {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.setup-card-new {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 51, 161, 0.15);
+    background: var(--bg);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.setup-card-new:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.setup-card-header-new {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: #0033A1;
+}
+
+.setup-dot-new {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: #0033A1;
+    display: inline-block;
+}
+
+.setup-title-new {
+    font-weight: 500;
+    color: #0033A1;
+}
+
+.setup-desc-new {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0.25rem 0 0 0;
+}
+
+.setup-pill-new {
+    margin-top: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid;
+}
+
+.setup-pill-new.green {
+    background: rgba(34, 197, 94, 0.1);
+    color: #166534;
+    border-color: rgba(34, 197, 94, 0.2);
+}
+
+/* Timeline Pills */
+.timeline-pills-new {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.timeline-pill-new {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-pill-new.completed {
+    background: #f0f4ff;
+    color: #0033A1;
+    border-color: #0033A1;
+}
+
+.timeline-pill-new.pending {
+    background: #f8f9fa;
+    color: #6b7280;
+    border-color: #d1d5db;
+}
+
+.pill-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+}
+
+.pill-dot.completed {
+    background: #22C55E;
+}
+
+.pill-dot.completed::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.pill-dot.pending {
+    background: #d1d5db;
+}
+
+.pill-dot.pending::after {
+    content: '✕';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+/* Chart Styles */
+.chart-container-new {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 51, 161, 0.15);
+    background: var(--bg);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.chart-title-new {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #0033A1;
+    margin-bottom: 0.75rem;
+}
+
+.chart-wrapper-new {
+    width: 100%;
+    height: 320px;
+}
+
+.chart-wrapper-new:last-child {
+    height: 420px;
+}
+
+/* Milestones Grid */
+.milestones-grid-new {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.milestone-card-new {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 51, 161, 0.15);
+    background: var(--bg);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.milestone-header-new {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.milestone-title-new {
+    font-weight: 500;
+    color: #0033A1;
+}
+
+.milestone-scope-new {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0.25rem 0 0 0;
+}
+
+.milestone-pill-new {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid;
+}
+
+.milestone-pill-new.amber {
+    background: rgba(245, 158, 11, 0.1);
+    color: #92400e;
+    border-color: rgba(245, 158, 11, 0.2);
+}
+
+.milestone-pill-new.gray {
+    background: rgba(107, 114, 128, 0.1);
+    color: #374151;
+    border-color: rgba(107, 114, 128, 0.2);
+}
+
+.milestone-progress-new {
+    margin-top: 1rem;
+}
+
+.progress-bar-new {
+    height: 0.5rem;
+    width: 100%;
+    background: #f3f4f6;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress-fill-new {
+    height: 100%;
+    background: #FFB71B;
+    transition: width 0.3s ease;
+}
+
+/* Updates Grid */
+.updates-grid-new {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.update-card-new {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 51, 161, 0.15);
+    background: var(--bg);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.update-card-header-new {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: #0033A1;
+}
+
+.update-dot-new {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: #0033A1;
+    display: inline-block;
+}
+
+.update-title-new {
+    font-weight: 500;
+    color: #0033A1;
+}
+
+.update-desc-new {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0.25rem 0 0 0;
+}
+
+.update-list-new {
+    margin-top: 0.75rem;
+}
+
+.update-list-new ul {
+    list-style: disc;
+    list-style-position: inside;
+    font-size: 0.875rem;
+    color: #374151;
+    line-height: 1.5;
+}
+
+.update-list-new li {
+    margin-bottom: 0.25rem;
+}
+
+/* Responsive Design for New Slate Styles */
+@media (max-width: 768px) {
+    .slate-page {
+        padding: 1rem;
     }
     
-    if (funnelCanvas) {
-        drawNewFunnelChart(funnelCanvas);
+    .slate-header-new {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .data-flow-container-new {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .flow-arrow-new {
+        transform: rotate(90deg);
+    }
+    
+    .setup-grid-new,
+    .milestones-grid-new,
+    .updates-grid-new {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-pills-new {
+        flex-direction: column;
+    }
+    
+    .chart-wrapper-new {
+        height: 250px;
+    }
+    
+    .chart-wrapper-new:last-child {
+        height: 300px;
     }
 }
 
-function drawNewGoLiveChart(canvas) {
-    const ctx = canvas.getContext('2d');
-    const data = [
-        { date: '9/10/2025', colleges: 1 },
-        { date: '9/15/2025', colleges: 2 },
-        { date: '9/16/2025', colleges: 1 },
-        { date: '9/18/2025', colleges: 1 },
-        { date: '9/22/2025', colleges: 3 },
-        { date: '9/24/2025', colleges: 1 },
-        { date: '9/29/2025', colleges: 1 },
-        { date: '10/3/2025', colleges: 1 }
-    ];
-    
-    const maxValue = Math.max(...data.map(d => d.colleges));
-    const chartWidth = canvas.width - 80;
-    const chartHeight = canvas.height - 60;
-    const barWidth = chartWidth / data.length * 0.8;
-    const barSpacing = chartWidth / data.length * 0.2;
-    
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw grid lines
-    ctx.strokeStyle = '#e5eaf0';
-    ctx.lineWidth = 1;
-    for (let i = 0; i <= 4; i++) {
-        const y = 30 + (chartHeight / 4) * i;
-        ctx.beginPath();
-        ctx.moveTo(40, y);
-        ctx.lineTo(40 + chartWidth, y);
-        ctx.stroke();
+/* Data Table Styles */
+.data-table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.data-table thead {
+    background: #0033A1;
+    color: white;
+}
+
+.data-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+}
+
+.data-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e5eaf0;
+    font-size: 14px;
+    color: #374151;
+}
+
+.data-table tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.data-table tbody tr:hover {
+    background: #f0f4ff;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Process Flowchart Styles */
+.process-flowchart {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e5eaf0;
+}
+
+.flowchart-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Recommendations Section Styles */
+.recommendations-section {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f0f4ff;
+    border-left: 4px solid #0033A1;
+    border-radius: 0 8px 8px 0;
+}
+
+.recommendations-section h4 {
+    color: #0033A1;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+}
+
+.recommendations-section ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.recommendations-section li {
+    color: #374151;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.recommendations-section li:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive recommendations */
+@media (max-width: 768px) {
+    .recommendations-section {
+        margin-top: 1rem;
+        padding: 0.75rem;
     }
     
-    // Draw bars
-    data.forEach((item, index) => {
-        const x = 40 + index * (barWidth + barSpacing) + barSpacing / 2;
-        const barHeight = (item.colleges / maxValue) * chartHeight;
-        const y = 30 + chartHeight - barHeight;
-        
-        // Draw bar
-        ctx.fillStyle = '#FFB71B';
-        ctx.fillRect(x, y, barWidth, barHeight);
-        
-        // Draw value on top
-        ctx.fillStyle = '#0033A1';
-        ctx.font = '12px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText(item.colleges.toString(), x + barWidth / 2, y - 5);
-        
-        // Draw date label
-        ctx.fillStyle = '#6b7280';
-        ctx.font = '10px Arial';
-        ctx.fillText(item.date, x + barWidth / 2, 30 + chartHeight + 15);
-    });
-    
-    // Draw Y-axis labels
-    ctx.fillStyle = '#6b7280';
-    ctx.font = '10px Arial';
-    ctx.textAlign = 'right';
-    for (let i = 0; i <= 4; i++) {
-        const value = Math.round((maxValue / 4) * (4 - i));
-        const y = 30 + (chartHeight / 4) * i + 3;
-        ctx.fillText(value.toString(), 35, y);
-    }
-}
-
-function drawNewFunnelChart(canvas) {
-    const ctx = canvas.getContext('2d');
-    const data = [
-        { college: 'Baruch', created: 2732, submitted: 806, fee: 727, ready: 521 },
-        { college: 'Brooklyn', created: 1797, submitted: 571, fee: 490, ready: 168 },
-        { college: 'City', created: 1925, submitted: 416, fee: 300, ready: 192 },
-        { college: 'CSI', created: 297, submitted: 83, fee: 297, ready: 35 },
-        { college: 'GC', created: 2774, submitted: 268, fee: 192, ready: 55 },
-        { college: 'Hunter', created: 3563, submitted: 902, fee: 839, ready: 585 },
-        { college: 'John Jay', created: 1123, submitted: 274, fee: 245, ready: 171 },
-        { college: 'Lehman', created: 737, submitted: 188, fee: 169, ready: 71 },
-        { college: 'Queens', created: 1036, submitted: 281, fee: 255, ready: 116 },
-        { college: 'SLU', created: 56, submitted: 16, fee: 12, ready: 2 },
-        { college: 'York', created: 46, submitted: 10, fee: 4, ready: 0 },
-    ];
-    
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Chart dimensions
-    const margin = { top: 40, right: 40, bottom: 80, left: 80 };
-    const chartWidth = canvas.width - margin.left - margin.right;
-    const chartHeight = canvas.height - margin.top - margin.bottom;
-
-    // Calculate bar dimensions
-    const barWidth = chartWidth / data.length * 0.6;
-    const barSpacing = chartWidth / data.length;
-    const maxValue = 1200;
-
-    // Colors for stacked segments
-    const colors = {
-        created: '#0033A1',      // Dark Blue
-        fee: '#7DA6FF',         // Light Blue  
-        ready: '#22C55E',       // Green
-        submitted: '#FFB71B'     // Orange
-    };
-
-    // Draw stacked bars
-    data.forEach((item, index) => {
-        const x = margin.left + index * barSpacing + (barSpacing - barWidth) / 2;
-        let currentY = margin.top + chartHeight;
-
-        // Draw segments from bottom to top
-        const segments = [
-            { value: item.created, color: colors.created, label: 'Created' },
-            { value: item.fee, color: colors.fee, label: 'Fee Received/Waived' },
-            { value: item.ready, color: colors.ready, label: 'Ready for Review' },
-            { value: item.submitted, color: colors.submitted, label: 'Submitted' }
-        ];
-
-        segments.forEach(segment => {
-            if (segment.value > 0) {
-                const segmentHeight = (segment.value / maxValue) * chartHeight;
-                currentY -= segmentHeight;
-
-                // Draw segment
-                ctx.fillStyle = segment.color;
-                ctx.fillRect(x, currentY, barWidth, segmentHeight);
-
-                // Draw value on segment
-                ctx.fillStyle = 'white';
-                ctx.font = 'bold 10px Arial';
-                ctx.textAlign = 'center';
-                const textY = currentY + segmentHeight / 2 + 3;
-                ctx.fillText(segment.value.toString(), x + barWidth / 2, textY);
-            }
-        });
-
-        // Draw college name
-        ctx.fillStyle = '#374151';
-        ctx.font = '12px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText(item.college, x + barWidth / 2, margin.top + chartHeight + 20);
-    });
-
-    // Draw Y-axis
-    ctx.strokeStyle = '#e5eaf0';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(margin.left, margin.top);
-    ctx.lineTo(margin.left, margin.top + chartHeight);
-    ctx.stroke();
-
-    // Draw Y-axis labels
-    ctx.fillStyle = '#6b7280';
-    ctx.font = '12px Arial';
-    ctx.textAlign = 'right';
-    const yLabels = [0, 300, 600, 900, 1200];
-    yLabels.forEach(value => {
-        const y = margin.top + chartHeight - (value / maxValue) * chartHeight;
-        ctx.fillText(value.toString(), margin.left - 10, y + 4);
-    });
-
-    // Draw X-axis
-    ctx.strokeStyle = '#e5eaf0';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(margin.left, margin.top + chartHeight);
-    ctx.lineTo(margin.left + chartWidth, margin.top + chartHeight);
-    ctx.stroke();
-
-    // Draw grid lines
-    ctx.strokeStyle = '#f3f4f6';
-    ctx.lineWidth = 1;
-    yLabels.forEach(value => {
-        const y = margin.top + chartHeight - (value / maxValue) * chartHeight;
-        ctx.beginPath();
-        ctx.moveTo(margin.left, y);
-        ctx.lineTo(margin.left + chartWidth, y);
-        ctx.stroke();
-    });
-
-    // Draw legend
-    const legendY = margin.top + chartHeight + 50;
-    const legendItems = [
-        { color: colors.created, label: 'Created' },
-        { color: colors.fee, label: 'Fee Received/Waived' },
-        { color: colors.ready, label: 'Ready for Review' },
-        { color: colors.submitted, label: 'Submitted' }
-    ];
-
-    ctx.font = '12px Arial';
-    ctx.textAlign = 'left';
-    let legendX = margin.left;
-
-    legendItems.forEach((item, index) => {
-        // Draw color box
-        ctx.fillStyle = item.color;
-        ctx.fillRect(legendX, legendY, 15, 15);
-
-        // Draw label
-        ctx.fillStyle = '#374151';
-        ctx.fillText(item.label, legendX + 20, legendY + 11);
-
-        legendX += ctx.measureText(item.label).width + 40;
-    });
-}
-
-// Project Pillars Dashboard JavaScript
-const PILLARS = [
-    { key: 'governance', label: 'Governance', color: '#0033A1', accent: '#1B5FD1' },
-    { key: 'process', label: 'Process Mapping', color: '#FFB71B', accent: '#B37E09' },
-    { key: 'smes', label: 'Involve the Right SMEs', color: '#1B5FD1', accent: '#0033A1' },
-    { key: 'dedication', label: 'Everyone Working with Dedication', color: '#B37E09', accent: '#FFB71B' }
-];
-
-let pillarsCanvas, pillarsCtx, pillarsTip, pillarsT0, pillarsState;
-
-function initPillarsDashboard() {
-    console.log('Initializing pillars dashboard...');
-    
-    pillarsCanvas = document.getElementById('orbital');
-    if (!pillarsCanvas) {
-        console.error('Canvas element with id "orbital" not found');
-        return;
+    .recommendations-section h4 {
+        font-size: 0.9rem;
     }
     
-    console.log('Canvas found:', pillarsCanvas);
-    
-    try {
-        pillarsCtx = pillarsCanvas.getContext('2d');
-        if (!pillarsCtx) {
-            console.error('Could not get 2D context');
-            return;
-        }
-        
-        pillarsTip = document.getElementById('tooltip');
-        pillarsT0 = performance.now();
-        pillarsState = { particles: [] };
-        
-        resizePillarsCanvas();
-        initPillarsParticles();
-        startPillarsAnimation();
-        
-        // Add event listeners
-        pillarsCanvas.addEventListener('mousemove', handlePillarsMouseMove);
-        pillarsCanvas.addEventListener('mouseleave', handlePillarsMouseLeave);
-        window.addEventListener('resize', resizePillarsCanvas);
-        
-        console.log('Pillars dashboard initialized successfully');
-    } catch (error) {
-        console.error('Error initializing pillars dashboard:', error);
+/* Project Pillars Dashboard Styles */
+.pillars-container {
+    width: 100%;
+    display: grid;
+    gap: 16px;
+    justify-items: center;
+}
+
+.pillars-card {
+    width: 100%;
+    background: var(--bg);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eef2f6;
+    padding: 20px 20px 12px;
+}
+
+.pillars-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.pillars-title {
+    color: #0033A1;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.pillars-subtitle {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin: 0.25rem 0 0 0;
+}
+
+.pillars-stage {
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+}
+
+.pillars-canvas-wrap {
+    position: relative;
+    width: min(450px, 60vw);
+    aspect-ratio: 1/1;
+    display: grid;
+    place-items: center;
+}
+
+#orbital {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+    filter: drop-shadow(0 8px 26px rgba(0, 0, 0, 0.08));
+}
+
+.pillars-center-badge {
+    position: absolute;
+    inset: auto 0 45% 0;
+    margin: auto;
+    width: 62%;
+    text-align: center;
+    pointer-events: none;
+}
+
+.pillars-center-badge h2 {
+    margin: 0;
+    font-size: clamp(16px, 2.4vw, 22px);
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    color: #0033A1;
+}
+
+.pillars-center-badge p {
+    margin: 0.25rem 0 0;
+    color: #61738a;
+    font-size: clamp(12px, 1.6vw, 14px);
+}
+
+.pillars-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    justify-content: center;
+    padding: 2px 2px 8px;
+}
+
+.pillars-pill {
+    --c: var(--cuny-blue);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid #e9eef4;
+}
+
+.pillars-pill .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    background: var(--c);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08) inset;
+}
+
+.pillars-tip {
+    position: fixed;
+    transform: translate(-50%, calc(-100% - 12px));
+    background: #0b1220;
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.25;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.14s ease;
+}
+
+/* Blog Post Section */
+.pillars-blog-post {
+    max-width: 800px;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #0033A1;
+}
+
+.pillars-blog-post h3 {
+    color: #0033A1;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    letter-spacing: 0.5px;
+}
+
+.pillars-blog-post p {
+    color: #374151;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+    text-align: justify;
+}
+
+.pillars-blog-post p:last-child {
+    margin-bottom: 0;
+    font-weight: 500;
+    color: #0033A1;
+}
+
+/* Responsive blog post */
+@media (max-width: 768px) {
+    .pillars-blog-post {
+        margin-top: 1.5rem;
+        padding: 1rem;
     }
-}
-
-function resizePillarsCanvas() {
-    if (!pillarsCanvas) return;
     
-    const dpr = Math.max(1, window.devicePixelRatio || 1);
-    const parent = pillarsCanvas.parentElement;
-    if (!parent) return;
-    
-    const css = parent.clientWidth;
-    if (css <= 0) return;
-    
-    pillarsCanvas.width = css * dpr;
-    pillarsCanvas.height = css * dpr;
-    pillarsCanvas.style.width = css + 'px';
-    pillarsCanvas.style.height = css + 'px';
-    pillarsCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    
-    console.log('Canvas resized:', css, 'x', css);
-}
-
-function initPillarsParticles(count = 90) {
-    pillarsState.particles = Array.from({ length: count }, () => ({
-        r: rand(12, 38),
-        orbit: rand(80, 330),
-        angle: rand(0, Math.PI * 2),
-        speed: rand(0.002, 0.006),
-        alpha: rand(0.12, 0.35)
-    }));
-}
-
-function drawPillars(now) {
-    if (!pillarsCanvas || !pillarsCtx) {
-        console.error('Canvas or context not available');
-        return;
+    .pillars-blog-post h3 {
+        font-size: 1.1rem;
     }
     
-    const w = pillarsCanvas.clientWidth;
-    const h = pillarsCanvas.clientHeight;
-    const cx = w / 2;
-    const cy = h / 2;
-    
-    pillarsCtx.clearRect(0, 0, w, h);
-    
-    const R1 = Math.min(w, h) * 0.15;  // Governance (innermost) - reduced
-    const R2 = Math.min(w, h) * 0.25;  // Process Mapping
-    const R3 = Math.min(w, h) * 0.35;  // Right SMEs
-    const R4 = Math.min(w, h) * 0.45;  // Dedication (outermost) - reduced
-    const t = now - pillarsT0;
-    const rot = t * 0.00025;
-    
-    // Draw rings (background circles)
-    drawPillarsRing(cx, cy, R4, 'rgba(183,126,9,.12)', 12);  // Dedication ring
-    drawPillarsRing(cx, cy, R3, 'rgba(27,95,209,.12)', 12);  // Right SMEs ring
-    drawPillarsRing(cx, cy, R2, 'rgba(255,183,27,.12)', 12); // Process Mapping ring
-    drawPillarsRing(cx, cy, R1, 'rgba(0,51,161,.12)', 12);  // Governance ring
-    
-    // Draw orbits (animated circles)
-    drawPillarsOrbit(cx, cy, R1, '#0033A1', 3, rot);         // Governance
-    drawPillarsOrbit(cx, cy, R2, '#FFB71B', 3, -rot * 1.1);  // Process Mapping
-    drawPillarsOrbit(cx, cy, R3, '#1B5FD1', 2, rot * 1.3);   // Right SMEs
-    drawPillarsOrbit(cx, cy, R4, '#B37E09', 2, -rot * 0.8);  // Dedication
-    
-    const nodes = pillarNodes(cx, cy, [R1, R2, R3, R4], rot);
-    drawPillarsConnections(nodes);
-    nodes.forEach(n => drawPillarsNode(n));
-    
-    pillarsState.particles.forEach(p => {
-        p.angle += p.speed;
-        const x = cx + Math.cos(p.angle) * p.orbit;
-        const y = cy + Math.sin(p.angle) * p.orbit;
-        pillarsCtx.beginPath();
-        pillarsCtx.fillStyle = `rgba(27,95,209,${p.alpha})`;
-        pillarsCtx.arc(x, y, p.r * 0.02, 0, Math.PI * 2);
-        pillarsCtx.fill();
-    });
-    
-    requestAnimationFrame(drawPillars);
-}
-
-function drawPillarsRing(x, y, r, stroke, w) {
-    pillarsCtx.beginPath();
-    pillarsCtx.strokeStyle = stroke;
-    pillarsCtx.lineWidth = w;
-    pillarsCtx.arc(x, y, r, 0, Math.PI * 2);
-    pillarsCtx.stroke();
-}
-
-function drawPillarsOrbit(x, y, r, color, w, rotation) {
-    pillarsCtx.beginPath();
-    pillarsCtx.strokeStyle = color;
-    pillarsCtx.globalAlpha = 0.65;
-    pillarsCtx.lineWidth = w;
-    pillarsCtx.setLineDash([6, 10]);
-    pillarsCtx.lineCap = 'round';
-    pillarsCtx.arc(x, y, r, 0, Math.PI * 2);
-    pillarsCtx.stroke();
-    pillarsCtx.setLineDash([]);
-    pillarsCtx.globalAlpha = 1;
-    
-    const a0 = rotation % (Math.PI * 2);
-    pillarsCtx.beginPath();
-    pillarsCtx.strokeStyle = withPillarsGlow(color, 0.6);
-    pillarsCtx.lineWidth = w + 1.5;
-    pillarsCtx.arc(x, y, r, a0, a0 + Math.PI / 3);
-    pillarsCtx.stroke();
-    pillarsCtx.shadowColor = 'transparent';
-    pillarsCtx.shadowBlur = 0;
-    pillarsCtx.globalAlpha = 1;
-}
-
-function drawPillarsConnections(nodes) {
-    pillarsCtx.save();
-    pillarsCtx.lineWidth = 2;
-    pillarsCtx.strokeStyle = 'rgba(0,51,161,.25)';
-    for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-            pillarsCtx.beginPath();
-            pillarsCtx.moveTo(nodes[i].x, nodes[i].y);
-            pillarsCtx.lineTo(nodes[j].x, nodes[j].y);
-            pillarsCtx.stroke();
-        }
-    }
-    pillarsCtx.restore();
-}
-
-function drawPillarsNode(n) {
-    pillarsCtx.beginPath();
-    pillarsCtx.fillStyle = 'rgba(255,183,27,.14)';
-    pillarsCtx.arc(n.x, n.y, 20, 0, Math.PI * 2);
-    pillarsCtx.fill();
-    
-    pillarsCtx.beginPath();
-    pillarsCtx.strokeStyle = '#0033A1';
-    pillarsCtx.lineWidth = 2.5;
-    pillarsCtx.arc(n.x, n.y, 14, 0, Math.PI * 2);
-    pillarsCtx.stroke();
-    
-    pillarsCtx.beginPath();
-    const grad = pillarsCtx.createRadialGradient(n.x - 3, n.y - 3, 2, n.x, n.y, 14);
-    grad.addColorStop(0, '#FFB71B');
-    grad.addColorStop(1, '#B37E09');
-    pillarsCtx.fillStyle = grad;
-    pillarsCtx.arc(n.x, n.y, 9, 0, Math.PI * 2);
-    pillarsCtx.fill();
-    
-    pillarsCtx.font = '600 14px ui-sans-serif, system-ui';
-    pillarsCtx.fillStyle = '#0b1220';
-    pillarsCtx.textAlign = 'center';
-    pillarsCtx.textBaseline = 'top';
-    wrapPillarsText(n.labelShort, n.x, n.y + 16, 130, 16);
-}
-
-function pillarNodes(cx, cy, radii, rot) {
-    const base = [0, Math.PI / 2, Math.PI, 3 * Math.PI / 2];
-    return PILLARS.map((p, i) => {
-        const r = radii[i % radii.length] + (i % 2 === 0 ? -8 : 8);
-        const a = base[i] + rot * (i % 2 === 0 ? 1 : -1) * 1.4;
-        const x = cx + Math.cos(a) * r;
-        const y = cy + Math.sin(a) * r;
-        return {
-            x, y, r,
-            label: p.label,
-            color: p.color,
-            accent: p.accent,
-            labelShort: shortPillarsLabel(p.label)
-        };
-    });
-}
-
-function shortPillarsLabel(str) {
-    if (str.includes('Governance')) return 'Governance';
-    if (str.includes('Process')) return 'Process Mapping';
-    if (str.includes('SMEs')) return 'Right SMEs';
-    if (str.includes('Dedication')) return 'Dedication';
-    return str;
-}
-
-function withPillarsGlow(color, blur) {
-    pillarsCtx.shadowColor = color;
-    pillarsCtx.shadowBlur = Math.max(6, pillarsCanvas.clientWidth * 0.015 * blur);
-    return color;
-}
-
-function wrapPillarsText(text, x, y, maxW, lh) {
-    const words = text.split(' ');
-    let line = '';
-    let yy = y;
-    for (let i = 0; i < words.length; i++) {
-        const test = (line + words[i] + ' ').trim();
-        if (pillarsCtx.measureText(test).width > maxW && i > 0) {
-            pillarsCtx.fillText(line.trim(), x, yy);
-            yy += lh;
-            line = '';
-        }
-        line = test;
-    }
-    pillarsCtx.fillText(line.trim(), x, yy);
-}
-
-function hitPillarsNode(mx, my) {
-    const w = pillarsCanvas.clientWidth;
-    const h = pillarsCanvas.clientHeight;
-    const cx = w / 2;
-    const cy = h / 2;
-    const nodes = pillarNodes(cx, cy, [Math.min(w, h) * 0.15, Math.min(w, h) * 0.25, Math.min(w, h) * 0.35, Math.min(w, h) * 0.45], (performance.now() - pillarsT0) * 0.00025);
-    for (const n of nodes) {
-        const d = Math.hypot(mx - n.x, my - n.y);
-        if (d <= 16) return n;
-    }
-    return null;
-}
-
-function handlePillarsMouseMove(e) {
-    const rect = pillarsCanvas.getBoundingClientRect();
-    const mx = e.clientX - rect.left;
-    const my = e.clientY - rect.top;
-    const n = hitPillarsNode(mx, my);
-    
-    if (n) {
-        pillarsTip.style.opacity = 1;
-        pillarsTip.textContent = n.label;
-        pillarsTip.style.left = (e.clientX + 12) + 'px';
-        pillarsTip.style.top = (e.clientY + 12) + 'px';
-    } else {
-        pillarsTip.style.opacity = 0;
+    .pillars-blog-post p {
+        font-size: 0.9rem;
+        text-align: left;
     }
 }
 
-function handlePillarsMouseLeave() {
-    pillarsTip.style.opacity = 0;
+/* Intake Form Dashboard - CUNY Branding */
+#intake-form .bot-reso-container {
+    background: var(--bg) !important;
+    padding: 32px !important;
 }
 
-function buildPillarsLegend() {
-    const legend = document.getElementById('legend');
-    if (!legend) return;
-    
-    legend.innerHTML = '';
-    PILLARS.forEach(p => {
-        const el = document.createElement('div');
-        el.className = 'pillars-pill';
-        el.style.setProperty('--c', p.color);
-        el.innerHTML = `<span class="dot"></span><span>${p.label}</span>`;
-        legend.appendChild(el);
-    });
+#intake-form .bot-reso-header {
+    max-width: 1280px !important;
+    margin: 0 auto 2rem auto !important;
+    text-align: center !important;
+    padding-bottom: 1.5rem !important;
+    border-bottom: 2px solid #e5e7eb !important;
 }
 
-function startPillarsAnimation() {
-    requestAnimationFrame(drawPillars);
+#intake-form .bot-reso-title {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: var(--cuny-blue) !important; /* CUNY Blue */
+    margin-bottom: 8px !important;
 }
 
-const rand = (a, b) => a + Math.random() * (b - a);
+#intake-form .bot-reso-subtitle {
+    font-size: 14px !important;
+    color: #6b7280 !important;
+    margin-bottom: 0 !important;
+}
 
-// Archive Panel Functionality
-function setupArchivePanel() {
-    const archiveToggle = document.getElementById('archive-toggle');
-    const archivePanel = document.getElementById('archive-panel');
-    const archiveClose = document.getElementById('archive-close');
-    
-    if (archiveToggle && archivePanel) {
-        archiveToggle.addEventListener('click', function() {
-            const isOpen = archivePanel.style.display === 'block';
-            
-            if (isOpen) {
-                archivePanel.style.display = 'none';
-                archiveToggle.classList.remove('active');
-            } else {
-                archivePanel.style.display = 'block';
-                archiveToggle.classList.add('active');
-            }
-        });
+#intake-form .bot-reso-timeline {
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+    padding-left: 1.5rem !important;
+    position: relative !important;
+}
+
+#intake-form .timeline-line {
+    position: absolute !important;
+    left: -1.5rem !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 3px !important;
+    background: linear-gradient(to bottom, var(--cuny-blue), var(--cuny-gold)) !important; /* CUNY Blue to Gold gradient */
+    border-radius: 2px !important;
+}
+
+#intake-form .phase-label {
+    position: relative !important;
+    margin-bottom: 1rem !important;
+}
+
+#intake-form .phase-dot {
+    position: absolute !important;
+    left: -1.75rem !important;
+    top: 0.75rem !important;
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 50% !important;
+    border: 3px solid white !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+#intake-form .phase-dot.working {
+    background: var(--cuny-blue) !important; /* CUNY Blue */
+    border-color: var(--cuny-blue) !important;
+}
+
+#intake-form .phase-dot.paused {
+    background: #dc2626 !important; /* Red for paused */
+    border-color: #dc2626 !important;
+}
+
+#intake-form .phase-dot.milestone {
+    background: var(--cuny-gold) !important; /* CUNY Gold */
+    border-color: var(--cuny-gold) !important;
+}
+
+#intake-form .week-card {
+    border-radius: 12px !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 2px 8px rgba(0, 51, 161, 0.08) !important; /* Subtle CUNY Blue shadow */
+    background: var(--bg) !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    margin-left: 0.5rem !important;
+}
+
+#intake-form .week-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 51, 161, 0.12) !important;
+    border-color: var(--cuny-blue) !important;
+}
+
+#intake-form .week-card[open] {
+    box-shadow: 0 4px 16px rgba(0, 51, 161, 0.15) !important;
+    border-color: var(--cuny-blue) !important;
+}
+
+#intake-form .week-summary {
+    cursor: pointer !important;
+    padding: 1rem 1.25rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    font-weight: 600 !important;
+    color: #374151 !important;
+    transition: all 0.2s ease !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%) !important;
+}
+
+#intake-form .week-summary:hover {
+    background: var(--cuny-blue) !important;
+    color: white !important;
+}
+
+#intake-form .week-title {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+}
+
+#intake-form .week-chevron {
+    width: 16px !important;
+    height: 16px !important;
+    transition: transform 0.2s ease !important;
+    color: #6b7280 !important;
+}
+
+#intake-form .week-summary:hover .week-chevron {
+    color: white !important;
+}
+
+#intake-form .week-card[open] .week-chevron {
+    transform: rotate(180deg) !important;
+}
+
+#intake-form .week-content {
+    padding: 0 1.25rem 1.25rem 1.25rem !important;
+    background: var(--bg) !important;
+}
+
+#intake-form .week-content ul {
+    margin: 0.5rem 0 0 0 !important;
+    padding-left: 1.25rem !important;
+    font-size: 0.875rem !important;
+    color: #374151 !important;
+}
+
+#intake-form .week-content li {
+    margin-bottom: 0.5rem !important;
+    line-height: 1.5 !important;
+    position: relative !important;
+}
+
+#intake-form .week-content li::marker {
+    color: var(--cuny-blue) !important; /* CUNY Blue bullet points */
+}
+
+/* Responsive Design for Intake Form */
+@media (max-width: 768px) {
+    #intake-form .bot-reso-container {
+        padding: 1rem !important;
     }
     
-    if (archiveClose && archivePanel) {
-        archiveClose.addEventListener('click', function() {
-            archivePanel.style.display = 'none';
-            if (archiveToggle) {
-                archiveToggle.classList.remove('active');
-            }
-        });
+    #intake-form .bot-reso-title {
+        font-size: 1.25rem !important;
     }
     
-    // Handle archive item clicks (for items with data-view attributes)
-    const archiveItems = document.querySelectorAll('.archive-item[data-view]');
-    archiveItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            const targetView = this.getAttribute('data-view');
-            if (!targetView) return;
-            
-            // Check if page is protected
-            const protectedPages = ['cunyai', 'pm', 'oem'];
-            if (protectedPages.includes(targetView)) {
-                e.preventDefault();
-                // Close archive panel first
-                if (archivePanel) {
-                    archivePanel.style.display = 'none';
-                    if (archiveToggle) {
-                        archiveToggle.classList.remove('active');
-                    }
-                }
-                // Show password modal
-                showPasswordModal(targetView, this);
-                return;
-            }
-            
-            // Close archive panel
-            if (archivePanel) {
-                archivePanel.style.display = 'none';
-                if (archiveToggle) {
-                    archiveToggle.classList.remove('active');
-                }
-            }
-            
-            // Switch to target view
-            handleViewSwitch(targetView);
-            
-            // Update active nav button
-            const navButtons = document.querySelectorAll('.nav-btn');
-            navButtons.forEach(btn => btn.classList.remove('active'));
-            const targetNavBtn = document.querySelector(`.nav-btn[data-view="${targetView}"]`);
-            if (targetNavBtn) {
-                targetNavBtn.classList.add('active');
-            }
-        });
-    });
+    #intake-form .bot-reso-timeline {
+        margin-left: 1rem !important;
+    }
+    
+    #intake-form .timeline-line {
+        left: -1rem !important;
+    }
+    
+    #intake-form .phase-dot {
+        left: -1.25rem !important;
+    }
+    
+    #intake-form .week-summary {
+        padding: 0.75rem 1rem !important;
+    }
+    
+    #intake-form .week-content {
+        padding: 0 1rem 1rem 1rem !important;
+    }
 }
 
-// Project Status Accordion Functionality
-function setupStatusAccordion() {
-    const statusAccordionItems = document.querySelectorAll('.status-accordion-item');
-    
-    statusAccordionItems.forEach(item => {
-        const trigger = item.querySelector('.status-accordion-trigger');
-        const panel = item.querySelector('.status-accordion-panel');
-        
-        if (trigger && panel) {
-            trigger.addEventListener('click', function() {
-                const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
-                
-                // Toggle current item
-                if (isExpanded) {
-                    trigger.setAttribute('aria-expanded', 'false');
-                    panel.classList.remove('open');
-                    panel.style.display = 'none';
-                } else {
-                    trigger.setAttribute('aria-expanded', 'true');
-                    panel.style.display = 'block';
-                    // Force reflow to ensure transition works
-                    panel.offsetHeight;
-                    panel.classList.add('open');
-                    
-                    // Animate progress bars when accordion opens
-                    setTimeout(() => {
-                        animateProgressBars();
-                    }, 300);
-                }
-            });
-        }
-    });
+/* SIT Testing - Using Data Table Style */
+.sit-testing-container {
+    background: var(--bg);
+    padding: 0;
+    margin-bottom: 0;
 }
 
-// Animate progress bars
-function animateProgressBars() {
-    const progressBars = document.querySelectorAll('.progress-bar-fill');
-    
-    progressBars.forEach(bar => {
-        // Get the target width from the data attribute or parent
-        let targetWidth = bar.style.width || bar.getAttribute('data-width');
-        if (!targetWidth) {
-            const parent = bar.closest('.progress-bar-item');
-            if (parent) {
-                const percent = parent.getAttribute('data-percent');
-                if (percent) {
-                    targetWidth = percent + '%';
-                }
-            }
-        }
-        
-        // Reset and animate
-        bar.style.width = '0%';
-        bar.style.transition = 'width 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-        
-        // Use requestAnimationFrame to ensure smooth animation
-        requestAnimationFrame(() => {
-            setTimeout(() => {
-                const parent = bar.closest('.progress-bar-item');
-                if (parent) {
-                    const percent = parent.getAttribute('data-percent');
-                    if (percent) {
-                        bar.style.width = percent + '%';
-                    } else if (targetWidth) {
-                        bar.style.width = targetWidth;
-                    }
-                }
-            }, 50);
-        });
-    });
+.sit-testing-header {
+    margin-bottom: 1.5rem;
+}
+
+.sit-testing-title {
+    color: #0033A1;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+
+.sit-testing-subtitle {
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin: 0;
 }
