@@ -3,46 +3,58 @@
 const isGitHubPages = window.location.hostname.includes('github.io') || window.location.hostname.includes('github.com');
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if on GitHub Pages and show password modal
+    if (isGitHubPages) {
+        // Show password modal after a short delay to ensure DOM is ready
+        setTimeout(() => {
+            showInitialPasswordModal();
+        }, 100);
+    }
+    
     // Add delay for GitHub Pages to ensure all resources are loaded
     const initDelay = isGitHubPages ? 500 : 0;
     
     setTimeout(() => {
-        // Initialize the dashboard
-        initializeDashboard();
-        
-        // Set up navigation
-        setupNavigation();
-        
-        // Set up accordion functionality
-        setupAccordion();
-        
-        // Set up new accordion functionality
-        setupNewAccordion();
-        
-        // Set up project status accordion
-        setupStatusAccordion();
-        
-        // Set up archive panel
-        setupArchivePanel();
-        
-        
-        // Set up tooltips
-        setupTooltips();
-        
-        // Set up hover effects
-        setupHoverEffects();
-        
-        // Set up charts
-        setupCharts();
-        
-            // Set up BoT Reso timeline
-            setupBotResoTimeline();
+        // Only initialize if not on GitHub Pages
+        // For GitHub Pages, initialization will happen after password is entered
+        if (!isGitHubPages) {
+            // Initialize the dashboard
+            initializeDashboard();
             
-            // Set current date
-            setCurrentDate();
-        
-        // Also set date after a short delay to ensure DOM is fully loaded
-        setTimeout(setCurrentDate, 100);
+            // Set up navigation
+            setupNavigation();
+            
+            // Set up accordion functionality
+            setupAccordion();
+            
+            // Set up new accordion functionality
+            setupNewAccordion();
+            
+            // Set up project status accordion
+            setupStatusAccordion();
+            
+            // Set up archive panel
+            setupArchivePanel();
+            
+            
+            // Set up tooltips
+            setupTooltips();
+            
+            // Set up hover effects
+            setupHoverEffects();
+            
+            // Set up charts
+            setupCharts();
+            
+                // Set up BoT Reso timeline
+                setupBotResoTimeline();
+                
+                // Set current date
+                setCurrentDate();
+            
+            // Also set date after a short delay to ensure DOM is fully loaded
+            setTimeout(setCurrentDate, 100);
+        }
     }, initDelay);
 });
 
@@ -178,6 +190,7 @@ function setupNavigation() {
 // Password Protection Functions
 let pendingViewSwitch = null;
 let pendingButton = null;
+let isInitialPageAccess = false;
 
 function showPasswordModal(targetView, button) {
     pendingViewSwitch = targetView;
@@ -258,6 +271,14 @@ function showPasswordModal(targetView, button) {
 }
 
 function proceedWithNavigation() {
+    // Handle initial page access (GitHub protection)
+    if (isInitialPageAccess) {
+        isInitialPageAccess = false;
+        // Page is now unlocked, allow normal operation
+        return;
+    }
+    
+    // Handle regular navigation
     if (!pendingViewSwitch || !pendingButton) return;
     
     const navButtons = document.querySelectorAll('.nav-btn');
@@ -275,6 +296,117 @@ function proceedWithNavigation() {
     // Reset pending values
     pendingViewSwitch = null;
     pendingButton = null;
+}
+
+function showInitialPasswordModal() {
+    isInitialPageAccess = true;
+    
+    const modal = document.getElementById('password-modal');
+    const passwordInput = document.getElementById('password-input');
+    const errorDiv = document.getElementById('password-error');
+    
+    // Check if modal elements exist
+    if (!modal || !passwordInput || !errorDiv) {
+        console.error('Password modal elements not found');
+        return;
+    }
+    
+    // Reset modal state
+    errorDiv.textContent = '';
+    passwordInput.value = '';
+    modal.classList.add('show');
+    passwordInput.focus();
+    
+    // Hide all dashboard content until password is entered
+    const dashboardContainer = document.querySelector('.dashboard-container');
+    if (dashboardContainer) {
+        dashboardContainer.style.display = 'none';
+    }
+    
+    // Remove any existing event listeners by removing and re-adding
+    const submitBtn = document.getElementById('password-submit');
+    const cancelBtn = document.getElementById('password-cancel');
+    const closeBtn = document.getElementById('password-modal-close');
+    
+    // Check if buttons exist
+    if (!submitBtn || !cancelBtn || !closeBtn) {
+        console.error('Password modal buttons not found');
+        return;
+    }
+    
+    // Remove old handlers
+    const newSubmitBtn = submitBtn.cloneNode(true);
+    const newCancelBtn = cancelBtn.cloneNode(true);
+    const newCloseBtn = closeBtn.cloneNode(true);
+    submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
+    cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+    closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+    
+    // Update references
+    const submitBtnNew = document.getElementById('password-submit');
+    const cancelBtnNew = document.getElementById('password-cancel');
+    const closeBtnNew = document.getElementById('password-modal-close');
+    
+    // Submit handler
+    const handleSubmit = () => {
+        const password = passwordInput.value.trim();
+        if (password === 'OAII') {
+            // Correct password - unlock the page
+            modal.classList.remove('show');
+            if (dashboardContainer) {
+                dashboardContainer.style.display = '';
+            }
+            proceedWithNavigation();
+            
+            // Initialize dashboard after password is entered
+            initializeDashboard();
+            setupNavigation();
+            setupAccordion();
+            setupNewAccordion();
+            setupStatusAccordion();
+            setupArchivePanel();
+            setupTooltips();
+            setupHoverEffects();
+            setupCharts();
+            setupBotResoTimeline();
+            setCurrentDate();
+            setTimeout(setCurrentDate, 100);
+        } else {
+            // Incorrect password
+            errorDiv.textContent = 'Incorrect password. Please try again.';
+            passwordInput.value = '';
+            passwordInput.focus();
+        }
+    };
+    
+    // Cancel handler - prevent closing on initial access
+    const handleCancel = () => {
+        // Don't allow closing the modal on initial access
+        errorDiv.textContent = 'Password required to access this site.';
+        passwordInput.focus();
+    };
+    
+    // Add event listeners
+    submitBtnNew.addEventListener('click', handleSubmit);
+    cancelBtnNew.addEventListener('click', handleCancel);
+    closeBtnNew.addEventListener('click', handleCancel);
+    
+    // Handle Enter key in password input
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit();
+        }
+    };
+    
+    passwordInput.onkeydown = handleKeyDown;
+    
+    // Prevent closing on background click for initial access
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            errorDiv.textContent = 'Password required to access this site.';
+            passwordInput.focus();
+        }
+    };
 }
 
 function handleViewSwitch(targetView) {
