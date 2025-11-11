@@ -70,10 +70,75 @@ body {
     box-shadow: var(--shadow);
 }
 
+/* Navigation Dropdown */
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-dropdown-toggle {
+    position: relative;
+}
+
+.nav-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    background-color: var(--panel);
+    border: 2px solid var(--cuny-blue);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    min-width: 150px;
+    z-index: 1000;
+    padding: 4px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity var(--speed) ease, transform var(--speed) ease;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nav-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 12px 24px;
+    background-color: transparent;
+    color: var(--cuny-blue);
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all var(--speed) ease;
+    border-radius: 0;
+}
+
+.nav-dropdown-item:hover {
+    background-color: var(--cuny-blue);
+    color: var(--bg);
+}
+
+.nav-dropdown-item:first-child {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.nav-dropdown-item:last-child {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
 /* Dashboard Views */
 .dashboard-view {
     display: none;
     animation: fadeIn 0.5s ease-in;
+    background: var(--bg);
 }
 
 .dashboard-view.active {
@@ -141,7 +206,7 @@ body {
 }
 
 .accordion-item {
-    background: var(--panel);
+    background: var(--bg);
     border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -224,7 +289,7 @@ body {
 }
 
 .flow-card {
-    background: var(--panel);
+    background: var(--bg);
     border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     padding: 18px;
@@ -299,7 +364,7 @@ body {
 }
 
 .setup-card {
-    background: var(--panel);
+    background: var(--bg);
     border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     padding: 18px;
@@ -386,7 +451,7 @@ body {
 
 /* Chart Container */
 .chart-container {
-    background: var(--panel);
+    background: var(--bg);
     border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     padding: 20px;
@@ -673,7 +738,7 @@ body {
 }
 
 .milestone-card {
-    background: var(--panel);
+    background: var(--bg);
     border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     padding: 18px;
@@ -751,7 +816,7 @@ body {
 }
 
 .update-card {
-    background: var(--panel);
+    background: var(--bg);
     border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     padding: 18px;
@@ -831,7 +896,7 @@ body {
 
 /* FAFSA Cards */
 .fafsa-card {
-    background: var(--panel);
+    background: var(--bg);
     border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     padding: 18px;
@@ -937,7 +1002,7 @@ body {
 
 /* BoT Reso Timeline Styles */
 .bot-reso-container {
-    background: white;
+    background: var(--bg);
     min-height: 100vh;
     width: 100%;
     padding: 32px;
@@ -1190,6 +1255,50 @@ body {
     padding-left: 24px;
 }
 
+.week-highlight,
+.week-action-items {
+    margin-top: 1rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 1rem;
+    background: #f9fafc;
+}
+
+.week-highlight p {
+    margin: 0 0 0.5rem 0;
+    color: #374151;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.week-highlight ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.week-action-items h4 {
+    margin: 0;
+    color: var(--cuny-blue);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.action-item-group {
+    margin-top: 0.75rem;
+}
+
+.action-item-owner {
+    margin: 0 0 0.25rem 0;
+    color: var(--cuny-blue);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.action-item-group ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
 /* Tooltip */
 .tooltip {
     position: absolute;
@@ -1330,7 +1439,7 @@ body {
 
 /* New Slate Dashboard Styles */
 .slate-page {
-    background: white;
+    background: var(--bg);
     min-height: 100vh;
     padding: 1.5rem 2.5rem;
 }
@@ -1379,6 +1488,21 @@ body {
     border: 1px solid rgba(0, 51, 161, 0.25);
 }
 
+.completion-indicator {
+    display: flex;
+    align-items: center;
+}
+
+.completion-label {
+    background: rgba(34, 197, 94, 0.1);
+    color: #059669;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid rgba(5, 150, 105, 0.25);
+}
+
 /* Accordion Styles */
 .accordion-new {
     display: flex;
@@ -1389,7 +1513,7 @@ body {
 .accordion-item-new {
     border-radius: 1rem;
     border: 1px solid rgba(0, 51, 161, 0.15);
-    background: white;
+    background: var(--bg);
     overflow: hidden;
 }
 
@@ -1453,7 +1577,7 @@ body {
     padding: 1rem;
     border-radius: 1rem;
     border: 1px solid rgba(0, 51, 161, 0.15);
-    background: white;
+    background: var(--bg);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     overflow-x: auto;
 }
@@ -1462,7 +1586,7 @@ body {
     padding: 1rem;
     border-radius: 1rem;
     border: 1px solid rgba(0, 51, 161, 0.15);
-    background: white;
+    background: var(--bg);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     min-width: 200px;
@@ -1539,7 +1663,7 @@ body {
     padding: 1rem;
     border-radius: 1rem;
     border: 1px solid rgba(0, 51, 161, 0.15);
-    background: white;
+    background: var(--bg);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
@@ -1668,7 +1792,7 @@ body {
     padding: 1rem;
     border-radius: 1rem;
     border: 1px solid rgba(0, 51, 161, 0.15);
-    background: white;
+    background: var(--bg);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     margin-bottom: 1rem;
 }
@@ -1700,7 +1824,7 @@ body {
     padding: 1rem;
     border-radius: 1rem;
     border: 1px solid rgba(0, 51, 161, 0.15);
-    background: white;
+    background: var(--bg);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -1773,7 +1897,7 @@ body {
     padding: 1rem;
     border-radius: 1rem;
     border: 1px solid rgba(0, 51, 161, 0.15);
-    background: white;
+    background: var(--bg);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -1868,7 +1992,7 @@ body {
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    background: var(--bg);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -1976,7 +2100,7 @@ body {
 
 .pillars-card {
     width: 100%;
-    background: #fff;
+    background: var(--bg);
     border-radius: 20px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
     border: 1px solid #eef2f6;
@@ -2142,7 +2266,7 @@ body {
 
 /* Intake Form Dashboard - CUNY Branding */
 #intake-form .bot-reso-container {
-    background: white !important;
+    background: var(--bg) !important;
     padding: 32px !important;
 }
 
@@ -2219,7 +2343,7 @@ body {
     border-radius: 12px !important;
     border: 1px solid #e5e7eb !important;
     box-shadow: 0 2px 8px rgba(0, 51, 161, 0.08) !important; /* Subtle CUNY Blue shadow */
-    background: white !important;
+    background: var(--bg) !important;
     overflow: hidden !important;
     transition: all 0.3s ease !important;
     margin-left: 0.5rem !important;
@@ -2274,7 +2398,7 @@ body {
 
 #intake-form .week-content {
     padding: 0 1.25rem 1.25rem 1.25rem !important;
-    background: white !important;
+    background: var(--bg) !important;
 }
 
 #intake-form .week-content ul {
@@ -2327,7 +2451,7 @@ body {
 
 /* SIT Testing - Using Data Table Style */
 .sit-testing-container {
-    background: #ffffff;
+    background: var(--bg);
     padding: 0;
     margin-bottom: 0;
 }
