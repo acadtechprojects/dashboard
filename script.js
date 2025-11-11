@@ -785,7 +785,7 @@ function setCurrentDate() {
     const degreeworksDateElement = document.getElementById('degreeworks-status-date');
     
     // Set specific dates for each page
-    const slateDate = '11/7/2025';
+    const slateDate = '11/11/2025';
     const fafsaDate = '11/6/2025';
     const degreeworksDate = '11/14/2025';
     
