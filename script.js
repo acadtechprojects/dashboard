@@ -1792,9 +1792,10 @@ function drawCollaborationDiagram() {
                 { name: 'Mara Bianco', role: 'Tech Project Manager' },
                 { name: 'Zev Jeremias', role: 'Technical Lead/Decision Maker for CF' },
                 { name: 'Krafins Valcin', role: 'Technical Lead/DW application' },
-                { name: 'Amy Baez', role: 'Technical Support DW' },
-                { name: 'Yvonne Venezia', role: 'Technical Support CF' },
                 { name: 'Youngren Ponnuraj', role: 'Application Dev Lead' },
+                { name: 'Amy Baez', role: 'Technical Support DW' },
+                { name: 'Doris Wang', role: 'Technical Support DW' },
+                { name: 'Yvonne Venezia', role: 'Technical Support CF' },
                 { name: 'Rachel Sabb', role: 'Technical and Appl Support DW' }
             ],
             color: '#0033A1',
@@ -1803,11 +1804,11 @@ function drawCollaborationDiagram() {
             glowColor: '#0033A140'
         },
         {
-            name: 'OAII',
-            fullName: 'Office of Academic Innovation Implementation',
+            name: 'OAI',
+            fullName: 'Office of Academic Technology Innovation',
             members: [
                 { name: 'Evan Silberman', role: 'Strategic partner' },
-                { name: 'Jetmir Troshani', role: 'Functional Project Manager' }
+                { name: 'Jetmir Troshani (OAII)', role: 'Functional Project Manager' }
             ],
             color: '#10b981',
             accentColor: '#059669',
@@ -1831,7 +1832,6 @@ function drawCollaborationDiagram() {
             fullName: 'Office of the University Registrar',
             members: [
                 { name: 'Juline Robinson', role: 'DW SME' },
-                { name: 'Doris Wang', role: 'DW SME' },
                 { name: 'Tatiana Mejic', role: 'DW SME' }
             ],
             color: '#7c3aed',
@@ -1912,7 +1912,7 @@ function drawCollaborationDiagram() {
     
     // Calculate canvas dimensions
     const containerWidth = Math.max((container.clientWidth || 0) - 64, 1000);
-    const topTeams = teams.filter(team => ['CIS', 'OAII', 'OEM'].includes(team.name));
+    const topTeams = teams.filter(team => ['CIS', 'OAI', 'OEM'].includes(team.name));
     const bottomTeams = teams.filter(team => ['OUR', 'SOL'].includes(team.name));
     
     const calcTotalWidth = list => {
@@ -1984,11 +1984,11 @@ function drawCollaborationDiagram() {
         ctx.restore();
     };
     
-    // Connect OAII (central) to all other teams with curved lines
-    const oaiiTeam = teams.find(t => t.name === 'OAII');
+    // Connect OAI (central) to all other teams with curved lines
+    const oaiiTeam = teams.find(t => t.name === 'OAI');
     if (oaiiTeam) {
         teams.forEach(team => {
-            if (team.name !== 'OAII') {
+            if (team.name !== 'OAI') {
                 drawCurvedLine(
                     oaiiTeam.centerX, oaiiTeam.centerY,
                     team.centerX, team.centerY,
