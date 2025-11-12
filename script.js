@@ -919,7 +919,7 @@ function setCurrentDate() {
     // Set specific dates for each page
     const slateDate = '11/11/2025';
     const fafsaDate = '11/6/2025';
-    const degreeworksDate = '11/14/2025';
+    const degreeworksDate = '11/12/2025';
     
     console.log('Setting Slate date to:', slateDate);
     console.log('Setting FAFSA date to:', fafsaDate);
