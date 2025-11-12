@@ -4735,17 +4735,34 @@
                                 <option value="Low Priority">Low Priority</option>
                             </select>
                         </div>
-                        <div class="oem-toggle" id="oem-bot-toggle">
-                            <input type="checkbox" id="oem-bot-checkbox">
-                            <label for="oem-bot-checkbox" style="margin: 0; cursor: pointer;">BoT Res.</label>
+                        <div class="oem-control-group">
+                            <label for="oem-category-filter">Filter by Category</label>
+                            <select id="oem-category-filter">
+                                <option value="">All Categories</option>
+                                <option value="Active Project">Active Project</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Contract Renewal">Contract Renewal</option>
+                                <option value="Contract Renewal / Maintenance">Contract Renewal / Maintenance</option>
+                                <option value="Discovery">Discovery</option>
+                                <option value="Issue">Issue</option>
+                                <option value="Maintenance">Maintenance</option>
+                                <option value="Pending Intake">Pending Intake</option>
+                                <option value="__BLANKS__">(Blanks)</option>
+                            </select>
                         </div>
-                        <div class="oem-toggle" id="oem-cis-toggle">
-                            <input type="checkbox" id="oem-cis-checkbox">
-                            <label for="oem-cis-checkbox" style="margin: 0; cursor: pointer;">CIS Support</label>
-                        </div>
-                        <div class="oem-toggle" id="oem-oaii-toggle">
-                            <input type="checkbox" id="oem-oaii-checkbox">
-                            <label for="oem-oaii-checkbox" style="margin: 0; cursor: pointer;">OAII Support</label>
+                        <div style="display: flex; gap: 1rem; align-items: flex-end;">
+                            <div class="oem-toggle" id="oem-bot-toggle">
+                                <input type="checkbox" id="oem-bot-checkbox">
+                                <label for="oem-bot-checkbox" style="margin: 0; cursor: pointer;">BoT Res</label>
+                            </div>
+                            <div class="oem-toggle" id="oem-cis-toggle">
+                                <input type="checkbox" id="oem-cis-checkbox">
+                                <label for="oem-cis-checkbox" style="margin: 0; cursor: pointer;">CIS Support</label>
+                            </div>
+                            <div class="oem-toggle" id="oem-oaii-toggle">
+                                <input type="checkbox" id="oem-oaii-checkbox">
+                                <label for="oem-oaii-checkbox" style="margin: 0; cursor: pointer;">OAII Support</label>
+                            </div>
                         </div>
                     </div>
                     
@@ -4757,62 +4774,67 @@
                     // OEM Dashboard Data and Logic
                     // ============================================
                     // DATA SOURCE: Replace this array with your Excel data converted to JSON
-                    // Expected format: [{ Department, Name, Priority, BoT_Resolution_Required, CIS_Support, Target_Launch, OAII_Support }]
+                    // Expected format: [{ Department, Name, Priority, BoT_Resolution_Required, CIS_Support, Target_Launch, OAII_Support, Description, Category }]
                     // Target_Launch: Date or descriptive text (e.g., "6/30/26", "TBD", "Summer 2026", "Continuing")
                     // OAII_Support: "Yes", "No", "Maybe", or empty string
+                    // Description: Concise project description
+                    // Category: Project category (e.g., "Active Project", "Discovery", "Completed", etc.)
                     // ============================================
                     
                     const oemData = [
                         // Enrollment Department
-                        // NOTE: Add Target_Launch and OAII_Support fields from spreadsheet data
-                        { Department: "Enrollment", Name: "Local Law 18", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Enrollment", Name: "Nelnet", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Enrollment", Name: "Artificial Intelligence - Admissions Processing", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Maybe", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Enrollment", Name: "Text Messaging", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Enrollment", Name: "CUNYfirst People Soft 8.60 and Application Upgrade", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
+                        { Department: "Enrollment", Name: "Local Law 18", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Identify special needs accommodations; receiving info from NYCPS", Category: "Discovery" },
+                        { Department: "Enrollment", Name: "Nelnet", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Tuition payment plans, billing, and campus e-commerce services", Category: "Contract Renewal / Maintenance" },
+                        { Department: "Enrollment", Name: "Artificial Intelligence - Admissions Processing", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Maybe", Target_Launch: "TBD", OAII_Support: "", Description: "International and Domestic Transcript Translation & Evaluation", Category: "Discovery" },
+                        { Department: "Enrollment", Name: "Text Messaging", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Campuses want to use text messages in Slate", Category: "Discovery" },
+                        { Department: "Enrollment", Name: "CUNYfirst People Soft 8.60 and Application Upgrade", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Integral to Coursedog", Category: "Active Project" },
                         
                         // k16 Intiatives Department
-                        { Department: "k16 Intiatives", Name: "Counselor Portal (NYCPS) Phase II", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Maybe", Target_Launch: "TBD", OAII_Support: "" },
+                        { Department: "k16 Intiatives", Name: "Counselor Portal (NYCPS) Phase II", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Maybe", Target_Launch: "TBD", OAII_Support: "", Description: "External portal for HS counselors to support CUNY applicants - CBO", Category: "Discovery" },
                         
                         // Admissions Department
-                        { Department: "Admissions", Name: "FastApp Phase 2", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "Yes" },
-                        { Department: "Admissions", Name: "Slate Implementation", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "Yes" },
-                        { Department: "Admissions", Name: "Undergraduate Application Platform", Priority: "High Priority", BoT_Resolution_Required: "Yes", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "Yes" },
-                        { Department: "Admissions", Name: "SOGI (Sexual Orientation & Gender Identity)", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Admissions", Name: "Transfer Application", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Admissions", Name: "Accuplacer", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Maybe", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Admissions", Name: "Race Masking", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Admissions", Name: "Fee Waiver (Annual)", Priority: "High Priority", BoT_Resolution_Required: "Yes", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Admissions", Name: "Freshworks", Priority: "High Priority", BoT_Resolution_Required: "Yes", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Admissions", Name: "Freshworks (Replacement w/ServiceNow)", Priority: "High Priority", BoT_Resolution_Required: "TBD", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "Yes" },
+                        { Department: "Admissions", Name: "FastApp Phase 2", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "Yes", Description: "Shared application for early advising and student service automation", Category: "Active Project" },
+                        { Department: "Admissions", Name: "Slate Implementation", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "Yes", Description: "Replacing Hobsons Connect, Retain, Apply Yourself across all campuses", Category: "Active Project" },
+                        { Department: "Admissions", Name: "Undergraduate Application Platform", Priority: "High Priority", BoT_Resolution_Required: "Yes", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "Yes", Description: "Common App integration with CUNYfirst", Category: "Active Project" },
+                        { Department: "Admissions", Name: "SOGI (Sexual Orientation & Gender Identity)", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Implementing SOGI data collection per NYS law", Category: "Active Project" },
+                        { Department: "Admissions", Name: "Transfer Application", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Portal for transfer applicants to submit forms and materials", Category: "Active Project" },
+                        { Department: "Admissions", Name: "Accuplacer", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Maybe", Target_Launch: "TBD", OAII_Support: "", Description: "Accuplacer File layout changes", Category: "" },
+                        { Department: "Admissions", Name: "Race Masking", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Federal mandated change", Category: "Completed" },
+                        { Department: "Admissions", Name: "Fee Waiver (Annual)", Priority: "High Priority", BoT_Resolution_Required: "Yes", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Fee waiver for DOE and Non-DOE", Category: "Maintenance" },
+                        { Department: "Admissions", Name: "Freshworks", Priority: "High Priority", BoT_Resolution_Required: "Yes", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "System supporting admissions welcome center communications", Category: "Contract Renewal / Maintenance" },
+                        { Department: "Admissions", Name: "Freshworks (Replacement w/ServiceNow)", Priority: "High Priority", BoT_Resolution_Required: "TBD", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "Yes", Description: "Help Desk solution for Admissions Office", Category: "Pending Intake" },
+                        { Department: "Admissions", Name: "Ivy.ai", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "AI chatbot and knowledge base for 24/7 student self-service", Category: "Contract Renewal / Maintenance" },
+                        { Department: "Admissions", Name: "Slate CRM Roadmap implementation", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "FastApp, Transfer App, International App, Appointment Scheduling, Survey", Category: "Pending Intake" },
+                        { Department: "Admissions", Name: "QLess", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Scheduling Assistant Technology for Virtual/In Person Appointments with Welcome Center", Category: "Contract Renewal / Maintenance" },
+                        { Department: "Admissions", Name: "Qualtrics", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Feedback Management Platform to solicit applicant, counselor and stakeholder feedback", Category: "Contract Renewal" },
                         
                         // Financial Aid Department
-                        { Department: "Financial Aid", Name: "FAFSA Verification Solution Impl", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Financial Aid", Name: "Net Price Calculator 3", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Financial Aid", Name: "Pell and TAP for Workforce", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
+                        { Department: "Financial Aid", Name: "FAFSA Verification Solution Impl", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Implementing a new system to manage FAFSA verification workflows", Category: "Active Project" },
+                        { Department: "Financial Aid", Name: "Net Price Calculator 3", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Work to compare other colleges is pending among other things", Category: "Active Project" },
+                        { Department: "Financial Aid", Name: "Pell and TAP for Workforce", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "To automate the process for TAP for workforce, particularly since Pell", Category: "Pending Intake" },
                         
                         // Registrar Department
-                        { Department: "Registrar", Name: "NYSSB (NY State Seal of Biliteracy)", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "F/WU Grade compliance", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Parchment", Priority: "Critical", BoT_Resolution_Required: "Yes", CIS_Support: "Maybe", Target_Launch: "TBD", OAII_Support: "Yes" },
-                        { Department: "Registrar", Name: "ePermit", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Degreeworks at Campus", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Change of Major", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Batch Transfer Phase II", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Degreeworks Replacement", Priority: "Medium Priority", BoT_Resolution_Required: "Yes", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Conferral of Degree/ Automate Graduation Procesing", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Degreeworks upgrade and disaster recovery site build", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Coursedog Curriculum Management", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Remove Commitment fee for Community Colleges", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Implementation of Diploma Name (preferred)", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Coursedog Latency", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Process to identify Program Modality", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Schedule Builder (Modern Campus)", Priority: "Critical", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "Yes" },
+                        { Department: "Registrar", Name: "NYSSB (NY State Seal of Biliteracy)", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Goal is to automate this process. Intake to OAII to support CPL", Category: "Pending Intake" },
+                        { Department: "Registrar", Name: "F/WU Grade compliance", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "CUNY pop-up: For Faculty to attest to their understanding of the assignment", Category: "Pending Intake" },
+                        { Department: "Registrar", Name: "Parchment", Priority: "Critical", BoT_Resolution_Required: "Yes", CIS_Support: "Maybe", Target_Launch: "TBD", OAII_Support: "Yes", Description: "Digital transcripts, diplomas, and secure credential exchange", Category: "Contract Renewal / Maintenance" },
+                        { Department: "Registrar", Name: "ePermit", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Online cross-registration workflow to request, approve, and track inter-campus enrollment", Category: "Pending Intake" },
+                        { Department: "Registrar", Name: "Degreeworks at Campus", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "DegreeWorks at the Law School", Category: "Active Project" },
+                        { Department: "Registrar", Name: "Change of Major", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "", Category: "Pending Intake" },
+                        { Department: "Registrar", Name: "Batch Transfer Phase II", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Batch transfer Phase 2 - External Colleges", Category: "Pending Intake" },
+                        { Department: "Registrar", Name: "Degreeworks Replacement", Priority: "Medium Priority", BoT_Resolution_Required: "Yes", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "", Category: "" },
+                        { Department: "Registrar", Name: "Conferral of Degree/ Automate Graduation Procesing", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "", Category: "" },
+                        { Department: "Registrar", Name: "Degreeworks upgrade and disaster recovery site build", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "", Category: "" },
+                        { Department: "Registrar", Name: "Coursedog Curriculum Management", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Phase II--complete and implement college-level approval pathways", Category: "" },
+                        { Department: "Registrar", Name: "Remove Commitment fee for Community Colleges", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Waive commitment deposit", Category: "Completed" },
+                        { Department: "Registrar", Name: "Implementation of Diploma Name (preferred)", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "", Category: "" },
+                        { Department: "Registrar", Name: "Coursedog Latency", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "", Category: "" },
+                        { Department: "Registrar", Name: "Process to identify Program Modality", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Develop / enhance", Category: "Active Project" },
+                        { Department: "Registrar", Name: "Schedule Builder (Modern Campus)", Priority: "Critical", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "Yes", Description: "Technical issue for students to hit 'complete' when they hit register", Category: "Issue" },
                         
                         // Additional Projects
-                        { Department: "Enrollment", Name: "CUNYfirst Student Records Upgrade", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "Yes" },
-                        { Department: "Admissions", Name: "Application Processing Automation", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" },
-                        { Department: "Registrar", Name: "Transcript Processing Enhancement", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "" }
+                        { Department: "Enrollment", Name: "CUNYfirst Student Records Upgrade", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "Yes", Description: "", Category: "" },
+                        { Department: "Admissions", Name: "Application Processing Automation", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "", Category: "" },
+                        { Department: "Registrar", Name: "Transcript Processing Enhancement", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "", Category: "" }
                     ];
                     
                     // Priority order for sorting (higher number = higher priority)
@@ -4922,6 +4944,9 @@
                         const cisBadge = createCISBadge(item.CIS_Support);
                         const oaiiBadge = createOAIIBadge(item.OAII_Support);
                         const targetLaunch = item.Target_Launch || 'TBD';
+                        const description = item.Description || '';
+                        const category = item.Category || '';
+                        const categoryBadge = category ? createCategoryBadge(category) : '';
                         
                         return `
                             <div class="oem-card" data-department="${escapeHtml(item.Department)}" data-priority="${escapeHtml(item.Priority)}" data-bot="${escapeHtml(item.BoT_Resolution_Required)}" data-cis="${escapeHtml(item.CIS_Support)}" data-oaii="${escapeHtml(item.OAII_Support || '')}">
@@ -4929,7 +4954,9 @@
                                     <h3 class="oem-card-name">${escapeHtml(item.Name)}</h3>
                                     <span class="oem-priority-badge ${priorityClass}">${escapeHtml(item.Priority)}</span>
                                 </div>
-                                <div class="oem-card-launch" style="margin: 0.75rem 0; padding: 0.5rem; background: #f8f9fa; border-radius: 6px; font-size: 0.85rem; color: #374151;"><strong>Target Launch:</strong> ${escapeHtml(targetLaunch)}</div>
+                                ${description ? `<div class="oem-card-description" style="margin: 0.75rem 0; padding: 0.75rem; background: #f8f9fa; border-radius: 6px; font-size: 0.875rem; color: #4b5563; line-height: 1.5;">${escapeHtml(description)}</div>` : ''}
+                                ${categoryBadge ? `<div style="margin: 0.5rem 0;">${categoryBadge}</div>` : ''}
+                                ${targetLaunch && targetLaunch !== 'TBD' ? `<div class="oem-card-launch" style="margin: 0.75rem 0; padding: 0.5rem; background: #f8f9fa; border-radius: 6px; font-size: 0.85rem; color: #374151;"><strong>Target Launch:</strong> ${escapeHtml(targetLaunch)}</div>` : ''}
                                 <div class="oem-card-badges">
                                     ${botBadge}
                                     ${cisBadge}
@@ -4937,6 +4964,31 @@
                                 </div>
                             </div>
                         `;
+                    }
+                    
+                    // Create Category badge
+                    function createCategoryBadge(category) {
+                        if (!category) return '';
+                        
+                        // Determine badge color based on category
+                        let badgeClass = 'oem-category-badge';
+                        let badgeColor = '#6b7280'; // Default gray
+                        
+                        if (category.includes('Active Project')) {
+                            badgeColor = '#3b82f6'; // Blue
+                        } else if (category.includes('Completed')) {
+                            badgeColor = '#10b981'; // Green
+                        } else if (category.includes('Discovery')) {
+                            badgeColor = '#f59e0b'; // Orange
+                        } else if (category.includes('Pending Intake')) {
+                            badgeColor = '#8b5cf6'; // Purple
+                        } else if (category.includes('Contract Renewal') || category.includes('Maintenance')) {
+                            badgeColor = '#6366f1'; // Indigo
+                        } else if (category.includes('Issue')) {
+                            badgeColor = '#ef4444'; // Red
+                        }
+                        
+                        return `<span style="display: inline-block; padding: 0.375rem 0.75rem; background: ${badgeColor}15; color: ${badgeColor}; border: 1px solid ${badgeColor}40; border-radius: 6px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">${escapeHtml(category)}</span>`;
                     }
                     
                     // Get CSS class for priority
@@ -5005,6 +5057,7 @@
                         const searchInput = document.getElementById('oem-search');
                         const departmentFilter = document.getElementById('oem-department-filter');
                         const priorityFilter = document.getElementById('oem-priority-filter');
+                        const categoryFilter = document.getElementById('oem-category-filter');
                         const botToggle = document.getElementById('oem-bot-checkbox');
                         const cisToggle = document.getElementById('oem-cis-checkbox');
                         
@@ -5014,6 +5067,7 @@
                         // Filter dropdowns
                         departmentFilter.addEventListener('change', applyFilters);
                         priorityFilter.addEventListener('change', applyFilters);
+                        categoryFilter.addEventListener('change', applyFilters);
                         
                         // Toggle filters
                         botToggle.addEventListener('change', function() {
@@ -5077,6 +5131,21 @@
                             filtered = filtered.filter(item => 
                                 item.Priority === priorityFilter
                             );
+                        }
+                        
+                        // Category filter
+                        const categoryFilter = document.getElementById('oem-category-filter').value;
+                        if (categoryFilter && categoryFilter !== '') {
+                            // Handle "(Blanks)" option - filter for empty or undefined categories
+                            if (categoryFilter === '__BLANKS__') {
+                                filtered = filtered.filter(item => 
+                                    !item.Category || item.Category === ''
+                                );
+                            } else {
+                                filtered = filtered.filter(item => 
+                                    item.Category === categoryFilter
+                                );
+                            }
                         }
                         
                         // BoT Resolution filter
