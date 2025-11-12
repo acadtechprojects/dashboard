@@ -451,6 +451,11 @@ function handleViewSwitch(targetView) {
                     }, 500);
                 }
             }, 100);
+        } else if (targetView === 'degreeworks') {
+            setTimeout(() => {
+                // Re-initialize status accordions to ensure the collaboration accordion is set up
+                setupStatusAccordion();
+            }, 100);
         }
         
         // Set current date when switching views
@@ -1682,11 +1687,19 @@ function setupStatusAccordion() {
     const statusAccordionItems = document.querySelectorAll('.status-accordion-item');
     
     statusAccordionItems.forEach(item => {
+        // Skip if already initialized
+        if (item.hasAttribute('data-accordion-initialized')) {
+            return;
+        }
+        
         const trigger = item.querySelector('.status-accordion-trigger');
         const panel = item.querySelector('.status-accordion-panel');
         
         if (trigger && panel) {
-            trigger.addEventListener('click', function() {
+            trigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
                 const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
                 
                 // Toggle current item
@@ -1701,12 +1714,24 @@ function setupStatusAccordion() {
                     panel.offsetHeight;
                     panel.classList.add('open');
                     
+                    // Check if this is the collaboration diagram accordion
+                    const accordionType = item.getAttribute('data-status-accordion');
+                    if (accordionType === 'team-collaboration') {
+                        // Draw collaboration diagram when accordion opens
+                        setTimeout(() => {
+                            drawCollaborationDiagram();
+                        }, 100);
+                    }
+                    
                     // Animate progress bars when accordion opens
                     setTimeout(() => {
                         animateProgressBars();
                     }, 300);
                 }
             });
+            
+            // Mark as initialized
+            item.setAttribute('data-accordion-initialized', 'true');
         }
     });
 }
@@ -1747,4 +1772,400 @@ function animateProgressBars() {
             }, 50);
         });
     });
+}
+
+// DegreeWorks Collaboration Diagram - Modern Version
+function drawCollaborationDiagram() {
+    const canvas = document.getElementById('collaboration-canvas');
+    if (!canvas) return;
+    
+    let ctx = canvas.getContext('2d');
+    const container = document.getElementById('degreeworks-collaboration-diagram');
+    if (!container) return;
+    
+    // Enhanced team data with vibrant colors and modern styling
+    const teams = [
+        {
+            name: 'CIS',
+            fullName: 'Computing & Information Services',
+            members: [
+                { name: 'Mara Bianco', role: 'Tech Project Manager' },
+                { name: 'Zev Jeremias', role: 'Technical Lead/Decision Maker for CF' },
+                { name: 'Krafins Valcin', role: 'Technical Lead/DW application' },
+                { name: 'Amy Baez', role: 'Technical Support DW' },
+                { name: 'Yvonne Venezia', role: 'Technical Support CF' },
+                { name: 'Youngren Ponnuraj', role: 'Application Dev Lead' },
+                { name: 'Rachel Sabb', role: 'Technical and Appl Support DW' }
+            ],
+            color: '#0033A1',
+            accentColor: '#0046C7',
+            lightColor: '#0033A120',
+            glowColor: '#0033A140'
+        },
+        {
+            name: 'OAII',
+            fullName: 'Office of Academic Innovation Implementation',
+            members: [
+                { name: 'Evan Silberman', role: 'Strategic partner' },
+                { name: 'Jetmir Troshani', role: 'Functional Project Manager' }
+            ],
+            color: '#10b981',
+            accentColor: '#059669',
+            lightColor: '#10b98120',
+            glowColor: '#10b98140'
+        },
+        {
+            name: 'OEM',
+            fullName: 'Office of Enrollment Management',
+            members: [
+                { name: 'Reine Sarmiento', role: 'Project Sponsor' },
+                { name: 'Maureen Heacock', role: 'Program Owner' }
+            ],
+            color: '#f59e0b',
+            accentColor: '#d97706',
+            lightColor: '#f59e0b20',
+            glowColor: '#f59e0b40'
+        },
+        {
+            name: 'OUR',
+            fullName: 'Office of the University Registrar',
+            members: [
+                { name: 'Juline Robinson', role: 'DW SME' },
+                { name: 'Doris Wang', role: 'DW SME' },
+                { name: 'Tatiana Mejic', role: 'DW SME' }
+            ],
+            color: '#7c3aed',
+            accentColor: '#6d28d9',
+            lightColor: '#7c3aed20',
+            glowColor: '#7c3aed40'
+        },
+        {
+            name: 'SOL',
+            fullName: 'School of Law',
+            members: [
+                { name: 'Kevin Lin', role: 'DW SME' },
+                { name: 'Jonathan Vela Enriquez', role: 'DW SME' }
+            ],
+            color: '#dc2626',
+            accentColor: '#b91c1c',
+            lightColor: '#dc262620',
+            glowColor: '#dc262640'
+        }
+    ];
+    
+    // Modern layout configuration
+    const baseBoxWidth = 320;
+    const maxBoxWidth = 500;
+    const headerHeight = 65;
+    const memberLineHeight = 38;
+    const padding = 24;
+    const borderRadius = 16;
+    const horizontalSpacing = 64;
+    const verticalSpacing = 180;
+    
+    const fonts = {
+        header: 'bold 20px "Inter", system-ui, -apple-system, sans-serif',
+        fullName: '600 12px "Inter", system-ui, -apple-system, sans-serif',
+        memberName: '600 13px "Inter", system-ui, -apple-system, sans-serif',
+        memberRole: '11px "Inter", system-ui, -apple-system, sans-serif',
+        title: 'bold 28px "Inter", system-ui, -apple-system, sans-serif',
+        subtitle: '14px "Inter", system-ui, -apple-system, sans-serif'
+    };
+    
+    // Helper function to measure text width
+    const measureWidth = (text, font) => {
+        ctx.font = font;
+        return ctx.measureText(text).width;
+    };
+    
+    // Helper function to draw rounded rectangle
+    const drawRoundedRect = (x, y, width, height, radius) => {
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+        ctx.closePath();
+    };
+    
+    // Calculate team dimensions
+    teams.forEach(team => {
+        const contentWidths = [
+            measureWidth(team.name, fonts.header),
+            measureWidth(team.fullName, fonts.fullName)
+        ];
+        
+        team.members.forEach(member => {
+            contentWidths.push(measureWidth(member.name, fonts.memberName));
+            contentWidths.push(measureWidth(member.role, fonts.memberRole));
+        });
+        
+        const neededWidth = Math.max(...contentWidths) + padding * 2;
+        team.width = Math.min(maxBoxWidth, Math.max(baseBoxWidth, neededWidth));
+        team.height = headerHeight + padding * 2 + (team.members.length * memberLineHeight) + 40;
+    });
+    
+    // Calculate canvas dimensions
+    const containerWidth = Math.max((container.clientWidth || 0) - 64, 1000);
+    const topTeams = teams.filter(team => ['CIS', 'OAII', 'OEM'].includes(team.name));
+    const bottomTeams = teams.filter(team => ['OUR', 'SOL'].includes(team.name));
+    
+    const calcTotalWidth = list => {
+        if (!list.length) return 0;
+        return list.reduce((sum, team) => sum + team.width, 0) + horizontalSpacing * (list.length - 1);
+    };
+    const getMaxHeight = list => list.reduce((max, team) => Math.max(max, team.height), 0);
+    
+    const totalTopWidth = calcTotalWidth(topTeams);
+    const totalBottomWidth = calcTotalWidth(bottomTeams);
+    const minCanvasWidth = Math.max(totalTopWidth, totalBottomWidth) + 160;
+    const canvasWidth = Math.max(containerWidth, minCanvasWidth);
+    
+    const topRowY = 140;
+    const maxTopHeight = getMaxHeight(topTeams);
+    const bottomRowY = topRowY + maxTopHeight + verticalSpacing;
+    const maxBottomHeight = getMaxHeight(bottomTeams);
+    const canvasHeight = bottomRowY + maxBottomHeight + 140;
+    
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+    ctx = canvas.getContext('2d');
+    
+    // Clear canvas with modern gradient background
+    const bgGradient = ctx.createLinearGradient(0, 0, 0, canvasHeight);
+    bgGradient.addColorStop(0, '#ffffff');
+    bgGradient.addColorStop(1, '#f8f9fa');
+    ctx.fillStyle = bgGradient;
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+    
+    // Position teams with better spacing
+    let currentX = (canvasWidth - totalTopWidth) / 2;
+    topTeams.forEach(team => {
+        team.x = currentX;
+        team.y = topRowY;
+        team.centerX = team.x + team.width / 2;
+        team.centerY = team.y + team.height / 2;
+        currentX += team.width + horizontalSpacing;
+    });
+    
+    currentX = (canvasWidth - totalBottomWidth) / 2;
+    bottomTeams.forEach(team => {
+        team.x = currentX;
+        team.y = bottomRowY;
+        team.centerX = team.x + team.width / 2;
+        team.centerY = team.y + team.height / 2;
+        currentX += team.width + horizontalSpacing;
+    });
+    
+    // Draw curved connecting lines with better routing
+    const drawCurvedLine = (x1, y1, x2, y2, color, width = 2.5, dashed = true) => {
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = width;
+        if (dashed) {
+            ctx.setLineDash([10, 6]);
+        } else {
+            ctx.setLineDash([]);
+        }
+        
+        ctx.beginPath();
+        const midY = (y1 + y2) / 2;
+        const controlY1 = y1 < y2 ? y1 + Math.abs(y2 - y1) * 0.3 : y1 - Math.abs(y2 - y1) * 0.3;
+        const controlY2 = y1 < y2 ? y2 - Math.abs(y2 - y1) * 0.3 : y2 + Math.abs(y2 - y1) * 0.3;
+        
+        ctx.moveTo(x1, y1);
+        ctx.bezierCurveTo(x1, controlY1, x2, controlY2, x2, y2);
+        ctx.stroke();
+        ctx.restore();
+    };
+    
+    // Connect OAII (central) to all other teams with curved lines
+    const oaiiTeam = teams.find(t => t.name === 'OAII');
+    if (oaiiTeam) {
+        teams.forEach(team => {
+            if (team.name !== 'OAII') {
+                drawCurvedLine(
+                    oaiiTeam.centerX, oaiiTeam.centerY,
+                    team.centerX, team.centerY,
+                    '#94a3b8', 2.5, true
+                );
+            }
+        });
+    }
+    
+    // Connect CIS to OUR and SOL with curved lines (technical collaboration)
+    const cisTeam = teams.find(t => t.name === 'CIS');
+    const ourTeam = teams.find(t => t.name === 'OUR');
+    const solTeam = teams.find(t => t.name === 'SOL');
+    
+    if (cisTeam && ourTeam) {
+        drawCurvedLine(
+            cisTeam.centerX, cisTeam.y + cisTeam.height,
+            ourTeam.centerX, ourTeam.y,
+            '#6366f1', 2.5, false
+        );
+    }
+    
+    if (cisTeam && solTeam) {
+        drawCurvedLine(
+            cisTeam.x + cisTeam.width, cisTeam.centerY,
+            solTeam.x, solTeam.centerY,
+            '#6366f1', 2.5, false
+        );
+    }
+    
+    // Draw team boxes with modern styling
+    teams.forEach(team => {
+        const x = team.x;
+        const y = team.y;
+        const width = team.width;
+        const height = team.height;
+        
+        // Draw glow effect
+        ctx.save();
+        ctx.shadowColor = team.glowColor;
+        ctx.shadowBlur = 20;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+        
+        // Draw shadow with rounded corners
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        drawRoundedRect(x + 6, y + 6, width, height, borderRadius);
+        ctx.fill();
+        ctx.restore();
+        
+        // Draw box background with vibrant gradient
+        const boxGradient = ctx.createLinearGradient(x, y, x, y + height);
+        boxGradient.addColorStop(0, '#ffffff');
+        boxGradient.addColorStop(1, team.lightColor);
+        ctx.fillStyle = boxGradient;
+        drawRoundedRect(x, y, width, height, borderRadius);
+        ctx.fill();
+        
+        // Draw border with gradient
+        ctx.strokeStyle = team.color;
+        ctx.lineWidth = 3;
+        drawRoundedRect(x, y, width, height, borderRadius);
+        ctx.stroke();
+        
+        // Draw header with vibrant gradient
+        const headerGradient = ctx.createLinearGradient(x, y, x, y + headerHeight);
+        headerGradient.addColorStop(0, team.color);
+        headerGradient.addColorStop(1, team.accentColor);
+        ctx.fillStyle = headerGradient;
+        drawRoundedRect(x, y, width, headerHeight, borderRadius);
+        ctx.fill();
+        
+        // Draw header bottom curve (rounded effect)
+        ctx.fillStyle = team.color;
+        ctx.fillRect(x, y + headerHeight - 8, width, 8);
+        
+        // Team name with shadow
+        ctx.save();
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+        ctx.shadowBlur = 4;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 2;
+        ctx.fillStyle = '#ffffff';
+        ctx.font = fonts.header;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(team.name, x + width / 2, y + headerHeight / 2);
+        ctx.restore();
+        
+        // Draw full name section
+        const fullNameY = y + headerHeight + padding;
+        ctx.fillStyle = '#0033A1';
+        ctx.font = fonts.fullName;
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+        ctx.fillText(team.fullName, x + padding, fullNameY);
+        
+        // Draw modern divider
+        const dividerY = fullNameY + 22;
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(x + padding, dividerY);
+        ctx.lineTo(x + width - padding, dividerY);
+        ctx.stroke();
+        
+        // Draw members with better spacing
+        let memberY = dividerY + 24;
+        team.members.forEach((member, index) => {
+            // Member name with subtle color
+            ctx.fillStyle = '#1f2937';
+            ctx.font = fonts.memberName;
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+            ctx.fillText(member.name, x + padding, memberY);
+            
+            // Member role
+            ctx.fillStyle = '#6b7280';
+            ctx.font = fonts.memberRole;
+            ctx.fillText(member.role, x + padding, memberY + 18);
+            
+            memberY += memberLineHeight;
+        });
+    });
+    
+    // Draw modern title with gradient
+    const titleGradient = ctx.createLinearGradient(0, 0, canvasWidth, 0);
+    titleGradient.addColorStop(0, '#0033A1');
+    titleGradient.addColorStop(1, '#0046C7');
+    ctx.fillStyle = titleGradient;
+    ctx.font = fonts.title;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText('DegreeWorks Project Team Collaboration', canvasWidth / 2, 35);
+    
+    // Draw subtitle
+    ctx.fillStyle = '#6b7280';
+    ctx.font = fonts.subtitle;
+    ctx.fillText('Organizational Structure & Collaboration Flow', canvasWidth / 2, 72);
+    
+    // Add dynamic fade-in animation
+    canvas.style.opacity = '0';
+    canvas.style.transition = 'opacity 0.6s ease-in';
+    requestAnimationFrame(() => {
+        canvas.style.opacity = '1';
+    });
+}
+
+// Initialize collaboration diagram when accordion opens
+function setupCollaborationDiagram() {
+    const accordionItem = document.querySelector('[data-status-accordion="team-collaboration"]');
+    if (!accordionItem) return;
+    
+    const trigger = accordionItem.querySelector('.status-accordion-trigger');
+    const panel = accordionItem.querySelector('.status-accordion-panel');
+    
+    if (trigger && panel) {
+        trigger.addEventListener('click', function() {
+            const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+            trigger.setAttribute('aria-expanded', !isExpanded);
+            
+            if (!isExpanded) {
+                panel.style.display = 'block';
+                // Draw diagram when accordion opens
+                setTimeout(() => {
+                    drawCollaborationDiagram();
+                }, 100);
+            } else {
+                panel.style.display = 'none';
+            }
+        });
+    }
+    
+    // Also draw if already open
+    if (panel && panel.style.display !== 'none') {
+        setTimeout(() => {
+            drawCollaborationDiagram();
+        }, 100);
+    }
 }
