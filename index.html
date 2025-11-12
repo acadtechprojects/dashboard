@@ -5697,6 +5697,32 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Project Team Collaboration Diagram -->
+                    <div style="margin-top: 3rem;">
+                        <div class="project-status-accordion" style="margin: 2rem 0;">
+                            <div class="status-accordion-item" data-status-accordion="team-collaboration">
+                                <button type="button" class="status-accordion-trigger" aria-expanded="false">
+                                    <div class="status-accordion-header">
+                                        <h3 style="margin: 0; color: #0033A1; font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 12px;">
+                                            <span style="font-size: 1.5rem;">👥</span>
+                                            Project Team Collaboration Structure
+                                        </h3>
+                                        <svg class="status-accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M6 8l4 4 4-4"/>
+                                        </svg>
+                                    </div>
+                                </button>
+                                <div class="status-accordion-panel" style="display: none;">
+                                    <div class="status-accordion-content">
+                                        <div id="degreeworks-collaboration-diagram" style="position: relative; width: 100%; min-height: 800px; padding: 2rem; background: #f8f9fa; border-radius: 12px; overflow: auto; display: flex; justify-content: center; align-items: flex-start;">
+                                            <canvas id="collaboration-canvas" style="display: block; max-width: 100%; height: auto; box-shadow: 0 4px 16px rgba(0, 51, 161, 0.1); border-radius: 8px;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
