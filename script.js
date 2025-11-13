@@ -924,7 +924,7 @@ function setCurrentDate() {
     // Set specific dates for each page
     const slateDate = '11/11/2025';
     const fafsaDate = '11/6/2025';
-    const degreeworksDate = '11/12/2025';
+    const degreeworksDate = '11/14/2025';
     
     console.log('Setting Slate date to:', slateDate);
     console.log('Setting FAFSA date to:', fafsaDate);
@@ -1783,7 +1783,18 @@ function drawCollaborationDiagram() {
     const container = document.getElementById('degreeworks-collaboration-diagram');
     if (!container) return;
     
-    // Enhanced team data with vibrant colors and modern styling
+    const palette = {
+        cunyBlue: '#0033A1',
+        indigo: '#011D49',
+        azure: '#1F5CFF',
+        deepCyan: '#00AFEF',
+        sky: '#A3C9FF',
+        lemonade: '#FFEE1D',
+        cream: '#FFFCD5'
+    };
+    const primaryBlue = palette.cunyBlue;
+    
+    // Enhanced team data mapped to the new collaboration palette
     const teams = [
         {
             name: 'CIS',
@@ -1798,22 +1809,24 @@ function drawCollaborationDiagram() {
                 { name: 'Yvonne Venezia', role: 'Technical Support CF' },
                 { name: 'Rachel Sabb', role: 'Technical and Appl Support DW' }
             ],
-            color: '#0033A1',
-            accentColor: '#0046C7',
-            lightColor: '#0033A120',
-            glowColor: '#0033A140'
+            color: primaryBlue,
+            accentColor: primaryBlue,
+            lightColor: '#ffffff',
+            glowColor: 'rgba(0, 51, 161, 0.18)',
+            headerTextColor: '#111827'
         },
         {
             name: 'OAI',
-            fullName: 'Office of Academic Technology Innovation',
+            fullName: 'Office of Academic Innovation',
             members: [
                 { name: 'Evan Silberman', role: 'Strategic partner' },
                 { name: 'Jetmir Troshani (OAII)', role: 'Functional Project Manager' }
             ],
-            color: '#10b981',
-            accentColor: '#059669',
-            lightColor: '#10b98120',
-            glowColor: '#10b98140'
+            color: primaryBlue,
+            accentColor: primaryBlue,
+            lightColor: '#ffffff',
+            glowColor: 'rgba(0, 51, 161, 0.18)',
+            headerTextColor: '#111827'
         },
         {
             name: 'OEM',
@@ -1822,10 +1835,11 @@ function drawCollaborationDiagram() {
                 { name: 'Reine Sarmiento', role: 'Project Sponsor' },
                 { name: 'Maureen Heacock', role: 'Program Owner' }
             ],
-            color: '#f59e0b',
-            accentColor: '#d97706',
-            lightColor: '#f59e0b20',
-            glowColor: '#f59e0b40'
+            color: primaryBlue,
+            accentColor: primaryBlue,
+            lightColor: '#ffffff',
+            glowColor: 'rgba(0, 51, 161, 0.18)',
+            headerTextColor: '#111827'
         },
         {
             name: 'OUR',
@@ -1834,10 +1848,11 @@ function drawCollaborationDiagram() {
                 { name: 'Juline Robinson', role: 'DW SME' },
                 { name: 'Tatiana Mejic', role: 'DW SME' }
             ],
-            color: '#7c3aed',
-            accentColor: '#6d28d9',
-            lightColor: '#7c3aed20',
-            glowColor: '#7c3aed40'
+            color: primaryBlue,
+            accentColor: primaryBlue,
+            lightColor: '#ffffff',
+            glowColor: 'rgba(0, 51, 161, 0.18)',
+            headerTextColor: '#111827'
         },
         {
             name: 'SOL',
@@ -1846,10 +1861,11 @@ function drawCollaborationDiagram() {
                 { name: 'Kevin Lin', role: 'DW SME' },
                 { name: 'Jonathan Vela Enriquez', role: 'DW SME' }
             ],
-            color: '#dc2626',
-            accentColor: '#b91c1c',
-            lightColor: '#dc262620',
-            glowColor: '#dc262640'
+            color: primaryBlue,
+            accentColor: primaryBlue,
+            lightColor: '#ffffff',
+            glowColor: 'rgba(0, 51, 161, 0.18)',
+            headerTextColor: '#111827'
         }
     ];
     
@@ -1937,10 +1953,7 @@ function drawCollaborationDiagram() {
     ctx = canvas.getContext('2d');
     
     // Clear canvas with modern gradient background
-    const bgGradient = ctx.createLinearGradient(0, 0, 0, canvasHeight);
-    bgGradient.addColorStop(0, '#ffffff');
-    bgGradient.addColorStop(1, '#f8f9fa');
-    ctx.fillStyle = bgGradient;
+    ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
     
     // Position teams with better spacing
@@ -1992,7 +2005,7 @@ function drawCollaborationDiagram() {
                 drawCurvedLine(
                     oaiiTeam.centerX, oaiiTeam.centerY,
                     team.centerX, team.centerY,
-                    '#94a3b8', 2.5, true
+                    primaryBlue, 2.5, true
                 );
             }
         });
@@ -2007,7 +2020,7 @@ function drawCollaborationDiagram() {
         drawCurvedLine(
             cisTeam.centerX, cisTeam.y + cisTeam.height,
             ourTeam.centerX, ourTeam.y,
-            '#6366f1', 2.5, false
+            primaryBlue, 2.5, false
         );
     }
     
@@ -2015,7 +2028,7 @@ function drawCollaborationDiagram() {
         drawCurvedLine(
             cisTeam.x + cisTeam.width, cisTeam.centerY,
             solTeam.x, solTeam.centerY,
-            '#6366f1', 2.5, false
+            primaryBlue, 2.5, false
         );
     }
     
@@ -2039,11 +2052,8 @@ function drawCollaborationDiagram() {
         ctx.fill();
         ctx.restore();
         
-        // Draw box background with vibrant gradient
-        const boxGradient = ctx.createLinearGradient(x, y, x, y + height);
-        boxGradient.addColorStop(0, '#ffffff');
-        boxGradient.addColorStop(1, team.lightColor);
-        ctx.fillStyle = boxGradient;
+        // Draw box background (clean white)
+        ctx.fillStyle = '#ffffff';
         drawRoundedRect(x, y, width, height, borderRadius);
         ctx.fill();
         
@@ -2053,34 +2063,17 @@ function drawCollaborationDiagram() {
         drawRoundedRect(x, y, width, height, borderRadius);
         ctx.stroke();
         
-        // Draw header with vibrant gradient
-        const headerGradient = ctx.createLinearGradient(x, y, x, y + headerHeight);
-        headerGradient.addColorStop(0, team.color);
-        headerGradient.addColorStop(1, team.accentColor);
-        ctx.fillStyle = headerGradient;
-        drawRoundedRect(x, y, width, headerHeight, borderRadius);
-        ctx.fill();
-        
-        // Draw header bottom curve (rounded effect)
-        ctx.fillStyle = team.color;
-        ctx.fillRect(x, y + headerHeight - 8, width, 8);
-        
-        // Team name with shadow
-        ctx.save();
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
-        ctx.shadowBlur = 4;
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 2;
-        ctx.fillStyle = '#ffffff';
+        // Team name
+        const titleY = y + padding;
+        ctx.fillStyle = '#111827';
         ctx.font = fonts.header;
         ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(team.name, x + width / 2, y + headerHeight / 2);
-        ctx.restore();
+        ctx.textBaseline = 'top';
+        ctx.fillText(team.name, x + width / 2, titleY);
         
         // Draw full name section
-        const fullNameY = y + headerHeight + padding;
-        ctx.fillStyle = '#0033A1';
+        const fullNameY = titleY + 32;
+        ctx.fillStyle = '#111827';
         ctx.font = fonts.fullName;
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
@@ -2099,14 +2092,14 @@ function drawCollaborationDiagram() {
         let memberY = dividerY + 24;
         team.members.forEach((member, index) => {
             // Member name with subtle color
-            ctx.fillStyle = '#1f2937';
+            ctx.fillStyle = '#111827';
             ctx.font = fonts.memberName;
             ctx.textAlign = 'left';
             ctx.textBaseline = 'top';
             ctx.fillText(member.name, x + padding, memberY);
             
             // Member role
-            ctx.fillStyle = '#6b7280';
+            ctx.fillStyle = '#111827';
             ctx.font = fonts.memberRole;
             ctx.fillText(member.role, x + padding, memberY + 18);
             
@@ -2114,19 +2107,16 @@ function drawCollaborationDiagram() {
         });
     });
     
-    // Draw modern title with gradient
-    const titleGradient = ctx.createLinearGradient(0, 0, canvasWidth, 0);
-    titleGradient.addColorStop(0, '#0033A1');
-    titleGradient.addColorStop(1, '#0046C7');
-    ctx.fillStyle = titleGradient;
+    // Draw modern title/subtitle with consistent blue tone
+    ctx.fillStyle = palette.cunyBlue;
     ctx.font = fonts.title;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     ctx.fillText('DegreeWorks Project Team Collaboration', canvasWidth / 2, 35);
     
-    // Draw subtitle
-    ctx.fillStyle = '#6b7280';
+    // Draw subtitle in same hue for consistency
     ctx.font = fonts.subtitle;
+    ctx.fillStyle = '#111827';
     ctx.fillText('Organizational Structure & Collaboration Flow', canvasWidth / 2, 72);
     
     // Add dynamic fade-in animation
