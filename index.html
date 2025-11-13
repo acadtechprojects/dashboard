@@ -662,7 +662,6 @@
                         <button class="nav-dropdown-item" data-view="slate">Slate</button>
                         <button class="nav-dropdown-item" data-view="fafsa">FAFSA</button>
                         <button class="nav-dropdown-item" data-view="cayuse">CAYUSE</button>
-                        <button class="nav-dropdown-item" data-view="cunyai">CUNYAI</button>
                         <button class="nav-dropdown-item" data-view="degreeworks">DegreeWorks</button>
                     </div>
                 </div>
@@ -675,7 +674,18 @@
                         <button class="nav-dropdown-item" data-view="timesheet">Timesheet</button>
                     </div>
                 </div>
-                <button class="nav-btn" data-view="oem">OEM</button>
+                <div class="nav-dropdown">
+                    <button class="nav-btn nav-dropdown-toggle">Portfolio</button>
+                    <div class="nav-dropdown-menu" style="display: none;">
+                        <button class="nav-dropdown-item" data-view="oem">OEM</button>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <button class="nav-btn nav-dropdown-toggle">Other</button>
+                    <div class="nav-dropdown-menu" style="display: none;">
+                        <button class="nav-dropdown-item" data-view="cunyai">CUNYAI</button>
+                    </div>
+                </div>
             </div>
             <button class="archive-btn" id="archive-toggle" aria-label="Archive">Archive</button>
         </nav>
@@ -6796,9 +6806,6 @@
                     .btn.primary{background:var(--cuny-blue);color:#fff;border-color:transparent}
                     .btn.ghost{background:transparent;border:1px dashed #cbd5e1}
                     .btn.gold{background:var(--cuny-gold)}
-                    .pill{border-radius:999px;padding:6px 10px;font-size:12px;font-weight:700;letter-spacing:.2px}
-                    .pill.rec{background:linear-gradient(90deg,var(--cuny-blue),#1b5cff);color:#fff}
-                    .pill.notrec{background:#f1f5f9;color:#0f172a}
                     .grid{display:grid;grid-template-columns:280px 1fr;gap:16px;margin-top:8px}
                     @media (max-width:920px){.grid{grid-template-columns:1fr}}
                     .list{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px}
@@ -6810,8 +6817,6 @@
                     .item .meta{font-size:12px;color:var(--muted)}
                     .panel{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px}
                     .panel header{justify-content:space-between;margin-bottom:12px}
-                    .rec-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,var(--cuny-blue),#1b5cff);color:#fff;padding:8px 12px;border-radius:12px;font-weight:700;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)}
-                    .rec-badge .star{width:18px;height:18px;border-radius:50%;background:#fff;color:var(--cuny-blue);display:grid;place-items:center;font-weight:900}
                     .cols{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
                     @media (max-width:800px){.cols{grid-template-columns:1fr}}
                     .card{border:1px solid #e5e7eb;border-radius:14px;padding:12px;background:#fff}
@@ -6841,18 +6846,13 @@
                         </div>
                     </header>
                     <div class="toolbar">
-                        <span class="chip"><strong>My pick:</strong>&nbsp;<span class="pill rec" id="pickPill">Joseph Ranallo</span></span>
+                        <span class="chip"><strong>Interview notes:</strong>&nbsp;Summaries captured directly from finalist conversations.</span>
                     </div>
                     <div class="grid">
                         <aside class="list" id="list"></aside>
                         <section class="panel">
                             <header>
-                                <div>
-                                    <div class="rec-badge" id="recBadge" style="display:none">
-                                        <span class="star">★</span> Recommended
-                                    </div>
-                                    <div class="highlight" id="summaryBanner"></div>
-                                </div>
+                                <div class="highlight" id="summaryBanner"></div>
                                 <div class="note">Click a candidate on the left to view details. Use "Toggle Compare" for matrix view.</div>
                             </header>
                             <div id="detail"></div>
@@ -6988,17 +6988,14 @@
             const icon = v => v==='✔' ? '<span class="check">✔</span>' : v==='✖' ? '<span class="cross">✖</span>' : '<span class="mid">~</span>';
 
             const state = {
-                current: 'joseph',
+                current: candidates.length ? candidates[0].id : null,
                 compare: false,
-                pick: 'joseph',
                 filtered: [...candidates]
             };
 
             const listEl = document.getElementById('list');
             const detailEl = document.getElementById('detail');
             const compareEl = document.getElementById('compare');
-            const recBadge = document.getElementById('recBadge');
-            const pickPill = document.getElementById('pickPill');
             const summaryBanner = document.getElementById('summaryBanner');
 
             function renderList(){
@@ -7009,11 +7006,9 @@
                     div.innerHTML = `
                         <div>
                             <div class="name">${c.name}</div>
-                            <div class="meta">${c.status}</div>
+                            <div class="meta">Interviewed</div>
                         </div>
-                        <div>
-                            ${c.id===state.pick? '<span class="pill rec">Pick</span>':'<span class="pill notrec">View</span>'}
-                        </div>`;
+                        <div class="meta">View notes</div>`;
                     div.onclick = ()=>{ state.current=c.id; render(); };
                     listEl.appendChild(div);
                 });
@@ -7023,17 +7018,18 @@
                 const c = candidates.find(x=>x.id===state.current);
                 if(!c) return;
 
-                recBadge.style.display = c.id==='joseph' ? 'inline-flex':'none';
                 summaryBanner.textContent = c.headline;
 
-                const sectionHTML = Object.entries(c.sections).map(([k,v])=>{
-                    return `
-                        <div class="card">
-                            <h3>${k}</h3>
-                            <p>${v}</p>
-                        </div>
-                    `;
-                }).join('');
+                const sectionHTML = Object.entries(c.sections)
+                    .filter(([k]) => k !== 'Recommendation')
+                    .map(([k,v])=>{
+                        return `
+                            <div class="card">
+                                <h3>${k}</h3>
+                                <p>${v}</p>
+                            </div>
+                        `;
+                    }).join('');
 
                 detailEl.innerHTML = `
                     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 14px">
@@ -7055,11 +7051,9 @@
                     ['AI adoption','ai'],
                     ['Velocity (concurrent streams)','velocity'],
                     ['Pressure handling','pressure'],
-                    ['Responsiveness habits','responsiveness'],
-                    ['Overall fit (subjective index)','fit']
+                    ['Responsiveness habits','responsiveness']
                 ].map(([label,key])=>{
                     const tds = candidates.map(c=>{
-                        if(key==='fit') return `<td class="center"><strong>${c.fit}</strong></td>`;
                         return `<td class="center">${icon(c.compare[key])}</td>`;
                     }).join('');
                     return `<tr><th>${label}</th>${tds}</tr>`;
@@ -7086,7 +7080,6 @@
                 renderList();
                 renderDetail();
                 renderCompare();
-                pickPill.textContent = candidates.find(c=>c.id===state.pick)?.name || '—';
             }
 
             render();
