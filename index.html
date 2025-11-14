@@ -392,6 +392,11 @@
             color: #4b5563;
         }
         
+        .status-badge.status-not-started {
+            background: #e5e7eb;
+            color: #6b7280;
+        }
+        
         @media (max-width: 768px) {
             .project-status-grid {
                 grid-template-columns: 1fr;
@@ -663,6 +668,7 @@
                         <button class="nav-dropdown-item" data-view="fafsa">FAFSA</button>
                         <button class="nav-dropdown-item" data-view="cayuse">CAYUSE</button>
                         <button class="nav-dropdown-item" data-view="degreeworks">DegreeWorks</button>
+                        <button class="nav-dropdown-item" data-view="commonapp">Common App</button>
                     </div>
                 </div>
                 <div class="nav-dropdown">
@@ -684,10 +690,10 @@
                     <button class="nav-btn nav-dropdown-toggle">Other</button>
                     <div class="nav-dropdown-menu" style="display: none;">
                         <button class="nav-dropdown-item" data-view="cunyai">CUNYAI</button>
+                        <button class="nav-dropdown-item archive-btn" id="archive-toggle" aria-label="Archive">Archive</button>
                     </div>
                 </div>
             </div>
-            <button class="archive-btn" id="archive-toggle" aria-label="Archive">Archive</button>
         </nav>
         
         <!-- Archive Section -->
@@ -739,7 +745,7 @@
                                         <div class="status-accordion-header">
                                             <h3 style="margin: 0; color: #0033A1; font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 12px;">
                                                 <span style="font-size: 1.5rem;">📊</span>
-                                                Status Overview: Projects &amp; Initiatives (DATP) – 11 Current Involvements
+                                                Status Overview: Projects &amp; Initiatives (DATP) – 12 Current Involvements
                                             </h3>
                                             <svg class="status-accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M6 8l4 4 4-4"/>
@@ -751,26 +757,52 @@
                                             <div class="project-status-grid">
                                                 <div class="status-card">
                                                     <div class="status-card-header">
+                                                        <h4 style="margin: 0; color: #0033A1; font-size: 1rem; font-weight: 700;">Common App</h4>
+                                                        <span class="status-badge status-not-started">Not Started</span>
+                                                    </div>
+                                                    <p style="margin: 8px 0 0 0; color: #4b5563; font-size: 0.9rem; line-height: 1.6;">A comprehensive 6-month implementation plan for the Common Application platform, enabling students to apply to multiple colleges with a single application. The implementation includes full workflow support, integrations (REST APIs, SFTP, PeopleSoft CS, Slate), and comprehensive training for CUNY Central and campuses.</p>
+                                                    <div class="status-metrics" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(148, 163, 184, 0.2); display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+                                                        <div class="metric-item">
+                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">7 Phases</div>
+                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Implementation plan</div>
+                                                        </div>
+                                                        <div class="metric-item">
+                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">Mar 2026</div>
+                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Kickoff</div>
+                                                        </div>
+                                                        <div class="metric-item">
+                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">Aug 2026</div>
+                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Target launch</div>
+                                                        </div>
+                                                        <div class="metric-item">
+                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">6 Months</div>
+                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Timeline</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="status-card">
+                                                    <div class="status-card-header">
                                                         <h4 style="margin: 0; color: #0033A1; font-size: 1rem; font-weight: 700;">DegreeWorks - School of Law</h4>
                                                         <span class="status-badge status-in-progress">5% Complete</span>
                                                     </div>
-                                                    <p style="margin: 8px 0 0 0; color: #4b5563; font-size: 0.9rem; line-height: 1.6;">Enabling Full DegreeWorks Functionality with Four Key Interfaces. Developing and implementing four new interfaces required by the School of Law to ensure full functionality and accuracy of DegreeWorks following the initial go-live.</p>
+                                                    <p style="margin: 8px 0 0 0; color: #4b5563; font-size: 0.9rem; line-height: 1.6;">Enabling full DegreeWorks functionality with four key interfaces. <strong>Phase 2:</strong> R121 Low GPA Field and R071 Class Description Update (Finish: Jan 15, 2026). <strong>Phase 3 (Tentative):</strong> R071 Class Attribute Bridging and R071 Instruction Mode Bridging (Finish: Mar 16, 2026).</p>
                                                     <div class="status-metrics" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(148, 163, 184, 0.2); display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
                                                         <div class="metric-item">
                                                             <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">Phase 2</div>
                                                             <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Current phase</div>
                                                         </div>
                                                         <div class="metric-item">
-                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">4</div>
-                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Interfaces</div>
-                                                        </div>
-                                                        <div class="metric-item">
                                                             <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">Jan 15</div>
-                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">First milestone</div>
+                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Phase 2 finish</div>
                                                         </div>
                                                         <div class="metric-item">
-                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">Apr 15</div>
-                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Final milestone</div>
+                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">Mar 16</div>
+                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Phase 3 finish</div>
+                                                        </div>
+                                                        <div class="metric-item">
+                                                            <div class="metric-value" style="font-size: 1.1rem; font-weight: 700; color: #0033A1; line-height: 1.2;">R121, R071</div>
+                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Phase 2 items</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -787,12 +819,12 @@
                                                             <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Active users</div>
                                                         </div>
                                                         <div class="metric-item">
-                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">121</div>
+                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">128</div>
                                                             <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Recordings</div>
                                                         </div>
                                                         <div class="metric-item">
-                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">437</div>
-                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Tickets (408 resolved)</div>
+                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">472</div>
+                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Tickets (449 resolved)</div>
                                                         </div>
                                                         <div class="metric-item">
                                                             <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">Ongoing</div>
@@ -836,7 +868,7 @@
                                                         <h4 style="margin: 0; color: #0033A1; font-size: 1rem; font-weight: 700;">Cayuse Project</h4>
                                                         <span class="status-badge status-in-progress">51% Complete</span>
                                                     </div>
-                                                    <p style="margin: 8px 0 0 0; color: #4b5563; font-size: 0.9rem; line-height: 1.6;">OAII continues to serve in an advisory and governance capacity, offering strategic guidance and oversight rather than direct management. The project is entering the testing and training phase, with testing scheduled from December 2025 to February 2026 and training planned from September to December 2026.</p>
+                                                    <p style="margin: 8px 0 0 0; color: #4b5563; font-size: 0.9rem; line-height: 1.6;">OAII continues in an advisory and governance role, providing strategic guidance rather than direct management. The project now enters testing (Dec 2025–Feb 2026) and training (Sep–Dec 2026).</p>
                                                     <div class="status-metrics" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(148, 163, 184, 0.2); display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
                                                         <div class="metric-item">
                                                             <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">Advisory</div>
@@ -1153,6 +1185,16 @@
                                                             <div class="progress-bar-fill" style="width: 1%; background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);"></div>
                                                         </div>
                                                     </div>
+                                                    
+                                                    <div class="progress-bar-item" data-project="Common App" data-percent="0">
+                                                        <div class="progress-bar-label">
+                                                            <span class="progress-project-name">Common App</span>
+                                                            <span class="progress-percent">0% (Not Started)</span>
+                                                        </div>
+                                                        <div class="progress-bar-wrapper">
+                                                            <div class="progress-bar-fill" style="width: 0%; background: linear-gradient(90deg, #9ca3af 0%, #6b7280 100%);"></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1195,9 +1237,53 @@
                                                             <p style="margin: 4px 0 0 0; font-size: 0.85rem; color: #4b5563;">Coordinated portfolio oversight</p>
                                                         </div>
                                                     </div>
-                                                    <p style="margin: 0; color: #374151; font-size: 0.95rem; line-height: 1.7;">
+                                                    <p style="margin: 0 0 24px 0; color: #374151; font-size: 0.95rem; line-height: 1.7;">
                                                         Collaborate closely with OAA areas to organize their project portfolios, prioritize effectively, and align ongoing and future work from a functional project management perspective. This includes coordinating with CIS as needed to ensure clarity and prioritization on their end.
                                                     </p>
+                                                    
+                                                    <!-- Process Flow Diagram -->
+                                                    <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(0, 51, 161, 0.15);">
+                                                        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;">
+                                                            <!-- Step 1 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 16px 20px; border-radius: 12px; min-width: 180px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.9rem; font-weight: 600; line-height: 1.4;">
+                                                                    Establish connection with OAA area
+                                                                </div>
+                                                                <div style="position: absolute; right: -12px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 2 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 16px 20px; border-radius: 12px; min-width: 180px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.9rem; font-weight: 600; line-height: 1.4;">
+                                                                    Create a project portfolio
+                                                                </div>
+                                                                <div style="position: absolute; right: -12px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 3 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 16px 20px; border-radius: 12px; min-width: 180px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.9rem; font-weight: 600; line-height: 1.4;">
+                                                                    Prioritize effectively
+                                                                </div>
+                                                                <div style="position: absolute; right: -12px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 4 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 16px 20px; border-radius: 12px; min-width: 180px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.9rem; font-weight: 600; line-height: 1.4;">
+                                                                    Align future work with functional project management as needed
+                                                                </div>
+                                                                <div style="position: absolute; right: -12px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 5 -->
+                                                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 16px 20px; border-radius: 12px; min-width: 180px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.9rem; font-weight: 600; line-height: 1.4;">
+                                                                    Coordinate with CIS to ensure clarity and prioritization
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <!-- Core Project Management Responsibilities -->
@@ -1209,9 +1295,10 @@
                                                             <p style="margin: 4px 0 0 0; font-size: 0.9rem; color: #4b5563;">Engagement levels calibrated to each initiative</p>
                                                         </div>
                                                     </div>
-                                                    <p style="margin: 0; color: #374151; font-size: 0.95rem; line-height: 1.7;">
+                                                    <p style="margin: 0 0 24px 0; color: #374151; font-size: 0.95rem; line-height: 1.7;">
                                                         We flex between full ownership, co-management, and advisory roles so OAA teams get exactly the level of structure, execution muscle, and coaching they need.
                                                     </p>
+                                                    
                                                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 18px;">
                                                         <div style="background: #f9fbff; border: 1.5px solid #d7e4ff; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
                                                             <div style="display: flex; align-items: center; gap: 10px;">
@@ -1222,7 +1309,7 @@
                                                                 </div>
                                                             </div>
                                                             <ul style="margin: 0; padding-left: 18px; color: #1f2937; font-size: 0.9rem; line-height: 1.55;">
-                                                                <li>Connect vendors, CIS teams, and colleges while running every workstream.</li>
+                                                                <li>Connect vendors, CIS teams, OAA teams and colleges while running every workstream.</li>
                                                                 <li>Stand up governance, communication cadences, and clearly defined roles.</li>
                                                                 <li>Maintain the master plan, dependencies, milestones, and deliverables.</li>
                                                                 <li>Drive execution forums, escalate blockers, and keep leadership informed.</li>
@@ -1238,7 +1325,7 @@
                                                                 </div>
                                                             </div>
                                                             <ul style="margin: 0; padding-left: 18px; color: #1f2937; font-size: 0.9rem; line-height: 1.55;">
-                                                                <li>Work shoulder-to-shoulder with campus leads on execution and planning.</li>
+                                                                <li>Work shoulder-to-shoulder with OAA teams on execution and planning.</li>
                                                                 <li>Co-design governance, workflows, and communication habits.</li>
                                                                 <li>Share the workload and decision-making during critical milestones.</li>
                                                                 <li>Coach teams through problem solving while they retain ownership.</li>
@@ -1260,6 +1347,34 @@
                                                             </ul>
                                                         </div>
                                                     </div>
+                                                    
+                                                    <!-- Process Flow Diagram -->
+                                                    <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(0, 51, 161, 0.15);">
+                                                        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;">
+                                                            <!-- Step 1 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 16px 20px; border-radius: 12px; min-width: 200px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.9rem; font-weight: 600; line-height: 1.4;">
+                                                                    Meet with the owner to decide which service they need
+                                                                </div>
+                                                                <div style="position: absolute; right: -12px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 2 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 16px 20px; border-radius: 12px; min-width: 200px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.9rem; font-weight: 600; line-height: 1.4;">
+                                                                    Assign and agree on the format of the support
+                                                                </div>
+                                                                <div style="position: absolute; right: -12px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 3 -->
+                                                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 16px 20px; border-radius: 12px; min-width: 200px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.9rem; font-weight: 600; line-height: 1.4;">
+                                                                    Begin working
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <!-- ProcessMaker Support -->
@@ -1271,9 +1386,93 @@
                                                             <p style="margin: 4px 0 0 0; font-size: 0.85rem; color: #4b5563;">BPM enablement</p>
                                                         </div>
                                                     </div>
-                                                    <p style="margin: 0; color: #374151; font-size: 0.95rem; line-height: 1.7;">
+                                                    <p style="margin: 0 0 24px 0; color: #374151; font-size: 0.95rem; line-height: 1.7;">
                                                         Our office serves as the OAA's main contact point for ProcessMaker. We help support, coordinate, and align the use of ProcessMaker to streamline their workflows. Essentially, we assist in rolling out ProcessMaker as a powerful BPM tool to simplify their processes.
                                                     </p>
+                                                    
+                                                    <!-- Process Flow Diagram -->
+                                                    <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(0, 51, 161, 0.15);">
+                                                        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                                                            <!-- Step 1 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 14px 18px; border-radius: 12px; min-width: 160px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.85rem; font-weight: 600; line-height: 1.4;">
+                                                                    Engage process owner with PM Developer
+                                                                </div>
+                                                                <div style="position: absolute; right: -10px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 10px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 2 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 14px 18px; border-radius: 12px; min-width: 160px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.85rem; font-weight: 600; line-height: 1.4;">
+                                                                    Process owner explains the process
+                                                                </div>
+                                                                <div style="position: absolute; right: -10px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 10px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 3 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 14px 18px; border-radius: 12px; min-width: 160px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.85rem; font-weight: 600; line-height: 1.4;">
+                                                                    PM Developer builds the workflow
+                                                                </div>
+                                                                <div style="position: absolute; right: -10px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 10px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 4 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 14px 18px; border-radius: 12px; min-width: 160px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.85rem; font-weight: 600; line-height: 1.4;">
+                                                                    PM Developer sets the timeline
+                                                                </div>
+                                                                <div style="position: absolute; right: -10px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 10px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 5 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 14px 18px; border-radius: 12px; min-width: 160px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.85rem; font-weight: 600; line-height: 1.4;">
+                                                                    Process owner provides sign-off
+                                                                </div>
+                                                                <div style="position: absolute; right: -10px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 10px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 6 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 14px 18px; border-radius: 12px; min-width: 160px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.85rem; font-weight: 600; line-height: 1.4;">
+                                                                    Hold weekly 1-hour working sessions
+                                                                </div>
+                                                                <div style="position: absolute; right: -10px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 10px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 7 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 14px 18px; border-radius: 12px; min-width: 160px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.85rem; font-weight: 600; line-height: 1.4;">
+                                                                    PM Developer trains process owner on front-end elements
+                                                                </div>
+                                                                <div style="position: absolute; right: -10px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 10px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 8 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 14px 18px; border-radius: 12px; min-width: 160px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.85rem; font-weight: 600; line-height: 1.4;">
+                                                                    Process owner trains staff
+                                                                </div>
+                                                                <div style="position: absolute; right: -10px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 10px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 9 -->
+                                                            <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 14px 18px; border-radius: 12px; min-width: 160px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.85rem; font-weight: 600; line-height: 1.4;">
+                                                                    Confirm the process is fully operational
+                                                                </div>
+                                                                <div style="position: absolute; right: -10px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 10px solid #0033A1; z-index: 1;"></div>
+                                                            </div>
+                                                            
+                                                            <!-- Step 10 -->
+                                                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                                                <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 14px 18px; border-radius: 12px; min-width: 160px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.85rem; font-weight: 600; line-height: 1.4;">
+                                                                    Transition ownership to the process owner and release resources
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                            </div>
@@ -1545,89 +1744,89 @@
                                         <tbody>
                                             <tr>
                                                 <td>Baruch</td>
-                                                <td>2732</td>
-                                                <td>806</td>
-                                                <td>727</td>
-                                                <td>521</td>
-                                                <td>8</td>
+                                                <td>3057</td>
+                                                <td>893</td>
+                                                <td>815</td>
+                                                <td>548</td>
+                                                <td>54</td>
                                             </tr>
                                             <tr>
                                                 <td>Brooklyn</td>
-                                                <td>1797</td>
-                                                <td>571</td>
-                                                <td>490</td>
-                                                <td>168</td>
-                                                <td>192</td>
+                                                <td>2000</td>
+                                                <td>640</td>
+                                                <td>568</td>
+                                                <td>204</td>
+                                                <td>199</td>
                                             </tr>
                                             <tr>
                                                 <td>City College</td>
-                                                <td>1925</td>
-                                                <td>416</td>
-                                                <td>300</td>
-                                                <td>192</td>
-                                                <td>11</td>
+                                                <td>2287</td>
+                                                <td>522</td>
+                                                <td>388</td>
+                                                <td>221</td>
+                                                <td>23</td>
                                             </tr>
                                             <tr>
                                                 <td>CSI</td>
-                                                <td>297</td>
-                                                <td>83</td>
-                                                <td>297</td>
-                                                <td>35</td>
-                                                <td>14</td>
+                                                <td>360</td>
+                                                <td>118</td>
+                                                <td>98</td>
+                                                <td>41</td>
+                                                <td>19</td>
                                             </tr>
                                             <tr>
                                                 <td>Grad Center</td>
-                                                <td>2774</td>
-                                                <td>268</td>
-                                                <td>192</td>
-                                                <td>55</td>
+                                                <td>3340</td>
+                                                <td>350</td>
+                                                <td>263</td>
+                                                <td>82</td>
                                                 <td>8</td>
                                             </tr>
                                             <tr>
                                                 <td>Hunter</td>
-                                                <td>3563</td>
-                                                <td>902</td>
-                                                <td>839</td>
-                                                <td>585</td>
-                                                <td>16</td>
+                                                <td>4190</td>
+                                                <td>991</td>
+                                                <td>920</td>
+                                                <td>493</td>
+                                                <td>54</td>
                                             </tr>
                                             <tr>
                                                 <td>John Jay</td>
-                                                <td>1123</td>
-                                                <td>274</td>
-                                                <td>245</td>
-                                                <td>171</td>
-                                                <td>22</td>
+                                                <td>1226</td>
+                                                <td>305</td>
+                                                <td>271</td>
+                                                <td>155</td>
+                                                <td>54</td>
                                             </tr>
                                             <tr>
                                                 <td>Lehman</td>
-                                                <td>737</td>
-                                                <td>188</td>
-                                                <td>169</td>
-                                                <td>71</td>
+                                                <td>940</td>
+                                                <td>242</td>
+                                                <td>213</td>
+                                                <td>90</td>
                                                 <td>1</td>
                                             </tr>
                                             <tr>
                                                 <td>Queens</td>
-                                                <td>1036</td>
-                                                <td>281</td>
-                                                <td>255</td>
-                                                <td>116</td>
-                                                <td>0</td>
+                                                <td>1210</td>
+                                                <td>333</td>
+                                                <td>299</td>
+                                                <td>140</td>
+                                                <td>15</td>
                                             </tr>
                                             <tr>
                                                 <td>SLU</td>
-                                                <td>56</td>
-                                                <td>16</td>
-                                                <td>12</td>
-                                                <td>2</td>
+                                                <td>83</td>
+                                                <td>28</td>
+                                                <td>13</td>
+                                                <td>5</td>
                                                 <td>3</td>
                                             </tr>
                                             <tr>
                                                 <td>York</td>
-                                                <td>46</td>
-                                                <td>10</td>
-                                                <td>4</td>
+                                                <td>52</td>
+                                                <td>13</td>
+                                                <td>5</td>
                                                 <td>0</td>
                                                 <td>2</td>
                                             </tr>
@@ -1687,8 +1886,8 @@
                                     <div class="update-list-new">
                                         <ul>
                                             <li>2605 active Slate users as of this week</li>
-                                            <li>121 recordings currently</li>
-                                            <li>437 tickets; 408 resolved</li>
+                                            <li>128 recordings currently</li>
+                                            <li>472 tickets; 449 resolved</li>
                                             <li>Ongoing enablement sessions & Q&A</li>
                                             <li>Docs & resources updating</li>
                                         </ul>
@@ -5693,6 +5892,494 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Common App Dashboard -->
+            <div id="commonapp" class="dashboard-view">
+                <div class="commonapp-page">
+                    <header class="commonapp-header">
+                        <div>
+                        <h1>Common App Implementation</h1>
+                            <p>A comprehensive overview of the Common Application platform, implementation plan, and support model for CUNY.</p>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.75rem;">
+                            <div class="status-box-new">
+                                <span>Overall Health of the Project</span>
+                                <span class="status-dot-new"></span>
+                                <span class="status-badge">Status update — <span id="commonapp-status-date">11/14/2025</span></span>
+                            </div>
+                            <div class="completion-indicator">
+                                <span class="completion-label completion-label-not-started">Not Started</span>
+                            </div>
+                        </div>
+                    </header>
+                    
+                    <!-- Accordion Container -->
+                    <div class="commonapp-accordion-container">
+                        <!-- Accordion Item 1: Overview -->
+                        <div class="commonapp-accordion-item" aria-expanded="false">
+                            <button class="commonapp-accordion-trigger">
+                                <div class="commonapp-accordion-title-wrapper">
+                                    <span class="commonapp-accordion-icon">📋</span>
+                                    <span class="commonapp-accordion-title">What is the Common App (Overview)</span>
+                        </div>
+                                <svg class="commonapp-accordion-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="commonapp-accordion-panel">
+                                <div class="commonapp-accordion-content">
+                                    <div class="commonapp-overview-layout">
+                                        <div class="commonapp-overview-content">
+                                            <p class="commonapp-intro">The Common Application (Common App) is a widely used online undergraduate admissions platform that lets students apply to multiple colleges with a single application. More than <strong>1,100 institutions</strong> use it.</p>
+                                            
+                                            <h3 class="commonapp-subheading">Key Features:</h3>
+                                            <ul class="commonapp-feature-list">
+                                                <li><span class="commonapp-feature-icon">✓</span> One standardized application</li>
+                                                <li><span class="commonapp-feature-icon">✓</span> Integrated transcripts, recommendations, and document submission</li>
+                                                <li><span class="commonapp-feature-icon">✓</span> Built-in fee payment (Transact)</li>
+                                                <li><span class="commonapp-feature-icon">✓</span> Student dashboard</li>
+                                                <li><span class="commonapp-feature-icon">✓</span> College configuration tools</li>
+                                                <li><span class="commonapp-feature-icon">✓</span> Secure applicant data/doc delivery</li>
+                                                <li><span class="commonapp-feature-icon">✓</span> Increases access and reduces barriers</li>
+                                            </ul>
+                                        </div>
+                                        <div class="commonapp-overview-visual">
+                                            <div class="commonapp-visual-container">
+                                                <div class="commonapp-stats-grid">
+                                                    <div class="commonapp-stat-card">
+                                                        <div class="commonapp-stat-icon">
+                                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="commonapp-stat-content">
+                                                            <div class="commonapp-stat-number">1,100+</div>
+                                                            <div class="commonapp-stat-label">Institutions</div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="commonapp-stat-card">
+                                                        <div class="commonapp-stat-icon">
+                                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M16 21V19C16 17.9391 15.5786 16.9217 14.8284 16.1716C14.0783 15.4214 13.0609 15 12 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M8.5 11C10.7091 11 12.5 9.20914 12.5 7C12.5 4.79086 10.7091 3 8.5 3C6.29086 3 4.5 4.79086 4.5 7C4.5 9.20914 6.29086 11 8.5 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="commonapp-stat-content">
+                                                            <div class="commonapp-stat-number">1</div>
+                                                            <div class="commonapp-stat-label">Application</div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="commonapp-stat-card">
+                                                        <div class="commonapp-stat-icon">
+                                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="commonapp-stat-content">
+                                                            <div class="commonapp-stat-number">100%</div>
+                                                            <div class="commonapp-stat-label">Secure</div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="commonapp-stat-card">
+                                                        <div class="commonapp-stat-icon">
+                                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="commonapp-stat-content">
+                                                            <div class="commonapp-stat-number">24/7</div>
+                                                            <div class="commonapp-stat-label">Support</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 2: Platform Fit -->
+                        <div class="commonapp-accordion-item" aria-expanded="false">
+                            <button class="commonapp-accordion-trigger">
+                                <div class="commonapp-accordion-title-wrapper">
+                                    <span class="commonapp-accordion-icon">🎯</span>
+                                    <span class="commonapp-accordion-title">Overall Platform Fit</span>
+                                </div>
+                                <svg class="commonapp-accordion-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="commonapp-accordion-panel">
+                                <div class="commonapp-accordion-content">
+                                    <p class="commonapp-intro">Common App meets all functional, security, data, implementation, training, and support requirements with only <strong>two partials</strong>:</p>
+                                    
+                                    <div class="commonapp-partial-list">
+                                        <div class="commonapp-partial-item">
+                                            <span class="commonapp-partial-badge">Partial</span>
+                                            <div>
+                                                <strong>Disaster recovery documentation</strong>
+                                                <p>In progress; strong AWS Multi-AZ redundancy</p>
+                                            </div>
+                                        </div>
+                                        <div class="commonapp-partial-item">
+                                            <span class="commonapp-partial-badge">Partial</span>
+                                            <div>
+                                                <strong>Feature on/off control for shared components</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 3: Functionality -->
+                        <div class="commonapp-accordion-item" aria-expanded="false">
+                            <button class="commonapp-accordion-trigger">
+                                <div class="commonapp-accordion-title-wrapper">
+                                    <span class="commonapp-accordion-icon">⚙️</span>
+                                    <span class="commonapp-accordion-title">Functionality & Configuration</span>
+                                </div>
+                                <svg class="commonapp-accordion-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="commonapp-accordion-panel">
+                                <div class="commonapp-accordion-content">
+                                    <div class="commonapp-functionality-grid">
+                                        <div class="commonapp-functionality-card">
+                                            <div class="commonapp-functionality-icon-wrapper">
+                                                <svg class="commonapp-functionality-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <div class="commonapp-functionality-content">
+                                                <h4 class="commonapp-functionality-title">Workflows & Documents</h4>
+                                                <p class="commonapp-functionality-description">Full support for workflows, recommendations, uploads</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="commonapp-functionality-card">
+                                            <div class="commonapp-functionality-icon-wrapper">
+                                                <svg class="commonapp-functionality-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <div class="commonapp-functionality-content">
+                                                <h4 class="commonapp-functionality-title">Control & Permissions</h4>
+                                                <p class="commonapp-functionality-description">Control Center + SDS + permissions model</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="commonapp-functionality-card">
+                                            <div class="commonapp-functionality-icon-wrapper">
+                                                <svg class="commonapp-functionality-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <div class="commonapp-functionality-content">
+                                                <h4 class="commonapp-functionality-title">System Integrations</h4>
+                                                <p class="commonapp-functionality-description">REST APIs, SFTP, PeopleSoft CS, Slate</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 4: Data Management & Security -->
+                        <div class="commonapp-accordion-item" aria-expanded="false">
+                            <button class="commonapp-accordion-trigger">
+                                <div class="commonapp-accordion-title-wrapper">
+                                    <span class="commonapp-accordion-icon">🔒</span>
+                                    <span class="commonapp-accordion-title">Data Management & Security</span>
+                                </div>
+                                <svg class="commonapp-accordion-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="commonapp-accordion-panel">
+                                <div class="commonapp-accordion-content">
+                                    <div class="commonapp-security-grid">
+                                        <div class="commonapp-security-item">
+                                            <span class="commonapp-security-icon">🔐</span>
+                                            <strong>Encryption</strong>
+                                            <p>In transit and at rest</p>
+                                        </div>
+                                        <div class="commonapp-security-item">
+                                            <span class="commonapp-security-icon">✅</span>
+                                            <strong>Compliance</strong>
+                                            <p>PCI/VPAT/GuidePoint assessments</p>
+                                        </div>
+                                        <div class="commonapp-security-item">
+                                            <span class="commonapp-security-icon">📦</span>
+                                            <strong>SDS Delivery</strong>
+                                            <p>Secure document delivery</p>
+                                        </div>
+                                        <div class="commonapp-security-item">
+                                            <span class="commonapp-security-icon">☁️</span>
+                                            <strong>AWS Architecture</strong>
+                                            <p>Multi-AZ, daily backups, 15-day retention</p>
+                                        </div>
+                                        <div class="commonapp-security-item">
+                                            <span class="commonapp-security-icon">📋</span>
+                                            <strong>FERPA Compliance</strong>
+                                            <p>Full accessibility compliance</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 5: Implementation Timeline -->
+                        <div class="commonapp-accordion-item" aria-expanded="false">
+                            <button class="commonapp-accordion-trigger">
+                                <div class="commonapp-accordion-title-wrapper">
+                                    <span class="commonapp-accordion-icon">📅</span>
+                                    <span class="commonapp-accordion-title">Implementation Timeline (6-Month Plan)</span>
+                                </div>
+                                <svg class="commonapp-accordion-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="commonapp-accordion-panel">
+                                <div class="commonapp-accordion-content">
+                                    <div class="commonapp-timeline-accordion" id="commonappTimeline"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 6: Training -->
+                        <div class="commonapp-accordion-item" aria-expanded="false">
+                            <button class="commonapp-accordion-trigger">
+                                <div class="commonapp-accordion-title-wrapper">
+                                    <span class="commonapp-accordion-icon">🎓</span>
+                                    <span class="commonapp-accordion-title">Training & Knowledge Transfer</span>
+                                </div>
+                                <svg class="commonapp-accordion-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="commonapp-accordion-panel">
+                                <div class="commonapp-accordion-content">
+                                    <div class="commonapp-training-grid">
+                                        <div class="commonapp-training-card">
+                                            <div class="commonapp-training-icon-wrapper">
+                                                <svg class="commonapp-training-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12 14V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L18.7071 8.70711C18.8946 8.89464 19 9.149 19 9.41421V19C19 20.1046 18.1046 21 17 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M19 9H14C13.4477 9 13 8.55228 13 8V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9 9H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9 13H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <div class="commonapp-training-content">
+                                                <h4 class="commonapp-training-title">Admin Training</h4>
+                                                <p class="commonapp-training-description">Full admin training for CUNY Central + campuses</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="commonapp-training-card">
+                                            <div class="commonapp-training-icon-wrapper">
+                                                <svg class="commonapp-training-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M6.5 2H20V22H6.5C5.83696 22 5.20107 21.7366 4.73223 21.2678C4.26339 20.7989 4 20.163 4 19.5V4.5C4 3.83696 4.26339 3.20107 4.73223 2.73223C5.20107 2.26339 5.83696 2 6.5 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M8 7H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M8 11H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M8 15H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <div class="commonapp-training-content">
+                                                <h4 class="commonapp-training-title">Resources</h4>
+                                                <p class="commonapp-training-description">Manuals, FAQs, videos, knowledge base</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="commonapp-training-card">
+                                            <div class="commonapp-training-icon-wrapper">
+                                                <svg class="commonapp-training-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M17 10H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M21 6H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M21 14H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M17 18H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <circle cx="19" cy="6" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <circle cx="19" cy="14" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <div class="commonapp-training-content">
+                                                <h4 class="commonapp-training-title">Live Sessions</h4>
+                                                <p class="commonapp-training-description">Webinars + office hours</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="commonapp-training-card">
+                                            <div class="commonapp-training-icon-wrapper">
+                                                <svg class="commonapp-training-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M16 21V19C16 17.9391 15.5786 16.9217 14.8284 16.1716C14.0783 15.4214 13.0609 15 12 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M8.5 11C10.7091 11 12.5 9.20914 12.5 7C12.5 4.79086 10.7091 3 8.5 3C6.29086 3 4.5 4.79086 4.5 7C4.5 9.20914 6.29086 11 8.5 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <div class="commonapp-training-content">
+                                                <h4 class="commonapp-training-title">Custom Training</h4>
+                                                <p class="commonapp-training-description">Custom sessions for admissions + IT</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 7: Support Model -->
+                        <div class="commonapp-accordion-item" aria-expanded="false">
+                            <button class="commonapp-accordion-trigger">
+                                <div class="commonapp-accordion-title-wrapper">
+                                    <span class="commonapp-accordion-icon">🛟</span>
+                                    <span class="commonapp-accordion-title">Support Model</span>
+                                </div>
+                                <svg class="commonapp-accordion-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="commonapp-accordion-panel">
+                                <div class="commonapp-accordion-content">
+                                    <div class="commonapp-support-grid">
+                                        <div class="commonapp-support-item">
+                                            <span class="commonapp-support-badge">24/7/365</span>
+                                            <p>Support for students & recommenders</p>
+                                        </div>
+                                        <div class="commonapp-support-item">
+                                            <span class="commonapp-support-badge">7am–7pm ET</span>
+                                            <p>Support for campuses</p>
+                                        </div>
+                                        <div class="commonapp-support-item">
+                                            <span class="commonapp-support-badge">Unlimited</span>
+                                            <p>Cases</p>
+                                        </div>
+                                        <div class="commonapp-support-item">
+                                            <span class="commonapp-support-badge">Monthly</span>
+                                            <p>Updates, hotfixes, release notes</p>
+                                        </div>
+                                        <div class="commonapp-support-item">
+                                            <span class="commonapp-support-badge">Historical</span>
+                                            <p>Case reporting</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 8: Change Management -->
+                        <div class="commonapp-accordion-item" aria-expanded="false">
+                            <button class="commonapp-accordion-trigger">
+                                <div class="commonapp-accordion-title-wrapper">
+                                    <span class="commonapp-accordion-icon">🔄</span>
+                                    <span class="commonapp-accordion-title">Change Management</span>
+                                </div>
+                                <svg class="commonapp-accordion-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="commonapp-accordion-panel">
+                                <div class="commonapp-accordion-content">
+                                    <div class="commonapp-changemgmt-grid">
+                                        <div class="commonapp-changemgmt-card">
+                                            <div class="commonapp-changemgmt-icon-wrapper">
+                                                <svg class="commonapp-changemgmt-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <div class="commonapp-changemgmt-content">
+                                                <h4 class="commonapp-changemgmt-title">Monthly Releases</h4>
+                                                <p class="commonapp-changemgmt-description">Release cycle + preview notes</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="commonapp-changemgmt-card">
+                                            <div class="commonapp-changemgmt-icon-wrapper">
+                                                <svg class="commonapp-changemgmt-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12 8V12L14 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <div class="commonapp-changemgmt-content">
+                                                <h4 class="commonapp-changemgmt-title">Issue Tracking</h4>
+                                                <p class="commonapp-changemgmt-description">Known-issues tracking</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="commonapp-changemgmt-card">
+                                            <div class="commonapp-changemgmt-icon-wrapper">
+                                                <svg class="commonapp-changemgmt-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <circle cx="12" cy="12" r="1" fill="currentColor"/>
+                                                </svg>
+                                            </div>
+                                            <div class="commonapp-changemgmt-content">
+                                                <h4 class="commonapp-changemgmt-title">Hotfixes</h4>
+                                                <p class="commonapp-changemgmt-description">Critical issues resolved quickly</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="commonapp-changemgmt-card">
+                                            <div class="commonapp-changemgmt-icon-wrapper">
+                                                <svg class="commonapp-changemgmt-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <div class="commonapp-changemgmt-content">
+                                                <h4 class="commonapp-changemgmt-title">Roadmap</h4>
+                                                <p class="commonapp-changemgmt-description">Quarterly roadmap planning</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="commonapp-changemgmt-card">
+                                            <div class="commonapp-changemgmt-icon-wrapper">
+                                                <svg class="commonapp-changemgmt-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M9 11L12 14L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <div class="commonapp-changemgmt-content">
+                                                <h4 class="commonapp-changemgmt-title">Beta Testing</h4>
+                                                <p class="commonapp-changemgmt-description">Beta testing options available</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Essential Takeaway -->
+                        <div class="commonapp-takeaway">
+                            <div class="commonapp-takeaway-icon">💡</div>
+                            <div class="commonapp-takeaway-content">
+                                <h3 class="commonapp-takeaway-title">Essential Takeaway</h3>
+                                <p>Common App offers a compliant, scalable, secure, and well-supported admissions platform aligned with CUNY's needs. The 6-month implementation ensures smooth rollout, and SDS automates data retrieval post-launch. Most requirements are met out-of-the-box with strong training and governance.</p>
                             </div>
                         </div>
                     </div>
