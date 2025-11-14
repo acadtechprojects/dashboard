@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Set up new accordion functionality
             setupNewAccordion();
+
+            // Enable drag-and-drop on accordions
+            setupAccordionDragAndDrop();
             
             // Set up project status accordion
             setupStatusAccordion();
@@ -54,6 +57,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Also set date after a short delay to ensure DOM is fully loaded
             setTimeout(setCurrentDate, 100);
+
+            // Common App resources
+            initCommonAppTimeline();
+            setupCommonAppAccordion();
         }
     }, initDelay);
 });
@@ -157,6 +164,20 @@ function setupNavigation() {
     // Handle dropdown items
     dropdownItems.forEach(item => {
         item.addEventListener('click', function(e) {
+            // Skip if this is the Archive button (it has its own handler)
+            if (this.id === 'archive-toggle') {
+                // Close the dropdown menu
+                const dropdown = this.closest('.nav-dropdown');
+                if (dropdown) {
+                    const menu = dropdown.querySelector('.nav-dropdown-menu');
+                    if (menu) {
+                        menu.style.display = 'none';
+                    }
+                }
+                // Let the archive button's own handler take over
+                return;
+            }
+            
             const targetView = this.getAttribute('data-view');
             
             // Close the dropdown menu
@@ -363,6 +384,7 @@ function showInitialPasswordModal() {
             setupNavigation();
             setupAccordion();
             setupNewAccordion();
+            setupAccordionDragAndDrop();
             setupStatusAccordion();
             setupArchivePanel();
             setupTooltips();
@@ -371,6 +393,8 @@ function showInitialPasswordModal() {
             setupBotResoTimeline();
             setCurrentDate();
             setTimeout(setCurrentDate, 100);
+            initCommonAppTimeline();
+            setupCommonAppAccordion();
         } else {
             // Incorrect password
             errorDiv.textContent = 'Incorrect password. Please try again.';
@@ -455,6 +479,11 @@ function handleViewSwitch(targetView) {
             setTimeout(() => {
                 // Re-initialize status accordions to ensure the collaboration accordion is set up
                 setupStatusAccordion();
+            }, 100);
+        } else if (targetView === 'commonapp') {
+            setTimeout(() => {
+                setupCommonAppAccordion();
+                initCommonAppTimeline();
             }, 100);
         }
         
@@ -920,15 +949,18 @@ function setCurrentDate() {
     const dateElement = document.getElementById('status-date');
     const fafsaDateElement = document.getElementById('fafsa-status-date');
     const degreeworksDateElement = document.getElementById('degreeworks-status-date');
+    const commonappDateElement = document.getElementById('commonapp-status-date');
     
     // Set specific dates for each page
-    const slateDate = '11/11/2025';
-    const fafsaDate = '11/6/2025';
+    const slateDate = '11/14/2025';
+    const fafsaDate = '11/14/2025';
     const degreeworksDate = '11/14/2025';
+    const commonappDate = '11/14/2025';
     
     console.log('Setting Slate date to:', slateDate);
     console.log('Setting FAFSA date to:', fafsaDate);
     console.log('Setting DegreeWorks date to:', degreeworksDate);
+    console.log('Setting Common App date to:', commonappDate);
     
     // Force update with cache busting
     const timestamp = new Date().getTime();
@@ -961,6 +993,15 @@ function setCurrentDate() {
         console.log('DegreeWorks date element not found');
     }
     
+    // Set date for Common App page
+    if (commonappDateElement) {
+        commonappDateElement.textContent = commonappDate;
+        commonappDateElement.setAttribute('data-timestamp', timestamp);
+        console.log('Common App date element updated with timestamp:', timestamp);
+    } else {
+        console.log('Common App date element not found');
+    }
+    
     // Force update if elements exist but are empty or have old timestamps
     setTimeout(() => {
         const currentTimestamp = new Date().getTime();
@@ -973,6 +1014,11 @@ function setCurrentDate() {
             fafsaDateElement.textContent = fafsaDate;
             fafsaDateElement.setAttribute('data-timestamp', currentTimestamp);
             console.log('Force updated FAFSA date with new timestamp:', currentTimestamp);
+        }
+        if (commonappDateElement && (!commonappDateElement.textContent || commonappDateElement.getAttribute('data-timestamp') !== timestamp.toString())) {
+            commonappDateElement.textContent = commonappDate;
+            commonappDateElement.setAttribute('data-timestamp', currentTimestamp);
+            console.log('Force updated Common App date with new timestamp:', currentTimestamp);
         }
     }, 200);
 }
@@ -1090,6 +1136,117 @@ function setupNewAccordion() {
             firstPanel.style.display = 'block';
         }
     }
+}
+
+function setupAccordionDragAndDrop() {
+    const accordions = document.querySelectorAll('.accordion-new');
+    if (!accordions.length) {
+        return;
+    }
+
+    accordions.forEach(accordion => {
+        if (accordion.dataset.dragEnabled === 'true') {
+            return;
+        }
+
+        const accordionItems = Array.from(accordion.children).filter(child => child.classList && child.classList.contains('accordion-item-new'));
+        if (!accordionItems.length) {
+            return;
+        }
+
+        accordion.dataset.dragEnabled = 'true';
+        let dragItem = null;
+        let dragIntentItem = null;
+
+        accordionItems.forEach(item => {
+            item.setAttribute('draggable', 'true');
+
+            const title = item.querySelector('.accordion-title-new');
+            if (title && !title.querySelector('.accordion-drag-handle')) {
+                const handle = document.createElement('span');
+                handle.className = 'accordion-drag-handle';
+                handle.setAttribute('aria-hidden', 'true');
+                handle.setAttribute('title', 'Drag to reorder');
+                handle.textContent = '::';
+                title.prepend(handle);
+
+                handle.addEventListener('mousedown', (event) => {
+                    const parentItem = handle.closest('.accordion-item-new');
+                    if (!parentItem) return;
+                    parentItem.dataset.draggingAllowed = 'true';
+                    dragIntentItem = parentItem;
+                    event.stopPropagation();
+                });
+
+                handle.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                });
+            }
+        });
+
+        const resetDragIntent = () => {
+            if (dragIntentItem && !dragItem) {
+                delete dragIntentItem.dataset.draggingAllowed;
+                dragIntentItem = null;
+            }
+        };
+
+        document.addEventListener('mouseup', resetDragIntent);
+
+        accordion.addEventListener('dragstart', (event) => {
+            const item = event.target.closest('.accordion-item-new');
+            if (!item || !accordion.contains(item)) return;
+
+            if (item.dataset.draggingAllowed === 'true') {
+                dragItem = item;
+                dragIntentItem = null;
+                item.classList.add('dragging');
+                event.dataTransfer.effectAllowed = 'move';
+                event.dataTransfer.setData('text/plain', item.dataset.id || 'Accordion item');
+            } else {
+                event.preventDefault();
+            }
+        });
+
+        accordion.addEventListener('dragover', (event) => {
+            if (!dragItem) return;
+            event.preventDefault();
+            const afterElement = getDragAfterElement(accordion, event.clientY);
+            if (!afterElement) {
+                accordion.appendChild(dragItem);
+            } else {
+                accordion.insertBefore(dragItem, afterElement);
+            }
+        });
+
+        accordion.addEventListener('drop', (event) => {
+            event.preventDefault();
+        });
+
+        accordion.addEventListener('dragend', () => {
+            if (dragItem) {
+                dragItem.classList.remove('dragging');
+                delete dragItem.dataset.draggingAllowed;
+                dragItem = null;
+            }
+        });
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.accordion-item-new:not(.dragging)')];
+            let closest = { offset: Number.NEGATIVE_INFINITY, element: null };
+
+            draggableElements.forEach(child => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    closest = { offset, element: child };
+                }
+            });
+
+            return closest.element;
+        }
+    });
 }
 
 // New Chart Drawing Functions
@@ -1310,6 +1467,145 @@ function drawNewFunnelChart(canvas) {
     });
 }
 
+// Common App Accordion Functionality
+function setupCommonAppAccordion() {
+    const accordionItems = document.querySelectorAll('.commonapp-accordion-item');
+    
+    accordionItems.forEach(item => {
+        const trigger = item.querySelector('.commonapp-accordion-trigger');
+        const panel = item.querySelector('.commonapp-accordion-panel');
+        
+        if (trigger && panel) {
+            trigger.addEventListener('click', function() {
+                const isExpanded = item.getAttribute('aria-expanded') === 'true';
+                
+                // Toggle current item
+                item.setAttribute('aria-expanded', !isExpanded);
+                
+                // If opening, initialize timeline if it's the timeline accordion
+                if (!isExpanded && item.querySelector('#commonappTimeline')) {
+                    setTimeout(() => {
+                        initCommonAppTimeline();
+                    }, 100);
+                }
+            });
+        }
+    });
+}
+
+function initCommonAppTimeline() {
+    const timeline = document.getElementById('commonappTimeline');
+    if (!timeline) return;
+
+    const phases = [
+        {
+            phase: 'Phase 1',
+            title: 'Getting Started with Onboarding',
+            month: 'Early March · Kickoff',
+            items: [
+                'Kickoff, discovery call, and paperwork submission',
+                'Agreement signing with Common App',
+                'Initial configuration training for campus owners'
+            ]
+        },
+        {
+            phase: 'Phase 2',
+            title: 'Configuration Phase',
+            month: 'April',
+            items: [
+                'Begin system configuration',
+                'Weekly / bi-weekly check-ins to unblock teams'
+            ]
+        },
+        {
+            phase: 'Phase 3',
+            title: 'Ongoing Configuration',
+            month: 'May',
+            items: [
+                'Refine configuration based on discoveries',
+                'Continue regular check-ins for decisions'
+            ]
+        },
+        {
+            phase: 'Phase 4',
+            title: 'Testing Phase',
+            month: 'June',
+            items: [
+                'Testing calls + validate application fee setup',
+                'Exercise configs, log issues, resolve via check-ins'
+            ]
+        },
+        {
+            phase: 'Phase 5',
+            title: 'Prepare for Data & Launch',
+            month: 'July',
+            items: [
+                'Finalize testing & train on receiving Common App data',
+                'Prep data integration, update profiles / FAQs',
+                'Submit final paperwork + launch artifacts'
+            ]
+        },
+        {
+            phase: 'Phase 6',
+            title: 'Launch Phase',
+            month: 'Early August · Rollout',
+            items: [
+                'Complete final edits and approvals',
+                'Finalize profiles + FAQs',
+                'Confirm launch readiness and go live'
+            ]
+        },
+        {
+            phase: 'Post-Launch',
+            title: 'Data Retrieval (SDS)',
+            month: 'August onward',
+            items: [
+                'Train on SDS data retrieval',
+                'Finalize SDS configuration + approval',
+                'Launch SDS feeds'
+            ]
+        }
+    ];
+
+    timeline.innerHTML = phases.map((phase, index) => `
+        <div class="commonapp-timeline-phase-item" aria-expanded="false">
+            <button class="commonapp-timeline-phase-trigger">
+                <div class="commonapp-timeline-phase-header">
+                    <div class="commonapp-timeline-phase-number">${index + 1}</div>
+                    <div class="commonapp-timeline-phase-info">
+                        <div class="commonapp-timeline-phase-label">${phase.phase}</div>
+                        <div class="commonapp-timeline-phase-title">${phase.title}</div>
+                        <div class="commonapp-timeline-phase-month">${phase.month}</div>
+                    </div>
+                </div>
+                <svg class="commonapp-timeline-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="commonapp-timeline-phase-panel">
+                <div class="commonapp-timeline-phase-content">
+                    <ul class="commonapp-timeline-phase-list">
+                        ${phase.items.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    `).join('');
+    
+    // Initialize timeline phase accordions
+    const timelinePhaseItems = timeline.querySelectorAll('.commonapp-timeline-phase-item');
+    timelinePhaseItems.forEach(item => {
+        const trigger = item.querySelector('.commonapp-timeline-phase-trigger');
+        const panel = item.querySelector('.commonapp-timeline-phase-panel');
+        
+        if (trigger && panel) {
+            trigger.addEventListener('click', function() {
+                const isExpanded = item.getAttribute('aria-expanded') === 'true';
+                item.setAttribute('aria-expanded', !isExpanded);
+            });
+        }
+    });
+}
 // Project Pillars Dashboard JavaScript
 const PILLARS = [
     { key: 'governance', label: 'Governance', color: '#0033A1', accent: '#1B5FD1' },
