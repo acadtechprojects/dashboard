@@ -91,36 +91,126 @@ function setupNavigation() {
     const dropdowns = document.querySelectorAll('.nav-dropdown');
     
     // Protected pages that require password
-    const protectedPages = ['cunyai', 'pm', 'oem'];
+    const protectedPages = ['cunyai', 'pm', 'oem', 'backlog', 'commonapp'];
     
-    // Handle dropdown menu visibility
+    // Handle dropdown menu visibility with improved stability
     dropdowns.forEach(dropdown => {
         const toggle = dropdown.querySelector('.nav-dropdown-toggle');
         const menu = dropdown.querySelector('.nav-dropdown-menu');
         
         if (toggle && menu) {
-            // Show on hover
-            dropdown.addEventListener('mouseenter', function() {
+            let hideTimeout = null;
+            let showTimeout = null;
+            const HIDE_DELAY = 300; // Delay before hiding (milliseconds)
+            const SHOW_DELAY = 100; // Small delay before showing (for smoother UX)
+            
+            // Function to show menu
+            const showMenu = function() {
+                // Clear any pending hide timeout
+                if (hideTimeout) {
+                    clearTimeout(hideTimeout);
+                    hideTimeout = null;
+                }
+                
+                // Clear any pending show timeout
+                if (showTimeout) {
+                    clearTimeout(showTimeout);
+                    showTimeout = null;
+                }
+                
+                // Close all other dropdowns first
+                dropdowns.forEach(d => {
+                    if (d !== dropdown) {
+                        const m = d.querySelector('.nav-dropdown-menu');
+                        if (m) {
+                            m.style.display = 'none';
+                        }
+                    }
+                });
+                
+                // Show this menu
                 menu.style.display = 'block';
+                menu.classList.add('show');
+                // Force reflow to ensure display change is applied
+                requestAnimationFrame(function() {
+                    menu.style.opacity = '1';
+                    menu.style.transform = 'translateY(0)';
+                });
+            };
+            
+            // Function to hide menu with delay
+            const hideMenu = function() {
+                // Clear any pending show timeout
+                if (showTimeout) {
+                    clearTimeout(showTimeout);
+                    showTimeout = null;
+                }
+                
+                // Set timeout to hide menu
+                hideTimeout = setTimeout(function() {
+                    menu.style.opacity = '0';
+                    menu.style.transform = 'translateY(-10px)';
+                    menu.classList.remove('show');
+                    // Wait for transition, then hide
+                    setTimeout(function() {
+                        if (menu.style.opacity === '0') {
+                            menu.style.display = 'none';
+                        }
+                    }, 200);
+                    hideTimeout = null;
+                }, HIDE_DELAY);
+            };
+            
+            // Show on hover over dropdown container (includes toggle and menu)
+            dropdown.addEventListener('mouseenter', function() {
+                showMenu();
             });
             
-            // Hide when mouse leaves
-            dropdown.addEventListener('mouseleave', function() {
-                menu.style.display = 'none';
+            // Hide when mouse leaves dropdown container
+            dropdown.addEventListener('mouseleave', function(e) {
+                // Check if mouse is moving to the menu
+                const relatedTarget = e.relatedTarget;
+                if (relatedTarget && (dropdown.contains(relatedTarget) || menu.contains(relatedTarget))) {
+                    return; // Don't hide if moving within dropdown
+                }
+                hideMenu();
+            });
+            
+            // Keep menu open when hovering over it
+            menu.addEventListener('mouseenter', function() {
+                if (hideTimeout) {
+                    clearTimeout(hideTimeout);
+                    hideTimeout = null;
+                }
+                showMenu();
+            });
+            
+            // Hide when leaving menu
+            menu.addEventListener('mouseleave', function(e) {
+                const relatedTarget = e.relatedTarget;
+                if (relatedTarget && dropdown.contains(relatedTarget)) {
+                    return; // Don't hide if moving back to dropdown
+                }
+                hideMenu();
             });
             
             // Also handle click for mobile/touch devices
             toggle.addEventListener('click', function(e) {
                 e.stopPropagation();
-                const isVisible = menu.style.display === 'block';
+                const isVisible = menu.style.display === 'block' && menu.style.opacity !== '0';
                 // Close all other dropdowns
                 dropdowns.forEach(d => {
                     const m = d.querySelector('.nav-dropdown-menu');
                     if (m && m !== menu) {
                         m.style.display = 'none';
+                        m.style.opacity = '0';
                     }
                 });
-                menu.style.display = isVisible ? 'none' : 'block';
+                if (isVisible) {
+                    hideMenu();
+                } else {
+                    showMenu();
+                }
             });
         }
     });
@@ -132,10 +222,28 @@ function setupNavigation() {
                 const menu = dropdown.querySelector('.nav-dropdown-menu');
                 if (menu) {
                     menu.style.display = 'none';
+                    menu.style.opacity = '0';
+                    menu.classList.remove('show');
                 }
             });
         }
     });
+    
+    // Handle logo click (navigates to pillars view)
+    const navLogo = document.getElementById('nav-logo');
+    if (navLogo) {
+        navLogo.addEventListener('click', function(e) {
+            const targetView = this.getAttribute('data-view');
+            if (!targetView) return;
+            
+            // Remove active class from all nav buttons and dropdown items
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            dropdownItems.forEach(item => item.classList.remove('active'));
+            
+            // Switch view
+            handleViewSwitch(targetView);
+        });
+    }
     
     // Handle regular nav buttons
     navButtons.forEach(button => {
@@ -445,7 +553,11 @@ function handleViewSwitch(targetView) {
         targetDashboard.classList.add('active');
         
         // Initialize specific dashboard if needed
+        // Update active state for logo when on pillars view
         if (targetView === 'pillars') {
+            // Remove active class from all nav buttons
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => btn.classList.remove('active'));
             setTimeout(initPillarsDashboard, 100);
         } else if (targetView === 'slate') {
             setTimeout(drawNewCharts, 100);
@@ -471,6 +583,19 @@ function handleViewSwitch(targetView) {
                     setTimeout(() => {
                         if (typeof initOEMDashboard === 'function') {
                             initOEMDashboard();
+                        }
+                    }, 500);
+                }
+            }, 100);
+        } else if (targetView === 'backlog') {
+            setTimeout(() => {
+                if (typeof initBacklogDashboard === 'function') {
+                    initBacklogDashboard();
+                } else {
+                    console.warn('Backlog Dashboard initialization function not available yet');
+                    setTimeout(() => {
+                        if (typeof initBacklogDashboard === 'function') {
+                            initBacklogDashboard();
                         }
                     }, 500);
                 }
@@ -1488,6 +1613,37 @@ function setupCommonAppAccordion() {
                         initCommonAppTimeline();
                     }, 100);
                 }
+                
+                // If opening, initialize workstreams sub-accordions if it's the workstreams accordion
+                if (!isExpanded && item.querySelector('.commonapp-timeline-accordion') && !item.querySelector('#commonappTimeline')) {
+                    setTimeout(() => {
+                        initWorkstreamsAccordion(item);
+                    }, 100);
+                }
+            });
+        }
+    });
+}
+
+function initWorkstreamsAccordion(workstreamsContainer) {
+    const timelineAccordion = workstreamsContainer.querySelector('.commonapp-timeline-accordion');
+    if (!timelineAccordion) return;
+    
+    // Initialize timeline phase accordions (sub-accordions)
+    const timelinePhaseItems = timelineAccordion.querySelectorAll('.commonapp-timeline-phase-item');
+    timelinePhaseItems.forEach(item => {
+        const trigger = item.querySelector('.commonapp-timeline-phase-trigger');
+        const panel = item.querySelector('.commonapp-timeline-phase-panel');
+        
+        if (trigger && panel) {
+            // Remove any existing listeners by cloning
+            const newTrigger = trigger.cloneNode(true);
+            trigger.parentNode.replaceChild(newTrigger, trigger);
+            
+            // Add new listener
+            newTrigger.addEventListener('click', function() {
+                const isExpanded = item.getAttribute('aria-expanded') === 'true';
+                item.setAttribute('aria-expanded', !isExpanded);
             });
         }
     });
@@ -1941,7 +2097,7 @@ function setupArchivePanel() {
             if (!targetView) return;
             
             // Check if page is protected
-            const protectedPages = ['cunyai', 'pm', 'oem'];
+            const protectedPages = ['cunyai', 'pm', 'oem', 'backlog', 'commonapp'];
             if (protectedPages.includes(targetView)) {
                 e.preventDefault();
                 // Close archive panel first
@@ -1997,6 +2153,14 @@ function setupStatusAccordion() {
                 e.stopPropagation();
                 
                 const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+                const accordionType = item.getAttribute('data-status-accordion');
+                
+                // Check if this is the project-alignment accordion (password protected)
+                if (!isExpanded && accordionType === 'project-alignment') {
+                    // Show password modal instead of opening directly
+                    showProjectAlignmentPasswordModal(item, trigger, panel);
+                    return;
+                }
                 
                 // Toggle current item
                 if (isExpanded) {
@@ -2011,7 +2175,6 @@ function setupStatusAccordion() {
                     panel.classList.add('open');
                     
                     // Check if this is the collaboration diagram accordion
-                    const accordionType = item.getAttribute('data-status-accordion');
                     if (accordionType === 'team-collaboration') {
                         // Draw collaboration diagram when accordion opens
                         setTimeout(() => {
@@ -2030,6 +2193,88 @@ function setupStatusAccordion() {
             item.setAttribute('data-accordion-initialized', 'true');
         }
     });
+}
+
+function showProjectAlignmentPasswordModal(accordionItem, accordionTrigger, accordionPanel) {
+    const modal = document.getElementById('password-modal');
+    const passwordInput = document.getElementById('password-input');
+    const errorDiv = document.getElementById('password-error');
+    
+    // Reset modal state
+    errorDiv.textContent = '';
+    passwordInput.value = '';
+    modal.classList.add('show');
+    passwordInput.focus();
+    
+    // Remove any existing event listeners by removing and re-adding
+    const submitBtn = document.getElementById('password-submit');
+    const cancelBtn = document.getElementById('password-cancel');
+    const closeBtn = document.getElementById('password-modal-close');
+    
+    // Remove old handlers
+    const newSubmitBtn = submitBtn.cloneNode(true);
+    const newCancelBtn = cancelBtn.cloneNode(true);
+    const newCloseBtn = closeBtn.cloneNode(true);
+    submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
+    cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+    closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+    
+    // Update references
+    const submitBtnNew = document.getElementById('password-submit');
+    const cancelBtnNew = document.getElementById('password-cancel');
+    const closeBtnNew = document.getElementById('password-modal-close');
+    
+    // Submit handler
+    const handleSubmit = () => {
+        const password = passwordInput.value.trim();
+        if (password === 'OAII') {
+            // Correct password - proceed with opening accordion
+            modal.classList.remove('show');
+            accordionTrigger.setAttribute('aria-expanded', 'true');
+            accordionPanel.style.display = 'block';
+            // Force reflow to ensure transition works
+            accordionPanel.offsetHeight;
+            accordionPanel.classList.add('open');
+            // Show the content
+            const content = document.getElementById('project-alignment-content');
+            if (content) {
+                content.style.display = 'block';
+            }
+        } else {
+            // Incorrect password
+            errorDiv.textContent = 'Incorrect password. Please try again.';
+            passwordInput.value = '';
+            passwordInput.focus();
+        }
+    };
+    
+    // Cancel handler
+    const handleCancel = () => {
+        modal.classList.remove('show');
+        passwordInput.value = '';
+        errorDiv.textContent = '';
+    };
+    
+    // Add event listeners
+    submitBtnNew.addEventListener('click', handleSubmit);
+    cancelBtnNew.addEventListener('click', handleCancel);
+    closeBtnNew.addEventListener('click', handleCancel);
+    
+    // Handle Enter key in password input
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit();
+        }
+    };
+    
+    passwordInput.onkeydown = handleKeyDown;
+    
+    // Close on background click
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            handleCancel();
+        }
+    };
 }
 
 // Animate progress bars
