@@ -1252,13 +1252,31 @@ function setupNewAccordion() {
         }
     });
     
-    // Set initial state - first item open by default
+    // Set initial state - first item open by default (except on Slate page)
     const firstItem = accordionItems[0];
     if (firstItem) {
-        firstItem.setAttribute('aria-expanded', 'true');
-        const firstPanel = firstItem.querySelector('.accordion-panel-new');
-        if (firstPanel) {
-            firstPanel.style.display = 'block';
+        // Check if this accordion is within the Slate page
+        const slatePage = document.getElementById('slate');
+        const isInSlatePage = slatePage && slatePage.contains(firstItem);
+        
+        // Only open first item if NOT on Slate page
+        if (!isInSlatePage) {
+            firstItem.setAttribute('aria-expanded', 'true');
+            const firstPanel = firstItem.querySelector('.accordion-panel-new');
+            if (firstPanel) {
+                firstPanel.style.display = 'block';
+            }
+        } else {
+            // Ensure all Slate page accordions are closed
+            accordionItems.forEach(item => {
+                if (slatePage && slatePage.contains(item)) {
+                    item.setAttribute('aria-expanded', 'false');
+                    const panel = item.querySelector('.accordion-panel-new');
+                    if (panel) {
+                        panel.style.display = 'none';
+                    }
+                }
+            });
         }
     }
 }
@@ -2700,3 +2718,79 @@ function setupCollaborationDiagram() {
         }, 100);
     }
 }
+
+// Slate Team Image Click to Enlarge Functionality
+function initSlateTeamImage() {
+    const image = document.getElementById('slate-team-image');
+    if (!image) return;
+    
+    // Create overlay element
+    let overlay = document.getElementById('image-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'image-overlay';
+        overlay.className = 'image-overlay';
+        document.body.appendChild(overlay);
+    }
+    
+    let isEnlarged = false;
+    
+    // Click handler for image
+    image.addEventListener('click', function(e) {
+        e.stopPropagation();
+        
+        if (!isEnlarged) {
+            // Enlarge image
+            image.classList.add('enlarged');
+            overlay.classList.add('active');
+            isEnlarged = true;
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        } else {
+            // Return to thumbnail
+            image.classList.remove('enlarged');
+            overlay.classList.remove('active');
+            isEnlarged = false;
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    });
+    
+    // Click handler for overlay (close when clicking outside)
+    overlay.addEventListener('click', function() {
+        if (isEnlarged) {
+            image.classList.remove('enlarged');
+            overlay.classList.remove('active');
+            isEnlarged = false;
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // ESC key to close
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isEnlarged) {
+            image.classList.remove('enlarged');
+            overlay.classList.remove('active');
+            isEnlarged = false;
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    initSlateTeamImage();
+});
+
+// Also initialize when accordion opens (in case image is added dynamically)
+setTimeout(function() {
+    const cunyfirstAccordion = document.querySelector('[data-id="cunyfirst-slate-integration"]');
+    if (cunyfirstAccordion) {
+        const trigger = cunyfirstAccordion.querySelector('.accordion-trigger-new');
+        if (trigger) {
+            trigger.addEventListener('click', function() {
+                setTimeout(initSlateTeamImage, 200);
+            });
+        }
+    }
+    // Initialize immediately if accordion is already open
+    initSlateTeamImage();
+}, 500);
