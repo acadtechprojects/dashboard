@@ -660,7 +660,7 @@
         <!-- Navigation -->
         <nav class="dashboard-nav">
             <div class="nav-left">
-                <button class="nav-btn active" data-view="pillars">Blueprint for Success</button>
+                <img src="Images/Logo.png" alt="Logo" class="nav-logo" id="nav-logo" data-view="pillars" style="cursor: pointer;">
                 <div class="nav-dropdown">
                     <button class="nav-btn nav-dropdown-toggle">Projects</button>
                     <div class="nav-dropdown-menu" style="display: none;">
@@ -684,12 +684,14 @@
                     <button class="nav-btn nav-dropdown-toggle">Portfolio</button>
                     <div class="nav-dropdown-menu" style="display: none;">
                         <button class="nav-dropdown-item" data-view="oem">OEM</button>
+                        <button class="nav-dropdown-item" data-view="backlog">Backlog</button>
                     </div>
                 </div>
                 <div class="nav-dropdown">
                     <button class="nav-btn nav-dropdown-toggle">Other</button>
                     <div class="nav-dropdown-menu" style="display: none;">
                         <button class="nav-dropdown-item" data-view="cunyai">CUNYAI</button>
+                        <button class="nav-dropdown-item" data-view="orgchart">Org Chart</button>
                         <button class="nav-dropdown-item archive-btn" id="archive-toggle" aria-label="Archive">Archive</button>
                     </div>
                 </div>
@@ -745,7 +747,7 @@
                                         <div class="status-accordion-header">
                                             <h3 style="margin: 0; color: #0033A1; font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 12px;">
                                                 <span style="font-size: 1.5rem;">📊</span>
-                                                Status Overview: Projects &amp; Initiatives (DATP) – 12 Current Involvements
+                                                Status Overview: Projects &amp; Initiatives (DATP) – 13 Current Involvements
                                             </h3>
                                             <svg class="status-accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M6 8l4 4 4-4"/>
@@ -757,8 +759,34 @@
                                             <div class="project-status-grid">
                                                 <div class="status-card">
                                                     <div class="status-card-header">
+                                                        <h4 style="margin: 0; color: #0033A1; font-size: 1rem; font-weight: 700;">Org Chart</h4>
+                                                        <span class="status-badge status-in-progress">1% Complete</span>
+                                                    </div>
+                                                    <p style="margin: 8px 0 0 0; color: #4b5563; font-size: 0.9rem; line-height: 1.6;">An initiative to develop updated organizational charts for all OAA units, including both high-level (supervisors and managers) and comprehensive charts (all staff). Partnering with Richard Cardenas (OEVC) to use an AI-driven platform for efficient chart creation and maintenance.</p>
+                                                    <div class="status-metrics" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(148, 163, 184, 0.2); display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+                                                        <div class="metric-item">
+                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">Kickoff</div>
+                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Initiative status</div>
+                                                        </div>
+                                                        <div class="metric-item">
+                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">AI Platform</div>
+                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Chart creation</div>
+                                                        </div>
+                                                        <div class="metric-item">
+                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">Awaiting</div>
+                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">Staff list</div>
+                                                        </div>
+                                                        <div class="metric-item">
+                                                            <div class="metric-value" style="font-size: 1.25rem; font-weight: 700; color: #0033A1; line-height: 1.2;">OAA Units</div>
+                                                            <div class="metric-label" style="font-size: 0.75rem; color: #6b7280; margin-top: 4px;">All units</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="status-card">
+                                                    <div class="status-card-header">
                                                         <h4 style="margin: 0; color: #0033A1; font-size: 1rem; font-weight: 700;">Common App</h4>
-                                                        <span class="status-badge status-not-started">Not Started</span>
+                                                        <span class="status-badge status-in-progress">1% Complete</span>
                                                     </div>
                                                     <p style="margin: 8px 0 0 0; color: #4b5563; font-size: 0.9rem; line-height: 1.6;">A comprehensive 6-month implementation plan for the Common Application platform, enabling students to apply to multiple colleges with a single application. The implementation includes full workflow support, integrations (REST APIs, SFTP, PeopleSoft CS, Slate), and comprehensive training for CUNY Central and campuses.</p>
                                                     <div class="status-metrics" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(148, 163, 184, 0.2); display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
@@ -1186,13 +1214,23 @@
                                                         </div>
                                                     </div>
                                                     
-                                                    <div class="progress-bar-item" data-project="Common App" data-percent="0">
+                                                    <div class="progress-bar-item" data-project="Common App" data-percent="1">
                                                         <div class="progress-bar-label">
                                                             <span class="progress-project-name">Common App</span>
-                                                            <span class="progress-percent">0% (Not Started)</span>
+                                                            <span class="progress-percent">1%</span>
                                                         </div>
                                                         <div class="progress-bar-wrapper">
-                                                            <div class="progress-bar-fill" style="width: 0%; background: linear-gradient(90deg, #9ca3af 0%, #6b7280 100%);"></div>
+                                                            <div class="progress-bar-fill" style="width: 1%; background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);"></div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="progress-bar-item" data-project="Org Chart" data-percent="1">
+                                                        <div class="progress-bar-label">
+                                                            <span class="progress-project-name">Org Chart</span>
+                                                            <span class="progress-percent">1%</span>
+                                                        </div>
+                                                        <div class="progress-bar-wrapper">
+                                                            <div class="progress-bar-fill" style="width: 1%; background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1271,7 +1309,7 @@
                                                             <!-- Step 4 -->
                                                             <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
                                                                 <div style="background: linear-gradient(135deg, #0033A1, #0055cc); color: #ffffff; padding: 16px 20px; border-radius: 12px; min-width: 180px; text-align: center; box-shadow: 0 4px 12px rgba(0, 51, 161, 0.2); font-size: 0.9rem; font-weight: 600; line-height: 1.4;">
-                                                                    Align future work with functional project management as needed
+                                                                    Align future work with functional project manager as needed
                                                                 </div>
                                                                 <div style="position: absolute; right: -12px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid #0033A1; z-index: 1;"></div>
                                                             </div>
@@ -1476,6 +1514,211 @@
                                                 </div>
 
                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Collaboration Alignment on Projects for OAII Accordion -->
+                            <div class="project-status-accordion" style="margin: 2rem 0;">
+                                <div class="status-accordion-item" data-status-accordion="project-alignment">
+                                    <button class="status-accordion-trigger" aria-expanded="false">
+                                        <div class="status-accordion-header">
+                                            <h3 style="margin: 0; color: #0033A1; font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 12px;">
+                                                <span style="font-size: 1.5rem;">📋</span>
+                                                Collaboration Alignment on Projects for OAII
+                                            </h3>
+                                            <svg class="status-accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M6 8l4 4 4-4"/>
+                                            </svg>
+                        </div>
+                                    </button>
+                                    <div class="status-accordion-panel" style="display: none;">
+                                        <div class="status-accordion-content">
+                                            <div id="project-alignment-content" style="display: none;">
+                                                <div style="display: flex; flex-direction: column; gap: 32px; margin-top: 8px;">
+                                                    
+                                                    <!-- Organizational Chart Container -->
+                                                    <div style="background: #ffffff; border: 2px solid #0033A1; border-radius: 16px; padding: 32px; box-shadow: 0 6px 20px rgba(0, 51, 161, 0.12);">
+                                                        <div style="text-align: center; margin-bottom: 40px;">
+                                                            <h4 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: #0033A1;">Project Management Structure</h4>
+                                                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: #6b7280;">Organizational alignment and reporting relationships</p>
+                                                        </div>
+                                                        
+                                                        <!-- Chart Structure -->
+                                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 28px; position: relative; padding-bottom: 24px;">
+                                                            
+                                                            <!-- Level 1: Evan (Top Level) -->
+                                                            <div style="position: relative; width: 100%; display: flex; justify-content: center;">
+                                                                <div style="background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%); color: #ffffff; border-radius: 14px; padding: 24px 32px; box-shadow: 0 6px 20px rgba(124, 58, 237, 0.25); max-width: 400px; width: 100%;">
+                                                                    <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Evan</div>
+                                                                    <div style="font-size: 0.9rem; opacity: 0.95; margin-bottom: 16px; font-weight: 600;">SUD-AI / CATO</div>
+                                                                    <div style="border-top: 1px solid rgba(255, 255, 255, 0.3); padding-top: 12px; margin-top: 12px;">
+                                                                        <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; opacity: 0.9;">Responsibilities:</div>
+                                                                        <ul style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; opacity: 0.95;">
+                                                                            <li>Strategic alignment</li>
+                                                                            <li>Executive decision-making</li>
+                                                                            <li>Champions innovation and implementation</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <!-- Connection Lines from Evan to Directors -->
+                                                            <div style="position: relative; width: 100%; display: flex; justify-content: space-around; margin-top: -8px;">
+                                                                <div style="position: relative; width: 45%; display: flex; justify-content: center;">
+                                                                    <div style="border-left: 2px solid rgba(0, 51, 161, 0.4); height: 28px; margin: 0 auto; width: 2px;"></div>
+                                                                </div>
+                                                                <div style="position: relative; width: 45%; display: flex; justify-content: center;">
+                                                                    <div style="border-left: 2px solid rgba(0, 51, 161, 0.4); height: 28px; margin: 0 auto; width: 2px;"></div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <!-- Level 2: Directors (Leizel and Jetmir - Equal Level) -->
+                                                            <div style="display: flex; justify-content: space-around; width: 100%; gap: 32px; position: relative; align-items: flex-start;">
+                                                                
+                                                                <!-- Leizel (Left Director) -->
+                                                                <div style="flex: 1; position: relative; display: flex; flex-direction: column; align-items: center; max-width: 400px;">
+                                                                    <div style="background: linear-gradient(135deg, #0033A1 0%, #0046C7 100%); color: #ffffff; border-radius: 14px; padding: 24px 32px; box-shadow: 0 6px 20px rgba(0, 51, 161, 0.25); width: 100%;">
+                                                                        <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Leizel</div>
+                                                                        <div style="font-size: 0.9rem; opacity: 0.95; margin-bottom: 16px; font-weight: 600;">Director of Operations</div>
+                                                                        <div style="border-top: 1px solid rgba(255, 255, 255, 0.3); padding-top: 12px; margin-top: 12px;">
+                                                                            <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; opacity: 0.9;">Responsibilities:</div>
+                                                                            <ul style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; opacity: 0.95;">
+                                                                                <li>Procurement oversight</li>
+                                                                                <li>Initial project direction</li>
+                                                                                <li>Operational alignment</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <!-- Strategic Alignment Label between Leizel and Jetmir -->
+                                                                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">
+                                                                    <div style="background: #ffffff; padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(0, 51, 161, 0.2); font-size: 0.75rem; color: #0033A1; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 8px rgba(0, 51, 161, 0.1);">Project alignment</div>
+                                                                </div>
+                                                                
+                                                                <!-- Jetmir (Right Director) -->
+                                                                <div style="flex: 1; position: relative; display: flex; flex-direction: column; align-items: center; max-width: 400px;">
+                                                                    <div style="background: linear-gradient(135deg, #FFB71B 0%, #e6a200 100%); color: #0033A1; border-radius: 14px; padding: 24px 32px; box-shadow: 0 6px 20px rgba(255, 183, 27, 0.25); width: 100%;">
+                                                                        <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Jetmir</div>
+                                                                        <div style="font-size: 0.9rem; opacity: 0.95; margin-bottom: 16px; font-weight: 600;">Director of Projects</div>
+                                                                        <div style="border-top: 1px solid rgba(0, 51, 161, 0.2); padding-top: 12px; margin-top: 12px;">
+                                                                            <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: #0033A1;">Responsibilities:</div>
+                                                                            <ul style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #1f2937;">
+                                                                                <li>Owns full project delivery</li>
+                                                                                <li>Ensures scope/time/budget</li>
+                                                                                <li>Project Mapping and Governance</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            
+                                                            <!-- Connection Lines from Strategic Alignment to Individual Roles -->
+                                                            <div style="position: relative; width: 100%; display: flex; justify-content: space-around; margin-top: -8px; padding: 0 10%;">
+                                                                <div style="flex: 1; display: flex; justify-content: center; max-width: 300px;">
+                                                                    <div style="border-left: 2px dotted rgba(0, 51, 161, 0.4); height: 28px; margin: 0 auto; width: 2px;"></div>
+                                                                </div>
+                                                                <div style="flex: 1; display: flex; justify-content: center; max-width: 300px;">
+                                                                    <div style="border-left: 2px dotted rgba(0, 51, 161, 0.4); height: 28px; margin: 0 auto; width: 2px;"></div>
+                                                                </div>
+                                                                <div style="flex: 1; display: flex; justify-content: center; max-width: 300px;">
+                                                                    <div style="border-left: 2px dotted rgba(0, 51, 161, 0.4); height: 28px; margin: 0 auto; width: 2px;"></div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <!-- Level 3: Individual Roles (Maria, Michael, Jona) -->
+                                                            <div style="display: flex; justify-content: space-around; width: 100%; gap: 20px; position: relative; align-items: flex-start;">
+                                                                
+                                                                <!-- Maria -->
+                                                                <div style="flex: 1; max-width: 300px;">
+                                                                    <div style="background: linear-gradient(135deg, #0033A1 0%, #0046C7 100%); color: #ffffff; border-radius: 14px; padding: 24px 28px; box-shadow: 0 6px 20px rgba(0, 51, 161, 0.25); min-height: 200px; display: flex; flex-direction: column;">
+                                                                        <div style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Maria</div>
+                                                                        <div style="font-size: 0.9rem; opacity: 0.95; margin-bottom: 16px; font-weight: 600;">Business Analyst (BA)</div>
+                                                                        <div style="border-top: 1px solid rgba(255, 255, 255, 0.3); padding-top: 12px; margin-top: 12px; flex: 1;">
+                                                                            <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; opacity: 0.9;">Responsibilities:</div>
+                                                                            <ul style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; opacity: 0.95;">
+                                                                                <li>Define requirements</li>
+                                                                                <li>Map processes and data flows</li>
+                                                                                <li>UAT planning & validation</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <!-- Michael -->
+                                                                <div style="flex: 1; max-width: 300px;">
+                                                                    <div style="background: linear-gradient(135deg, #FFB71B 0%, #e6a200 100%); color: #0033A1; border-radius: 14px; padding: 24px 28px; box-shadow: 0 6px 20px rgba(255, 183, 27, 0.25); min-height: 200px; display: flex; flex-direction: column;">
+                                                                        <div style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Michael</div>
+                                                                        <div style="font-size: 0.9rem; opacity: 0.95; margin-bottom: 16px; font-weight: 600;">Functional Project Manager</div>
+                                                                        <div style="border-top: 1px solid rgba(0, 51, 161, 0.2); padding-top: 12px; margin-top: 12px; flex: 1;">
+                                                                            <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: #0033A1;">Responsibilities:</div>
+                                                                            <ul style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #1f2937;">
+                                                                                <li>Day-to-day execution</li>
+                                                                                <li>Stakeholder coordination</li>
+                                                                                <li>Risk & timeline management</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <!-- Jona -->
+                                                                <div style="flex: 1; max-width: 300px;">
+                                                                    <div style="background: linear-gradient(135deg, #FFB71B 0%, #e6a200 100%); color: #0033A1; border-radius: 14px; padding: 24px 28px; box-shadow: 0 6px 20px rgba(255, 183, 27, 0.25); min-height: 200px; display: flex; flex-direction: column;">
+                                                                        <div style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Jona</div>
+                                                                        <div style="font-size: 0.9rem; opacity: 0.95; margin-bottom: 16px; font-weight: 600;">Project Coordinator</div>
+                                                                        <div style="border-top: 1px solid rgba(0, 51, 161, 0.2); padding-top: 12px; margin-top: 12px; flex: 1;">
+                                                                            <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: #0033A1;">Responsibilities:</div>
+                                                                            <ul style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #1f2937;">
+                                                                                <li>Scheduling & tracking</li>
+                                                                                <li>Documentation support</li>
+                                                                                <li>Follow-ups & coordination</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Additional spacing section to match top accordion length -->
+                                                    <div style="background: #ffffff; border: 2px solid #0033A1; border-radius: 16px; padding: 32px; box-shadow: 0 6px 20px rgba(0, 51, 161, 0.12); min-height: 200px;">
+                                                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                                                            <div style="width: 54px; height: 54px; border-radius: 14px; background: #0033A1; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.6rem;">📋</div>
+                                                            <div>
+                                                                <h4 style="margin: 0; font-size: 1.15rem; font-weight: 700; color: #0033A1;">Project Alignment Framework</h4>
+                                                                <p style="margin: 4px 0 0 0; font-size: 0.85rem; color: #4b5563;">Structured approach to project coordination</p>
+                                                            </div>
+                                                        </div>
+                                                        <p style="margin: 0 0 24px 0; color: #374151; font-size: 0.95rem; line-height: 1.7;">
+                                                            This structure establishes clear communication paths, well-defined responsibilities, and smooth coordination <strong>when working together on a project</strong>. It strengthens strategic alignment between operations and project delivery while supporting operational efficiency and strong project-governance practices.
+                                                        </p>
+                                                        
+                                                        <!-- Key Principles -->
+                                                        <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(0, 51, 161, 0.15);">
+                                                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+                                                                <div style="background: #f9fbff; border: 1.5px solid #d7e4ff; border-radius: 12px; padding: 16px;">
+                                                                    <div style="font-size: 0.9rem; font-weight: 600; color: #0033A1; margin-bottom: 8px;">Clear Accountability</div>
+                                                                    <p style="margin: 0; font-size: 0.85rem; color: #6b7280; line-height: 1.5;">Each role has defined responsibilities and decision-making authority.</p>
+                                                                </div>
+                                                                <div style="background: #f9fbff; border: 1.5px solid #d7e4ff; border-radius: 12px; padding: 16px;">
+                                                                    <div style="font-size: 0.9rem; font-weight: 600; color: #0033A1; margin-bottom: 8px;">Strategic Coordination</div>
+                                                                    <p style="margin: 0; font-size: 0.85rem; color: #6b7280; line-height: 1.5;">Directors work together to align operational and project objectives.</p>
+                                                                </div>
+                                                                <div style="background: #f9fbff; border: 1.5px solid #d7e4ff; border-radius: 12px; padding: 16px;">
+                                                                    <div style="font-size: 0.9rem; font-weight: 600; color: #0033A1; margin-bottom: 8px;">Effective Communication</div>
+                                                                    <p style="margin: 0; font-size: 0.85rem; color: #6b7280; line-height: 1.5;">Structured reporting ensures information flows efficiently across teams.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -3720,9 +3963,19 @@
                                         </span>
                                     </summary>
                                     <div class="week-content">
+                                        <h4 style="margin: 0 0 12px 0; color: #0033A1; font-size: 1rem; font-weight: 700;">Key Updates</h4>
                                         <ul>
-                                            <li>Fourth Governance Checkpoint: Pre-finalization review (Week of Nov 10 – 13).</li>
-                                            <li>Confirm readiness for final approvals and implementation.</li>
+                                            <li><strong>Phase One:</strong> OAA-only use of ProcessMaker; Procurement, Bursar, OGC, and Board Secretary stay on current processes.</li>
+                                            <li><strong>Status:</strong> Testing sample resolutions this week; standing PM working sessions continue.</li>
+                                            <li><strong>AI (Phase One):</strong> Enabled for four categories; prompts being refined.</li>
+                                            <li><strong>Phase Two (Direction):</strong> OneDrive single-source editing, expanded AI prompts, and exploration of structured authoring in PM that outputs to Word/PDF.</li>
+                                            <li><strong>Capacity:</strong> Dia and Justin are in peak cycle; parallel testing adds timeline pressure.</li>
+                                            <li><strong>Document handling:</strong> Upload/download workflow causes friction and version risk; single-source editing required.</li>
+                                            <li><strong>Repository:</strong> PM is not the archive; long-term storage, retention, and retrieval need definition.</li>
+                                            <li><strong>Governance:</strong> No clear owner; sponsorship and decision authority must be established.</li>
+                                            <li><strong>Stakeholders:</strong> Limited availability (e.g., Luz) impacts requirements validation and volume planning.</li>
+                                            <li><strong>Access controls:</strong> OGC/Board participation will require clear rules on visibility, editing, and comment protection.</li>
+                                            <li><strong>AI scope:</strong> Only four categories active; broader coverage needs new prompts and testing.</li>
                                         </ul>
                                     </div>
                                 </details>
@@ -4513,6 +4766,10 @@
                         border-radius: 12px;
                         margin-bottom: 2rem;
                         box-shadow: 0 4px 16px rgba(0, 51, 161, 0.2);
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        gap: 1.5rem;
                     }
                     
                     .oem-header h1 {
@@ -4525,6 +4782,42 @@
                         margin: 0;
                         opacity: 0.9;
                         font-size: 1rem;
+                    }
+                    
+                    .oem-edit-btn {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        padding: 0.75rem 1.25rem;
+                        background: transparent;
+                        border: 2px solid transparent;
+                        border-radius: 8px;
+                        color: transparent;
+                        font-size: 0.95rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        white-space: nowrap;
+                        opacity: 0;
+                        pointer-events: auto;
+                    }
+                    
+                    .oem-edit-btn:hover {
+                        opacity: 1;
+                        background: rgba(255, 255, 255, 0.25);
+                        border-color: rgba(255, 255, 255, 0.5);
+                        color: #ffffff;
+                        backdrop-filter: blur(10px);
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                    }
+                    
+                    .oem-edit-btn:active {
+                        transform: translateY(0);
+                    }
+                    
+                    .oem-edit-btn svg {
+                        flex-shrink: 0;
                     }
                     
                     .oem-summary {
@@ -4622,6 +4915,90 @@
                     .oem-toggle input[type="checkbox"] {
                         margin: 0;
                         cursor: pointer;
+                    }
+                    
+                    /* Metrics Chart Container */
+                    .oem-metrics-container {
+                        margin-bottom: 2rem;
+                    }
+                    
+                    /* Chart Style Selector */
+                    .oem-chart-style-selector {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                        margin-bottom: 1rem;
+                        padding: 0.75rem 1rem;
+                        background: #f8f9fa;
+                        border-radius: 8px;
+                        border: 1px solid #e5e7eb;
+                    }
+                    
+                    .oem-chart-style-label {
+                        font-size: 0.875rem;
+                        font-weight: 600;
+                        color: #374151;
+                    }
+                    
+                    .oem-chart-style-buttons {
+                        display: flex;
+                        gap: 0.5rem;
+                        flex-wrap: wrap;
+                    }
+                    
+                    .oem-chart-style-btn {
+                        padding: 0.5rem 1rem;
+                        border: 1px solid #d1d5db;
+                        border-radius: 6px;
+                        background: #ffffff;
+                        color: #374151;
+                        font-size: 0.875rem;
+                        font-weight: 500;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                    }
+                    
+                    .oem-chart-style-btn:hover {
+                        background: #f3f4f6;
+                        border-color: #0033A1;
+                        color: #0033A1;
+                    }
+                    
+                    .oem-chart-style-btn.active {
+                        background: #0033A1;
+                        border-color: #0033A1;
+                        color: #ffffff;
+                    }
+                    
+                    /* Metrics Chart Container */
+                    .oem-metrics-chart-container {
+                        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+                        padding: 1.25rem 1.5rem;
+                        border-radius: 12px;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+                        border: 1px solid #e5e7eb;
+                        overflow: hidden;
+                    }
+                    
+                    .oem-metrics-chart-container canvas {
+                        width: 100%;
+                        height: 400px;
+                        display: block;
+                    }
+                    
+                    @media (max-width: 768px) {
+                        .oem-chart-style-selector {
+                            flex-direction: column;
+                            align-items: flex-start;
+                        }
+                        
+                        .oem-metrics-chart-container {
+                            padding: 1rem;
+                        }
+                        
+                        .oem-metrics-chart-container canvas {
+                            height: 300px;
+                        }
                     }
                     
                     .oem-department-section {
@@ -4820,8 +5197,16 @@
                 
                 <div class="oem-container">
                     <div class="oem-header">
+                        <div>
                         <h1>Office of Enrollment Management (OEM) Dashboard</h1>
-                        <p>Comprehensive view of all OEM projects, initiatives, and their status</p>
+                            <p>Comprehensive view of all OEM projects and their status</p>
+                        </div>
+                        <button id="oem-edit-btn" class="oem-edit-btn" title="Edit Projects">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.333 2.00001C11.5084 1.82471 11.7163 1.68603 11.9446 1.59231C12.1729 1.49859 12.4171 1.45178 12.6633 1.45178C12.9096 1.45178 13.1538 1.49859 13.3821 1.59231C13.6104 1.68603 13.8183 1.82471 13.9937 2.00001C14.169 2.17535 14.3077 2.38322 14.4014 2.61153C14.4951 2.83984 14.5419 3.08405 14.5419 3.33034C14.5419 3.57663 14.4951 3.82084 14.4014 4.04915C14.3077 4.27746 14.169 4.48533 13.9937 4.66067L5.05333 13.601L1.33333 14.6667L2.399 10.9467L11.333 2.00001Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Edit
+                        </button>
                     </div>
                     
                     <!-- Summary Section -->
@@ -4901,9 +5286,295 @@
                         </div>
                     </div>
                     
+                    <!-- Metrics Chart Section -->
+                    <div class="oem-metrics-container">
+                        <div class="oem-metrics-chart-container" id="oem-metrics-chart-container">
+                            <canvas id="oem-metrics-chart" width="800" height="400"></canvas>
+                        </div>
+                    </div>
+                    
                     <!-- Results Section -->
                     <div id="oem-results"></div>
+                    
+                    <!-- Editing View (Hidden by default) -->
+                    <div id="oem-edit-view" class="oem-edit-view" style="display: none;">
+                        <div class="oem-edit-header">
+                            <h2>Edit Projects</h2>
+                            <div class="oem-edit-actions">
+                                <button id="oem-add-row-btn" class="oem-action-btn oem-add-btn" title="Add Row">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 3.33334V12.6667M3.33333 8H12.6667" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                    Add Row
+                                </button>
+                                <button id="oem-add-col-btn" class="oem-action-btn oem-add-btn" title="Add Column">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 3.33334V12.6667M3.33333 8H12.6667" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                    Add Column
+                                </button>
+                                <button id="oem-save-btn" class="oem-action-btn oem-save-btn" title="Save Changes">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.3333 4L6 11.3333L2.66667 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    Save
+                                </button>
+                                <button id="oem-cancel-btn" class="oem-action-btn oem-cancel-btn" title="Cancel">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                        <div class="oem-edit-table-container">
+                            <table id="oem-edit-table" class="oem-edit-table">
+                                <thead id="oem-edit-thead"></thead>
+                                <tbody id="oem-edit-tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+                
+                <style>
+                    /* Editing View Styles */
+                    .oem-edit-view {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100vh;
+                        background: #ffffff;
+                        z-index: 10000;
+                        display: flex;
+                        flex-direction: column;
+                        animation: fadeIn 0.3s ease-in;
+                    }
+                    
+                    .oem-edit-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 1.5rem 2rem;
+                        background: linear-gradient(135deg, #0033A1 0%, #0046C7 100%);
+                        color: #ffffff;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                        position: sticky;
+                        top: 0;
+                        z-index: 10001;
+                    }
+                    
+                    .oem-edit-header h2 {
+                        margin: 0;
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                    }
+                    
+                    .oem-edit-actions {
+                        display: flex;
+                        gap: 0.75rem;
+                        align-items: center;
+                    }
+                    
+                    .oem-action-btn {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        padding: 0.625rem 1.25rem;
+                        border: none;
+                        border-radius: 6px;
+                        font-size: 0.9rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                        white-space: nowrap;
+                    }
+                    
+                    .oem-action-btn svg {
+                        flex-shrink: 0;
+                    }
+                    
+                    .oem-add-btn {
+                        background: rgba(255, 255, 255, 0.2);
+                        color: #ffffff;
+                        border: 1px solid rgba(255, 255, 255, 0.3);
+                    }
+                    
+                    .oem-add-btn:hover {
+                        background: rgba(255, 255, 255, 0.3);
+                        transform: translateY(-1px);
+                    }
+                    
+                    .oem-save-btn {
+                        background: #22c55e;
+                        color: #ffffff;
+                    }
+                    
+                    .oem-save-btn:hover {
+                        background: #16a34a;
+                        transform: translateY(-1px);
+                        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+                    }
+                    
+                    .oem-cancel-btn {
+                        background: rgba(255, 255, 255, 0.15);
+                        color: #ffffff;
+                        border: 1px solid rgba(255, 255, 255, 0.3);
+                    }
+                    
+                    .oem-cancel-btn:hover {
+                        background: rgba(255, 255, 255, 0.25);
+                    }
+                    
+                    .oem-edit-table-container {
+                        flex: 1;
+                        overflow: auto;
+                        padding: 1.5rem;
+                        background: #f8f9fa;
+                    }
+                    
+                    .oem-edit-table {
+                        width: 100%;
+                        min-width: 100%;
+                        border-collapse: separate;
+                        border-spacing: 0;
+                        background: #ffffff;
+                        border-radius: 8px;
+                        overflow: hidden;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    }
+                    
+                    .oem-edit-table thead {
+                        background: #0033A1;
+                        color: #ffffff;
+                        position: sticky;
+                        top: 0;
+                        z-index: 100;
+                    }
+                    
+                    .oem-edit-table th {
+                        padding: 1rem;
+                        text-align: left;
+                        font-weight: 600;
+                        font-size: 0.875rem;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                        border-right: 1px solid rgba(255, 255, 255, 0.1);
+                        position: relative;
+                        min-width: 150px;
+                    }
+                    
+                    .oem-edit-table th:last-child {
+                        border-right: none;
+                    }
+                    
+                    .oem-edit-table th .col-header-content {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 0.5rem;
+                    }
+                    
+                    .oem-edit-table th .col-remove-btn {
+                        background: rgba(255, 255, 255, 0.2);
+                        border: none;
+                        color: #ffffff;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 0.75rem;
+                        padding: 0;
+                        transition: all 0.2s ease;
+                    }
+                    
+                    .oem-edit-table th .col-remove-btn:hover {
+                        background: rgba(255, 255, 255, 0.3);
+                    }
+                    
+                    .oem-edit-table tbody tr {
+                        border-bottom: 1px solid #e5e7eb;
+                        transition: background-color 0.2s ease;
+                    }
+                    
+                    .oem-edit-table tbody tr:hover {
+                        background-color: #f9fafb;
+                    }
+                    
+                    .oem-edit-table tbody tr:last-child {
+                        border-bottom: none;
+                    }
+                    
+                    .oem-edit-table td {
+                        padding: 0.75rem 1rem;
+                        border-right: 1px solid #e5e7eb;
+                        position: relative;
+                    }
+                    
+                    .oem-edit-table td:last-child {
+                        border-right: none;
+                    }
+                    
+                    .oem-edit-table td input,
+                    .oem-edit-table td select,
+                    .oem-edit-table td textarea {
+                        width: 100%;
+                        padding: 0.5rem;
+                        border: 1px solid #d1d5db;
+                        border-radius: 4px;
+                        font-size: 0.875rem;
+                        font-family: inherit;
+                        background: #ffffff;
+                        transition: all 0.2s ease;
+                    }
+                    
+                    .oem-edit-table td input:focus,
+                    .oem-edit-table td select:focus,
+                    .oem-edit-table td textarea:focus {
+                        outline: none;
+                        border-color: #0033A1;
+                        box-shadow: 0 0 0 3px rgba(0, 51, 161, 0.1);
+                    }
+                    
+                    .oem-edit-table td textarea {
+                        resize: vertical;
+                        min-height: 60px;
+                    }
+                    
+                    .oem-edit-table td .row-actions {
+                        display: flex;
+                        gap: 0.5rem;
+                        align-items: center;
+                    }
+                    
+                    .oem-edit-table td .row-delete-btn {
+                        background: #ef4444;
+                        color: #ffffff;
+                        border: none;
+                        padding: 0.375rem 0.75rem;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        font-size: 0.75rem;
+                        font-weight: 600;
+                        transition: all 0.2s ease;
+                    }
+                    
+                    .oem-edit-table td .row-delete-btn:hover {
+                        background: #dc2626;
+                        transform: translateY(-1px);
+                    }
+                    
+                    @keyframes fadeIn {
+                        from {
+                            opacity: 0;
+                            transform: translateY(20px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+                </style>
                 
                 <script>
                     // OEM Dashboard Data and Logic
@@ -4916,7 +5587,8 @@
                     // Category: Project category (e.g., "Active Project", "Discovery", "Completed", etc.)
                     // ============================================
                     
-                    const oemData = [
+                    // Default OEM data (used only if no saved data exists)
+                    const oemDefaultData = [
                         // Enrollment Department
                         { Department: "Enrollment", Name: "Local Law 18", Priority: "Low Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Identify special needs accommodations; receiving info from NYCPS", Category: "Discovery" },
                         { Department: "Enrollment", Name: "Nelnet", Priority: "High Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "Tuition payment plans, billing, and campus e-commerce services", Category: "Contract Renewal / Maintenance" },
@@ -4972,6 +5644,31 @@
                         { Department: "Registrar", Name: "Transcript Processing Enhancement", Priority: "Medium Priority", BoT_Resolution_Required: "No", CIS_Support: "Yes", Target_Launch: "TBD", OAII_Support: "", Description: "", Category: "" }
                     ];
                     
+                    // Load OEM data from localStorage or use default
+                    let oemData = [];
+                    function loadOEMData() {
+                        try {
+                            const saved = localStorage.getItem('oemDashboardData');
+                            if (saved) {
+                                oemData = JSON.parse(saved);
+                            } else {
+                                oemData = JSON.parse(JSON.stringify(oemDefaultData));
+                            }
+                        } catch (e) {
+                            console.error('Error loading OEM data:', e);
+                            oemData = JSON.parse(JSON.stringify(oemDefaultData));
+                        }
+                    }
+                    
+                    // Save OEM data to localStorage
+                    function saveOEMData() {
+                        try {
+                            localStorage.setItem('oemDashboardData', JSON.stringify(oemData));
+                        } catch (e) {
+                            console.error('Error saving OEM data:', e);
+                        }
+                    }
+                    
                     // Priority order for sorting (higher number = higher priority)
                     const priorityOrder = {
                         "Critical": 4,
@@ -4980,8 +5677,386 @@
                         "Low Priority": 1
                     };
                     
+                    // Chart data storage
+                    let currentChartData = null;
+                    
+                    // Render chart (2D Line only)
+                    function renderChart(data) {
+                        currentChartData = data;
+                        const canvas = document.getElementById('oem-metrics-chart');
+                        if (!canvas) return;
+                        
+                        const ctx = canvas.getContext('2d');
+                        const container = canvas.parentElement;
+                        canvas.width = container.clientWidth;
+                        canvas.height = 400;
+                        
+                        // Clear canvas
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        
+                        // Always render line chart
+                        renderLineChart(ctx, canvas, data);
+                    }
+                    
+                    // Prepare chart data
+                    function prepareChartData(data) {
+                        const total = data.length;
+                        const botYes = data.filter(item => item.BoT_Resolution_Required === "Yes").length;
+                        const cisYes = data.filter(item => item.CIS_Support === "Yes").length;
+                        const oaiiYes = data.filter(item => item.OAII_Support === "Yes").length;
+                        const high = data.filter(item => item.Priority === "High Priority").length;
+                        
+                        return {
+                            labels: ['Total Projects', 'BoT Required', 'CIS Support', 'OAII Support', 'High Priority'],
+                            values: [total, botYes, cisYes, oaiiYes, high],
+                            colors: ['#0033A1', '#0046C7', '#0066FF', '#3385FF', '#66B3FF']
+                        };
+                    }
+                    
+                    // Render 2D Bar Chart
+                    function renderBarChart(ctx, canvas, data) {
+                        const chartData = prepareChartData(data);
+                        const padding = 60;
+                        const chartWidth = canvas.width - (padding * 2);
+                        const chartHeight = canvas.height - (padding * 2);
+                        const barWidth = chartWidth / chartData.values.length * 0.6;
+                        const maxValue = Math.max(...chartData.values, 1);
+                        const barSpacing = chartWidth / chartData.values.length;
+                        
+                        // Draw grid lines
+                        ctx.strokeStyle = '#e5e7eb';
+                        ctx.lineWidth = 1;
+                        for (let i = 0; i <= 5; i++) {
+                            const y = padding + (chartHeight / 5) * i;
+                            ctx.beginPath();
+                            ctx.moveTo(padding, y);
+                            ctx.lineTo(canvas.width - padding, y);
+                            ctx.stroke();
+                        }
+                        
+                        // Draw bars
+                        chartData.values.forEach((value, index) => {
+                            const barHeight = (value / maxValue) * chartHeight;
+                            const x = padding + (barSpacing * index) + (barSpacing - barWidth) / 2;
+                            const y = padding + chartHeight - barHeight;
+                            
+                            // Draw bar
+                            ctx.fillStyle = chartData.colors[index];
+                            ctx.fillRect(x, y, barWidth, barHeight);
+                            
+                            // Draw value label
+                            ctx.fillStyle = '#374151';
+                            ctx.font = 'bold 14px sans-serif';
+                            ctx.textAlign = 'center';
+                            ctx.fillText(value.toString(), x + barWidth / 2, y - 5);
+                            
+                            // Draw label
+                            ctx.fillStyle = '#6b7280';
+                            ctx.font = '12px sans-serif';
+                            ctx.save();
+                            ctx.translate(x + barWidth / 2, canvas.height - padding + 20);
+                            ctx.rotate(-Math.PI / 4);
+                            ctx.fillText(chartData.labels[index], 0, 0);
+                            ctx.restore();
+                        });
+                        
+                        // Draw title
+                        ctx.fillStyle = '#1f2937';
+                        ctx.font = 'bold 16px sans-serif';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Metrics Overview', canvas.width / 2, 25);
+                    }
+                    
+                    // Render 2D Line Chart
+                    function renderLineChart(ctx, canvas, data) {
+                        const chartData = prepareChartData(data);
+                        const padding = 60;
+                        const chartWidth = canvas.width - (padding * 2);
+                        const chartHeight = canvas.height - (padding * 2);
+                        const maxValue = Math.max(...chartData.values, 1);
+                        const pointSpacing = chartWidth / (chartData.values.length - 1);
+                        
+                        // Draw grid
+                        ctx.strokeStyle = '#e5e7eb';
+                        ctx.lineWidth = 1;
+                        for (let i = 0; i <= 5; i++) {
+                            const y = padding + (chartHeight / 5) * i;
+                            ctx.beginPath();
+                            ctx.moveTo(padding, y);
+                            ctx.lineTo(canvas.width - padding, y);
+                            ctx.stroke();
+                        }
+                        
+                        // Draw line
+                        ctx.strokeStyle = '#0033A1';
+                        ctx.lineWidth = 3;
+                        ctx.beginPath();
+                        chartData.values.forEach((value, index) => {
+                            const x = padding + (pointSpacing * index);
+                            const y = padding + chartHeight - (value / maxValue) * chartHeight;
+                            if (index === 0) {
+                                ctx.moveTo(x, y);
+                            } else {
+                                ctx.lineTo(x, y);
+                            }
+                        });
+                        ctx.stroke();
+                        
+                        // Draw points
+                        chartData.values.forEach((value, index) => {
+                            const x = padding + (pointSpacing * index);
+                            const y = padding + chartHeight - (value / maxValue) * chartHeight;
+                            
+                            // Draw point
+                            ctx.fillStyle = chartData.colors[index];
+                            ctx.beginPath();
+                            ctx.arc(x, y, 6, 0, Math.PI * 2);
+                            ctx.fill();
+                            ctx.strokeStyle = '#ffffff';
+                            ctx.lineWidth = 2;
+                            ctx.stroke();
+                            
+                            // Draw value
+                            ctx.fillStyle = '#374151';
+                            ctx.font = 'bold 12px sans-serif';
+                            ctx.textAlign = 'center';
+                            ctx.fillText(value.toString(), x, y - 15);
+                            
+                            // Draw label
+                            ctx.fillStyle = '#6b7280';
+                            ctx.font = '11px sans-serif';
+                            ctx.save();
+                            ctx.translate(x, canvas.height - padding + 20);
+                            ctx.rotate(-Math.PI / 4);
+                            ctx.fillText(chartData.labels[index], 0, 0);
+                            ctx.restore();
+                        });
+                        
+                        // Draw title
+                        ctx.fillStyle = '#1f2937';
+                        ctx.font = 'bold 16px sans-serif';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Metrics Trend', canvas.width / 2, 25);
+                    }
+                    
+                    // Render 2D Pie Chart
+                    function renderPieChart(ctx, canvas, data) {
+                        const chartData = prepareChartData(data);
+                        const centerX = canvas.width / 2;
+                        const centerY = canvas.height / 2;
+                        const radius = Math.min(canvas.width, canvas.height) / 3;
+                        const total = chartData.values.reduce((a, b) => a + b, 0);
+                        
+                        let currentAngle = -Math.PI / 2;
+                        
+                        // Draw pie slices
+                        chartData.values.forEach((value, index) => {
+                            if (value === 0) return;
+                            
+                            const sliceAngle = (value / total) * Math.PI * 2;
+                            
+                            // Draw slice
+                            ctx.beginPath();
+                            ctx.moveTo(centerX, centerY);
+                            ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+                            ctx.closePath();
+                            ctx.fillStyle = chartData.colors[index];
+                            ctx.fill();
+                            ctx.strokeStyle = '#ffffff';
+                            ctx.lineWidth = 2;
+                            ctx.stroke();
+                            
+                            // Draw label
+                            const labelAngle = currentAngle + sliceAngle / 2;
+                            const labelX = centerX + Math.cos(labelAngle) * (radius * 0.7);
+                            const labelY = centerY + Math.sin(labelAngle) * (radius * 0.7);
+                            
+                            ctx.fillStyle = '#ffffff';
+                            ctx.font = 'bold 14px sans-serif';
+                            ctx.textAlign = 'center';
+                            ctx.fillText(value.toString(), labelX, labelY + 5);
+                            
+                            // Draw legend
+                            const legendX = canvas.width - 150;
+                            const legendY = 80 + (index * 30);
+                            ctx.fillStyle = chartData.colors[index];
+                            ctx.fillRect(legendX, legendY - 10, 20, 15);
+                            ctx.fillStyle = '#374151';
+                            ctx.font = '12px sans-serif';
+                            ctx.textAlign = 'left';
+                            ctx.fillText(chartData.labels[index], legendX + 25, legendY);
+                            
+                            currentAngle += sliceAngle;
+                        });
+                        
+                        // Draw title
+                        ctx.fillStyle = '#1f2937';
+                        ctx.font = 'bold 16px sans-serif';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Metrics Distribution', canvas.width / 2, 25);
+                    }
+                    
+                    // Render Histogram
+                    function renderHistogram(ctx, canvas, data) {
+                        const chartData = prepareChartData(data);
+                        const padding = 60;
+                        const chartWidth = canvas.width - (padding * 2);
+                        const chartHeight = canvas.height - (padding * 2);
+                        const maxValue = Math.max(...chartData.values, 1);
+                        const binWidth = chartWidth / chartData.values.length;
+                        
+                        // Draw grid
+                        ctx.strokeStyle = '#e5e7eb';
+                        ctx.lineWidth = 1;
+                        for (let i = 0; i <= 5; i++) {
+                            const y = padding + (chartHeight / 5) * i;
+                            ctx.beginPath();
+                            ctx.moveTo(padding, y);
+                            ctx.lineTo(canvas.width - padding, y);
+                            ctx.stroke();
+                        }
+                        
+                        // Draw histogram bars
+                        chartData.values.forEach((value, index) => {
+                            const barHeight = (value / maxValue) * chartHeight;
+                            const x = padding + (binWidth * index);
+                            const y = padding + chartHeight - barHeight;
+                            
+                            // Draw bar with gradient
+                            const gradient = ctx.createLinearGradient(x, y, x, y + barHeight);
+                            gradient.addColorStop(0, chartData.colors[index]);
+                            // Add transparency to the end color
+                            const color = chartData.colors[index];
+                            const transparentColor = color.replace('#', '');
+                            const r = parseInt(transparentColor.substr(0, 2), 16);
+                            const g = parseInt(transparentColor.substr(2, 2), 16);
+                            const b = parseInt(transparentColor.substr(4, 2), 16);
+                            gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0.5)`);
+                            ctx.fillStyle = gradient;
+                            ctx.fillRect(x + 2, y, binWidth - 4, barHeight);
+                            
+                            // Draw border
+                            ctx.strokeStyle = chartData.colors[index];
+                            ctx.lineWidth = 2;
+                            ctx.strokeRect(x + 2, y, binWidth - 4, barHeight);
+                            
+                            // Draw value
+                            ctx.fillStyle = '#374151';
+                            ctx.font = 'bold 13px sans-serif';
+                            ctx.textAlign = 'center';
+                            ctx.fillText(value.toString(), x + binWidth / 2, y - 5);
+                            
+                            // Draw label
+                            ctx.fillStyle = '#6b7280';
+                            ctx.font = '11px sans-serif';
+                            ctx.save();
+                            ctx.translate(x + binWidth / 2, canvas.height - padding + 20);
+                            ctx.rotate(-Math.PI / 4);
+                            ctx.fillText(chartData.labels[index], 0, 0);
+                            ctx.restore();
+                        });
+                        
+                        // Draw title
+                        ctx.fillStyle = '#1f2937';
+                        ctx.font = 'bold 16px sans-serif';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Metrics Histogram', canvas.width / 2, 25);
+                    }
+                    
+                    // Render Combo Chart (Bar + Line)
+                    function renderComboChart(ctx, canvas, data) {
+                        const chartData = prepareChartData(data);
+                        const padding = 60;
+                        const chartWidth = canvas.width - (padding * 2);
+                        const chartHeight = canvas.height - (padding * 2);
+                        const maxValue = Math.max(...chartData.values, 1);
+                        const barWidth = chartWidth / chartData.values.length * 0.5;
+                        const barSpacing = chartWidth / chartData.values.length;
+                        const pointSpacing = chartWidth / (chartData.values.length - 1);
+                        
+                        // Draw grid
+                        ctx.strokeStyle = '#e5e7eb';
+                        ctx.lineWidth = 1;
+                        for (let i = 0; i <= 5; i++) {
+                            const y = padding + (chartHeight / 5) * i;
+                            ctx.beginPath();
+                            ctx.moveTo(padding, y);
+                            ctx.lineTo(canvas.width - padding, y);
+                            ctx.stroke();
+                        }
+                        
+                        // Draw bars
+                        chartData.values.forEach((value, index) => {
+                            const barHeight = (value / maxValue) * chartHeight;
+                            const x = padding + (barSpacing * index) + (barSpacing - barWidth) / 2;
+                            const y = padding + chartHeight - barHeight;
+                            
+                            // Convert hex to rgba for transparency
+                            const color = chartData.colors[index];
+                            const transparentColor = color.replace('#', '');
+                            const r = parseInt(transparentColor.substr(0, 2), 16);
+                            const g = parseInt(transparentColor.substr(2, 2), 16);
+                            const b = parseInt(transparentColor.substr(4, 2), 16);
+                            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.5)`;
+                            ctx.fillRect(x, y, barWidth, barHeight);
+                            ctx.strokeStyle = chartData.colors[index];
+                            ctx.lineWidth = 2;
+                            ctx.strokeRect(x, y, barWidth, barHeight);
+                        });
+                        
+                        // Draw line
+                        ctx.strokeStyle = '#0033A1';
+                        ctx.lineWidth = 3;
+                        ctx.beginPath();
+                        chartData.values.forEach((value, index) => {
+                            const x = padding + (pointSpacing * index);
+                            const y = padding + chartHeight - (value / maxValue) * chartHeight;
+                            if (index === 0) {
+                                ctx.moveTo(x, y);
+                            } else {
+                                ctx.lineTo(x, y);
+                            }
+                        });
+                        ctx.stroke();
+                        
+                        // Draw points
+                        chartData.values.forEach((value, index) => {
+                            const x = padding + (pointSpacing * index);
+                            const y = padding + chartHeight - (value / maxValue) * chartHeight;
+                            
+                            ctx.fillStyle = '#0033A1';
+                            ctx.beginPath();
+                            ctx.arc(x, y, 5, 0, Math.PI * 2);
+                            ctx.fill();
+                            
+                            // Draw value
+                            ctx.fillStyle = '#374151';
+                            ctx.font = 'bold 12px sans-serif';
+                            ctx.textAlign = 'center';
+                            ctx.fillText(value.toString(), x, y - 15);
+                            
+                            // Draw label
+                            ctx.fillStyle = '#6b7280';
+                            ctx.font = '11px sans-serif';
+                            ctx.save();
+                            ctx.translate(x, canvas.height - padding + 20);
+                            ctx.rotate(-Math.PI / 4);
+                            ctx.fillText(chartData.labels[index], 0, 0);
+                            ctx.restore();
+                        });
+                        
+                        // Draw title
+                        ctx.fillStyle = '#1f2937';
+                        ctx.font = 'bold 16px sans-serif';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Metrics Combo View', canvas.width / 2, 25);
+                    }
+                    
                     // Initialize OEM Dashboard
                     function initOEMDashboard() {
+                        // Load data from localStorage
+                        loadOEMData();
+                        
                         // Sort data: first by Department (A-Z), then by Priority (highest first)
                         const sortedData = [...oemData].sort((a, b) => {
                             // First sort by Department
@@ -5007,6 +6082,16 @@
                         
                         // Setup event listeners
                         setupOEMEventListeners();
+                        
+                        // Initial chart render
+                        updateMetricsChart(sortedData);
+                        
+                        // Handle window resize
+                        window.addEventListener('resize', function() {
+                            if (currentChartData) {
+                                renderChart(currentChartData);
+                            }
+                        });
                     }
                     
                     // Populate department filter dropdown
@@ -5185,6 +6270,15 @@
                         document.getElementById('oem-cis-yes-count').textContent = cisYes;
                         document.getElementById('oem-oaii-yes-count').textContent = oaiiYes;
                         document.getElementById('oem-high-count').textContent = high;
+                        
+                        // Update metrics chart
+                        updateMetricsChart(data);
+                    }
+                    
+                    // Update metrics chart
+                    function updateMetricsChart(data) {
+                        // Render line chart with current data
+                        renderChart(data);
                     }
                     
                     // Setup event listeners for filters
@@ -5324,6 +6418,1289 @@
                             document.addEventListener('DOMContentLoaded', initOEMDashboard);
                         } else {
                             initOEMDashboard();
+                        }
+                    }
+                    
+                    // ============================================
+                    // EDITING VIEW FUNCTIONALITY
+                    // ============================================
+                    
+                    let oemEditColumns = [];
+                    let oemEditData = [];
+                    let oemOriginalData = [];
+                    
+                    // Show password modal for OEM Edit
+                    function showOEMEditPasswordModal() {
+                        const modal = document.getElementById('password-modal');
+                        const passwordInput = document.getElementById('password-input');
+                        const errorDiv = document.getElementById('password-error');
+                        
+                        // Reset modal state
+                        errorDiv.textContent = '';
+                        passwordInput.value = '';
+                        modal.classList.add('show');
+                        passwordInput.focus();
+                        
+                        // Remove any existing event listeners by removing and re-adding
+                        const submitBtn = document.getElementById('password-submit');
+                        const cancelBtn = document.getElementById('password-cancel');
+                        const closeBtn = document.getElementById('password-modal-close');
+                        
+                        // Remove old handlers
+                        const newSubmitBtn = submitBtn.cloneNode(true);
+                        const newCancelBtn = cancelBtn.cloneNode(true);
+                        const newCloseBtn = closeBtn.cloneNode(true);
+                        submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
+                        cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+                        closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+                        
+                        // Update references
+                        const submitBtnNew = document.getElementById('password-submit');
+                        const cancelBtnNew = document.getElementById('password-cancel');
+                        const closeBtnNew = document.getElementById('password-modal-close');
+                        
+                        // Submit handler
+                        const handleSubmit = () => {
+                            const password = passwordInput.value.trim();
+                            if (password === 'OAIIO') {
+                                // Correct password - proceed with opening edit view
+                                modal.classList.remove('show');
+                                openOEMEditView();
+                            } else {
+                                // Incorrect password
+                                errorDiv.textContent = 'Incorrect password. Please try again.';
+                                passwordInput.value = '';
+                                passwordInput.focus();
+                            }
+                        };
+                        
+                        // Cancel handler
+                        const handleCancel = () => {
+                            modal.classList.remove('show');
+                            passwordInput.value = '';
+                            errorDiv.textContent = '';
+                        };
+                        
+                        // Add event listeners
+                        submitBtnNew.addEventListener('click', handleSubmit);
+                        cancelBtnNew.addEventListener('click', handleCancel);
+                        closeBtnNew.addEventListener('click', handleCancel);
+                        
+                        // Handle Enter key in password input
+                        const handleKeyDown = (e) => {
+                            if (e.key === 'Enter') {
+                                handleSubmit();
+                            }
+                        };
+                        
+                        passwordInput.onkeydown = handleKeyDown;
+                        
+                        // Close on background click
+                        modal.onclick = (e) => {
+                            if (e.target === modal) {
+                                handleCancel();
+                            }
+                        };
+                    }
+                    
+                    // Initialize editing view
+                    function initOEMEditView() {
+                        const editBtn = document.getElementById('oem-edit-btn');
+                        const editView = document.getElementById('oem-edit-view');
+                        const cancelBtn = document.getElementById('oem-cancel-btn');
+                        const saveBtn = document.getElementById('oem-save-btn');
+                        const addRowBtn = document.getElementById('oem-add-row-btn');
+                        const addColBtn = document.getElementById('oem-add-col-btn');
+                        
+                        if (!editBtn || !editView) return;
+                        
+                        // Open edit view with password protection
+                        editBtn.addEventListener('click', function() {
+                            showOEMEditPasswordModal();
+                        });
+                        
+                        // Close edit view
+                        cancelBtn.addEventListener('click', function() {
+                            closeOEMEditView();
+                        });
+                        
+                        // Save changes
+                        saveBtn.addEventListener('click', function() {
+                            saveOEMEditChanges();
+                        });
+                        
+                        // Add row
+                        addRowBtn.addEventListener('click', function() {
+                            addOEMEditRow();
+                        });
+                        
+                        // Add column
+                        addColBtn.addEventListener('click', function() {
+                            addOEMEditColumn();
+                        });
+                    }
+                    
+                    // Open editing view
+                    function openOEMEditView() {
+                        const editView = document.getElementById('oem-edit-view');
+                        const headerSection = document.querySelector('.oem-header');
+                        const summarySection = document.getElementById('oem-summary');
+                        const controlsSection = document.querySelector('.oem-controls');
+                        const metricsChart = document.getElementById('oem-metrics-chart');
+                        const resultsSection = document.getElementById('oem-results');
+                        
+                        // Ensure data is loaded from localStorage
+                        loadOEMData();
+                        
+                        // Store original data (use current oemData which may have been loaded from localStorage)
+                        oemOriginalData = JSON.parse(JSON.stringify(window.oemSortedData && window.oemSortedData.length > 0 ? window.oemSortedData : oemData));
+                        
+                        // Extract columns from data
+                        if (oemOriginalData.length > 0) {
+                            oemEditColumns = Object.keys(oemOriginalData[0]);
+                        } else {
+                            // Default columns if no data
+                            oemEditColumns = ['Department', 'Name', 'Priority', 'BoT_Resolution_Required', 'CIS_Support', 'Target_Launch', 'OAII_Support', 'Description', 'Category'];
+                        }
+                        
+                        // Copy data for editing
+                        oemEditData = JSON.parse(JSON.stringify(oemOriginalData));
+                        
+                        // Render edit table
+                        renderOEMEditTable();
+                        
+                        // Show edit view, hide dashboard elements
+                        editView.style.display = 'flex';
+                        if (headerSection) headerSection.style.display = 'none';
+                        if (summarySection) summarySection.style.display = 'none';
+                        if (controlsSection) controlsSection.style.display = 'none';
+                        if (metricsChart) metricsChart.style.display = 'none';
+                        if (resultsSection) resultsSection.style.display = 'none';
+                    }
+                    
+                    // Close editing view
+                    function closeOEMEditView() {
+                        const editView = document.getElementById('oem-edit-view');
+                        const headerSection = document.querySelector('.oem-header');
+                        const summarySection = document.getElementById('oem-summary');
+                        const controlsSection = document.querySelector('.oem-controls');
+                        const metricsChart = document.getElementById('oem-metrics-chart');
+                        const resultsSection = document.getElementById('oem-results');
+                        
+                        if (confirm('Are you sure you want to cancel? All unsaved changes will be lost.')) {
+                            editView.style.display = 'none';
+                            if (headerSection) headerSection.style.display = '';
+                            if (summarySection) summarySection.style.display = '';
+                            if (controlsSection) controlsSection.style.display = '';
+                            if (metricsChart) metricsChart.style.display = '';
+                            if (resultsSection) resultsSection.style.display = '';
+                        }
+                    }
+                    
+                    // Render edit table
+                    function renderOEMEditTable() {
+                        const thead = document.getElementById('oem-edit-thead');
+                        const tbody = document.getElementById('oem-edit-tbody');
+                        
+                        if (!thead || !tbody) return;
+                        
+                        // Render header
+                        let headerHTML = '<tr>';
+                        oemEditColumns.forEach((col, index) => {
+                            const canRemove = oemEditColumns.length > 1; // Don't allow removing last column
+                            headerHTML += `
+                                <th>
+                                    <div class="col-header-content">
+                                        <span>${escapeHtml(col)}</span>
+                                        ${canRemove ? `<button class="col-remove-btn" onclick="removeOEMEditColumn(${index})" title="Remove Column">×</button>` : ''}
+                                    </div>
+                                </th>
+                            `;
+                        });
+                        headerHTML += '<th>Actions</th>';
+                        headerHTML += '</tr>';
+                        thead.innerHTML = headerHTML;
+                        
+                        // Render body
+                        let bodyHTML = '';
+                        oemEditData.forEach((row, rowIndex) => {
+                            bodyHTML += '<tr>';
+                            oemEditColumns.forEach(col => {
+                                const value = row[col] || '';
+                                const cellHTML = getCellInputHTML(col, value, rowIndex);
+                                bodyHTML += `<td>${cellHTML}</td>`;
+                            });
+                            bodyHTML += `
+                                <td>
+                                    <div class="row-actions">
+                                        <button class="row-delete-btn" onclick="deleteOEMEditRow(${rowIndex})" title="Delete Row">Delete</button>
+                                    </div>
+                                </td>
+                            `;
+                            bodyHTML += '</tr>';
+                        });
+                        tbody.innerHTML = bodyHTML;
+                    }
+                    
+                    // Get appropriate input HTML for a cell
+                    function getCellInputHTML(column, value, rowIndex) {
+                        const colIndex = oemEditColumns.indexOf(column);
+                        const inputId = `oem-edit-${rowIndex}-${colIndex}`;
+                        
+                        // Special handling for certain columns
+                        if (column === 'Priority') {
+                            const options = ['Critical', 'High Priority', 'Medium Priority', 'Low Priority'];
+                            let selectHTML = `<select id="${inputId}" onchange="updateOEMEditCell(${rowIndex}, '${column}', this.value)">`;
+                            options.forEach(opt => {
+                                selectHTML += `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`;
+                            });
+                            selectHTML += '</select>';
+                            return selectHTML;
+                        } else if (column === 'BoT_Resolution_Required' || column === 'CIS_Support' || column === 'OAII_Support') {
+                            const options = column === 'CIS_Support' ? ['Yes', 'Maybe', 'No'] : ['Yes', 'No', 'TBD'];
+                            let selectHTML = `<select id="${inputId}" onchange="updateOEMEditCell(${rowIndex}, '${column}', this.value)">`;
+                            selectHTML += `<option value="">--</option>`;
+                            options.forEach(opt => {
+                                selectHTML += `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`;
+                            });
+                            selectHTML += '</select>';
+                            return selectHTML;
+                        } else if (column === 'Description') {
+                            return `<textarea id="${inputId}" onchange="updateOEMEditCell(${rowIndex}, '${column}', this.value)" onblur="updateOEMEditCell(${rowIndex}, '${column}', this.value)">${escapeHtml(value)}</textarea>`;
+                        } else {
+                            return `<input type="text" id="${inputId}" value="${escapeHtml(value)}" onchange="updateOEMEditCell(${rowIndex}, '${column}', this.value)" onblur="updateOEMEditCell(${rowIndex}, '${column}', this.value)">`;
+                        }
+                    }
+                    
+                    // Update cell value
+                    function updateOEMEditCell(rowIndex, column, value) {
+                        if (oemEditData[rowIndex]) {
+                            oemEditData[rowIndex][column] = value;
+                        }
+                    }
+                    
+                    // Add new row
+                    function addOEMEditRow() {
+                        const newRow = {};
+                        oemEditColumns.forEach(col => {
+                            newRow[col] = '';
+                        });
+                        oemEditData.push(newRow);
+                        renderOEMEditTable();
+                    }
+                    
+                    // Delete row
+                    function deleteOEMEditRow(rowIndex) {
+                        if (confirm('Are you sure you want to delete this row?')) {
+                            oemEditData.splice(rowIndex, 1);
+                            renderOEMEditTable();
+                        }
+                    }
+                    
+                    // Add new column
+                    function addOEMEditColumn() {
+                        const colName = prompt('Enter column name:');
+                        if (colName && colName.trim()) {
+                            const trimmedName = colName.trim();
+                            if (!oemEditColumns.includes(trimmedName)) {
+                                oemEditColumns.push(trimmedName);
+                                // Add empty value for all rows
+                                oemEditData.forEach(row => {
+                                    row[trimmedName] = '';
+                                });
+                                renderOEMEditTable();
+                            } else {
+                                alert('Column already exists!');
+                            }
+                        }
+                    }
+                    
+                    // Remove column
+                    function removeOEMEditColumn(colIndex) {
+                        if (oemEditColumns.length <= 1) {
+                            alert('Cannot remove the last column!');
+                            return;
+                        }
+                        
+                        if (confirm(`Are you sure you want to remove column "${oemEditColumns[colIndex]}"?`)) {
+                            const colName = oemEditColumns[colIndex];
+                            oemEditColumns.splice(colIndex, 1);
+                            // Remove from all rows
+                            oemEditData.forEach(row => {
+                                delete row[colName];
+                            });
+                            renderOEMEditTable();
+                        }
+                    }
+                    
+                    // Save changes
+                    function saveOEMEditChanges() {
+                        // Update the global data
+                        window.oemSortedData = JSON.parse(JSON.stringify(oemEditData));
+                        window.oemFilteredData = JSON.parse(JSON.stringify(oemEditData));
+                        
+                        // Update the original data array
+                        oemData.length = 0;
+                        oemData.push(...oemEditData);
+                        
+                        // Save to localStorage for persistence
+                        saveOEMData();
+                        
+                        // Re-initialize dashboard with new data
+                        initOEMDashboard();
+                        
+                        // Close edit view
+                        const editView = document.getElementById('oem-edit-view');
+                        const headerSection = document.querySelector('.oem-header');
+                        const summarySection = document.getElementById('oem-summary');
+                        const controlsSection = document.querySelector('.oem-controls');
+                        const metricsChart = document.getElementById('oem-metrics-chart');
+                        const resultsSection = document.getElementById('oem-results');
+                        editView.style.display = 'none';
+                        if (headerSection) headerSection.style.display = '';
+                        if (summarySection) summarySection.style.display = '';
+                        if (controlsSection) controlsSection.style.display = '';
+                        if (metricsChart) metricsChart.style.display = '';
+                        if (resultsSection) resultsSection.style.display = '';
+                        
+                        // Show success message with persistence confirmation
+                        alert('Changes saved successfully! Your edits are now permanent and will persist after page refresh or reload.');
+                    }
+                    
+                    // Make functions globally accessible
+                    window.updateOEMEditCell = updateOEMEditCell;
+                    window.deleteOEMEditRow = deleteOEMEditRow;
+                    window.removeOEMEditColumn = removeOEMEditColumn;
+                    
+                    // Initialize edit view when OEM dashboard is ready
+                    if (document.getElementById('oem')) {
+                        if (document.readyState === 'loading') {
+                            document.addEventListener('DOMContentLoaded', function() {
+                                setTimeout(initOEMEditView, 500);
+                            });
+                        } else {
+                            setTimeout(initOEMEditView, 500);
+                        }
+                    }
+                </script>
+            </div>
+
+            <!-- Backlog Dashboard -->
+            <div id="backlog" class="dashboard-view">
+                <style>
+                    /* Backlog Dashboard Styles - Matching OEM */
+                    #backlog {
+                        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                        background: #f8f9fa;
+                        min-height: 100vh;
+                        padding: 2rem;
+                    }
+                    
+                    .backlog-container {
+                        max-width: 1400px;
+                        margin: 0 auto;
+                    }
+                    
+                    .backlog-header {
+                        background: linear-gradient(135deg, #0033A1 0%, #0046C7 100%);
+                        color: #ffffff;
+                        padding: 2rem;
+                        border-radius: 12px;
+                        margin-bottom: 2rem;
+                        box-shadow: 0 4px 16px rgba(0, 51, 161, 0.2);
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        gap: 1.5rem;
+                    }
+                    
+                    .backlog-header h1 {
+                        margin: 0 0 0.5rem 0;
+                        font-size: 2rem;
+                        font-weight: 700;
+                    }
+                    
+                    .backlog-header p {
+                        margin: 0;
+                        opacity: 0.9;
+                        font-size: 1rem;
+                    }
+                    
+                    .backlog-edit-btn {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        padding: 0.75rem 1.25rem;
+                        background: transparent;
+                        border: 2px solid transparent;
+                        border-radius: 8px;
+                        color: transparent;
+                        font-size: 0.95rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        white-space: nowrap;
+                        opacity: 0;
+                        pointer-events: auto;
+                    }
+                    
+                    .backlog-edit-btn:hover {
+                        opacity: 1;
+                        background: rgba(255, 255, 255, 0.25);
+                        border-color: rgba(255, 255, 255, 0.5);
+                        color: #ffffff;
+                        backdrop-filter: blur(10px);
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                    }
+                    
+                    .backlog-edit-btn:active {
+                        transform: translateY(0);
+                    }
+                    
+                    .backlog-edit-btn svg {
+                        flex-shrink: 0;
+                    }
+                    
+                    .backlog-summary {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                        gap: 1rem;
+                        margin-bottom: 2rem;
+                    }
+                    
+                    .backlog-summary-card {
+                        background: #ffffff;
+                        padding: 1.5rem;
+                        border-radius: 12px;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+                        border-left: 4px solid #0033A1;
+                    }
+                    
+                    .backlog-summary-card-value {
+                        font-size: 2rem;
+                        font-weight: 700;
+                        color: #0033A1;
+                        margin-bottom: 0.5rem;
+                    }
+                    
+                    .backlog-summary-card-label {
+                        font-size: 0.875rem;
+                        color: #6b7280;
+                        font-weight: 500;
+                    }
+                    
+                    .backlog-controls {
+                        background: #ffffff;
+                        padding: 1.5rem;
+                        border-radius: 12px;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+                        margin-bottom: 2rem;
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                        gap: 1rem;
+                    }
+                    
+                    .backlog-control-group {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+                    }
+                    
+                    .backlog-control-group label {
+                        font-size: 0.875rem;
+                        font-weight: 600;
+                        color: #374151;
+                    }
+                    
+                    .backlog-control-group select,
+                    .backlog-control-group input {
+                        padding: 0.625rem;
+                        border: 1px solid #d1d5db;
+                        border-radius: 6px;
+                        font-size: 0.875rem;
+                        background: #ffffff;
+                    }
+                    
+                    .backlog-control-group select:focus,
+                    .backlog-control-group input:focus {
+                        outline: none;
+                        border-color: #0033A1;
+                        box-shadow: 0 0 0 3px rgba(0, 51, 161, 0.1);
+                    }
+                    
+                    .backlog-department-section {
+                        margin-bottom: 2rem;
+                    }
+                    
+                    .backlog-department-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 1rem;
+                        padding-bottom: 0.75rem;
+                        border-bottom: 2px solid #e5e7eb;
+                    }
+                    
+                    .backlog-department-header h2 {
+                        margin: 0;
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        color: #0033A1;
+                    }
+                    
+                    .backlog-department-count {
+                        font-size: 0.875rem;
+                        color: #6b7280;
+                        font-weight: 600;
+                    }
+                    
+                    .backlog-cards-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                        gap: 1.5rem;
+                    }
+                    
+                    .backlog-card {
+                        background: #ffffff;
+                        border: 1px solid #e5e7eb;
+                        border-radius: 12px;
+                        padding: 1.5rem;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+                        transition: all 0.3s ease;
+                    }
+                    
+                    .backlog-card:hover {
+                        transform: translateY(-4px);
+                        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+                    }
+                    
+                    .backlog-card-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        margin-bottom: 1rem;
+                    }
+                    
+                    .backlog-card-name {
+                        font-size: 1.125rem;
+                        font-weight: 700;
+                        color: #0033A1;
+                        margin: 0;
+                        flex: 1;
+                    }
+                    
+                    .backlog-no-results {
+                        text-align: center;
+                        padding: 4rem 2rem;
+                        color: #6b7280;
+                    }
+                    
+                    .backlog-no-results-icon {
+                        font-size: 3rem;
+                        margin-bottom: 1rem;
+                    }
+                    
+                    @media (max-width: 768px) {
+                        .backlog-cards-grid {
+                            grid-template-columns: 1fr;
+                        }
+                        
+                        .backlog-controls {
+                            grid-template-columns: 1fr;
+                        }
+                    }
+                </style>
+                
+                <div class="backlog-container">
+                    <div class="backlog-header">
+                        <div>
+                            <h1>Backlog Dashboard</h1>
+                            <p>Comprehensive view of all backlog projects and their status</p>
+                        </div>
+                        <button id="backlog-edit-btn" class="backlog-edit-btn" title="Edit Projects">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.333 2.00001C11.5084 1.82471 11.7163 1.68603 11.9446 1.59231C12.1729 1.49859 12.4171 1.45178 12.6633 1.45178C12.9096 1.45178 13.1538 1.49859 13.3821 1.59231C13.6104 1.68603 13.8183 1.82471 13.9937 2.00001C14.169 2.17535 14.3077 2.38322 14.4014 2.61153C14.4951 2.83984 14.5419 3.08405 14.5419 3.33034C14.5419 3.57663 14.4951 3.82084 14.4014 4.04915C14.3077 4.27746 14.169 4.48533 13.9937 4.66067L5.05333 13.601L1.33333 14.6667L2.399 10.9467L11.333 2.00001Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Edit
+                        </button>
+                    </div>
+                    
+                    <!-- Summary Section -->
+                    <div class="backlog-summary" id="backlog-summary">
+                        <div class="backlog-summary-card">
+                            <div class="backlog-summary-card-value" id="backlog-total-count">0</div>
+                            <div class="backlog-summary-card-label">Total Projects</div>
+                        </div>
+                        <div class="backlog-summary-card">
+                            <div class="backlog-summary-card-value" id="backlog-procurement-yes-count">0</div>
+                            <div class="backlog-summary-card-label">Procurement Required</div>
+                        </div>
+                        <div class="backlog-summary-card">
+                            <div class="backlog-summary-card-value" id="backlog-procurement-tbd-count">0</div>
+                            <div class="backlog-summary-card-label">Procurement TBD</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Controls Section -->
+                    <div class="backlog-controls">
+                        <div class="backlog-control-group">
+                            <label for="backlog-search">Search by Name</label>
+                            <input type="text" id="backlog-search" placeholder="Type to search...">
+                        </div>
+                        <div class="backlog-control-group">
+                            <label for="backlog-procurement-filter">Filter by Procurement</label>
+                            <select id="backlog-procurement-filter">
+                                <option value="">All</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="TBD">TBD</option>
+                            </select>
+                        </div>
+                        <div class="backlog-control-group">
+                            <label for="backlog-golive-filter">Filter by Go Live Date</label>
+                            <select id="backlog-golive-filter">
+                                <option value="">All Dates</option>
+                                <option value="Fall 2025">Fall 2025</option>
+                                <option value="Spring 2025">Spring 2025</option>
+                                <option value="Fall 2026">Fall 2026</option>
+                                <option value="TBD">TBD</option>
+                            </select>
+                        </div>
+                        <div class="backlog-control-group">
+                            <label for="backlog-bot-filter" style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="backlog-bot-filter" style="width: 18px; height: 18px; cursor: pointer;">
+                                <span>BoT Required</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Results Section -->
+                    <div id="backlog-results"></div>
+                    
+                    <!-- Editing View (Hidden by default) -->
+                    <div id="backlog-edit-view" class="oem-edit-view" style="display: none;">
+                        <div class="oem-edit-header">
+                            <h2>Edit Backlog Projects</h2>
+                            <div class="oem-edit-actions">
+                                <button id="backlog-add-row-btn" class="oem-action-btn oem-add-btn" title="Add Row">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 3.33334V12.6667M3.33333 8H12.6667" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                    Add Row
+                                </button>
+                                <button id="backlog-add-col-btn" class="oem-action-btn oem-add-btn" title="Add Column">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 3.33334V12.6667M3.33333 8H12.6667" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                    Add Column
+                                </button>
+                                <button id="backlog-save-btn" class="oem-action-btn oem-save-btn" title="Save Changes">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.3333 4L6 11.3333L2.66667 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    Save
+                                </button>
+                                <button id="backlog-cancel-btn" class="oem-action-btn oem-cancel-btn" title="Cancel">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                        <div class="oem-edit-table-container">
+                            <table id="backlog-edit-table" class="oem-edit-table">
+                                <thead id="backlog-edit-thead"></thead>
+                                <tbody id="backlog-edit-tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <script>
+                    // Backlog Dashboard Data and Logic
+                    // Default Backlog data (used only if no saved data exists)
+                    const backlogDefaultData = [
+                        { "Project Name": "Online Proctoring Solution", "Procurement?": "Yes", "Desired Go Live Date": "TBD", "Sponsor/Owner": "", "BoT Required": "", "Vendor": "", "Notes": "Current State: This is a ticket and not a project. Ticket: SACSCR009600..." },
+                        { "Project Name": "EAR-Engage and Addition of Med School", "Procurement?": "Yes", "Desired Go Live Date": "TBD", "Sponsor/Owner": "", "BoT Required": "", "Vendor": "", "Notes": "EAR was renamed and added GMAS in contracting phase..." },
+                        { "Project Name": "LMS Archiving Solution", "Procurement?": "Yes", "Desired Go Live Date": "TBD", "Sponsor/Owner": "", "BoT Required": "", "Vendor": "", "Notes": "Vendors await contract from CIS for LMS Archiving..." },
+                        { "Project Name": "Plagiarism Software (Turnitin) Replacement", "Procurement?": "Yes", "Desired Go Live Date": "TBD", "Sponsor/Owner": "", "BoT Required": "", "Vendor": "", "Notes": "OAA is working on a one-year Turnitin contract..." },
+                        { "Project Name": "Online Tutoring Solution", "Procurement?": "Yes", "Desired Go Live Date": "TBD", "Sponsor/Owner": "", "BoT Required": "", "Vendor": "", "Notes": "Contract is pending; OEM is working on submitting needed documents..." },
+                        { "Project Name": "Undergraduate Application (Common App)", "Procurement?": "Yes", "Desired Go Live Date": "Fall 2025", "Sponsor/Owner": "", "BoT Required": "", "Vendor": "", "Notes": "BAA is required from CIT to build a transfer application..." },
+                        { "Project Name": "Transfer Application", "Procurement?": "No", "Desired Go Live Date": "Fall 2025", "Sponsor/Owner": "", "BoT Required": "", "Vendor": "", "Notes": "BAA is required for new transfer app..." },
+                        { "Project Name": "D2L AI", "Procurement?": "Yes", "Desired Go Live Date": "Spring 2025", "Sponsor/Owner": "", "BoT Required": "", "Vendor": "", "Notes": "This is an extending contract..." },
+                        { "Project Name": "D2L Storage", "Procurement?": "Yes", "Desired Go Live Date": "Spring 2025", "Sponsor/Owner": "", "BoT Required": "", "Vendor": "", "Notes": "Current State: 3.9.3.3 Per Email: Amendments to D2L Waveb..." },
+                        { "Project Name": "Degreeworks Replacement", "Procurement?": "TBD", "Desired Go Live Date": "TBD", "Sponsor/Owner": "", "BoT Required": "", "Vendor": "", "Notes": "Current State: This is being assessed..." },
+                        { "Project Name": "Sexual Orientation and Gender Identity", "Procurement?": "TBD", "Desired Go Live Date": "TBD", "Sponsor/Owner": "", "BoT Required": "", "Vendor": "", "Notes": "" },
+                        { "Project Name": "Library Discovery System", "Procurement?": "TBD", "Desired Go Live Date": "TBD", "Sponsor/Owner": "", "BoT Required": "", "Vendor": "", "Notes": "" },
+                        { "Project Name": "Batch Credit Transfer, Phase 2: External Transfer", "Procurement?": "TBD", "Desired Go Live Date": "Fall 2026", "Sponsor/Owner": "", "BoT Required": "", "Vendor": "", "Notes": "" }
+                    ];
+                    
+                    // Load Backlog data from localStorage or use default
+                    let backlogData = [];
+                    function loadBacklogData() {
+                        try {
+                            const saved = localStorage.getItem('backlogDashboardData');
+                            if (saved) {
+                                backlogData = JSON.parse(saved);
+                            } else {
+                                backlogData = JSON.parse(JSON.stringify(backlogDefaultData));
+                            }
+                        } catch (e) {
+                            console.error('Error loading Backlog data:', e);
+                            backlogData = JSON.parse(JSON.stringify(backlogDefaultData));
+                        }
+                    }
+                    
+                    // Save Backlog data to localStorage
+                    function saveBacklogData() {
+                        try {
+                            localStorage.setItem('backlogDashboardData', JSON.stringify(backlogData));
+                        } catch (e) {
+                            console.error('Error saving Backlog data:', e);
+                        }
+                    }
+                    
+                    let backlogSortedData = [];
+                    let backlogFilteredData = [];
+                    
+                    // Initialize Backlog Dashboard
+                    function initBacklogDashboard() {
+                        // Load data from localStorage
+                        loadBacklogData();
+                        
+                        // Sort data by Project Name by default
+                        backlogSortedData = [...backlogData].sort((a, b) => {
+                            return (a["Project Name"] || '').localeCompare(b["Project Name"] || '');
+                        });
+                        
+                        backlogFilteredData = [...backlogSortedData];
+                        
+                        // Render dashboard
+                        renderBacklogDashboard(backlogSortedData);
+                        updateBacklogSummary(backlogSortedData);
+                        
+                        // Setup event listeners
+                        setupBacklogEventListeners();
+                    }
+                    
+                    // Render the dashboard with filtered data
+                    function renderBacklogDashboard(data) {
+                        const resultsContainer = document.getElementById('backlog-results');
+                        
+                        if (data.length === 0) {
+                            resultsContainer.innerHTML = `
+                                <div class="backlog-no-results">
+                                    <div class="backlog-no-results-icon">🔍</div>
+                                    <h3>No results found</h3>
+                                    <p>Try adjusting your filters or search terms</p>
+                                </div>
+                            `;
+                            return;
+                        }
+                        
+                        // Generate HTML
+                        let html = `
+                            <div class="backlog-department-section">
+                                <div class="backlog-department-header">
+                                    <h2>All Projects</h2>
+                                    <span class="backlog-department-count">${data.length} ${data.length === 1 ? 'project' : 'projects'}</span>
+                                </div>
+                                <div class="backlog-cards-grid">
+                                    ${data.map(item => createBacklogCard(item)).join('')}
+                                </div>
+                            </div>
+                        `;
+                        
+                        resultsContainer.innerHTML = html;
+                    }
+                    
+                    // Create a card for a single item
+                    function createBacklogCard(item) {
+                        const projectName = escapeHtml(item["Project Name"] || '');
+                        const procurement = escapeHtml(item["Procurement?"] || '');
+                        const goLive = escapeHtml(item["Desired Go Live Date"] || 'TBD');
+                        const sponsor = escapeHtml(item["Sponsor/Owner"] || '');
+                        const botRequired = escapeHtml(item["BoT Required"] || '');
+                        const vendor = escapeHtml(item["Vendor"] || '');
+                        const notes = escapeHtml(item["Notes"] || '');
+                        
+                        let procurementBadge = '';
+                        if (procurement === 'Yes') {
+                            procurementBadge = '<span style="display: inline-block; padding: 0.25rem 0.75rem; background: #dcfce7; color: #166534; border: 1px solid #86efac; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem;">Procurement: Yes</span>';
+                        } else if (procurement === 'No') {
+                            procurementBadge = '<span style="display: inline-block; padding: 0.25rem 0.75rem; background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem;">Procurement: No</span>';
+                        } else if (procurement === 'TBD') {
+                            procurementBadge = '<span style="display: inline-block; padding: 0.25rem 0.75rem; background: #fef3c7; color: #92400e; border: 1px solid #fde68a; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem;">Procurement: TBD</span>';
+                        }
+                        
+                        let botBadge = '';
+                        if (botRequired === 'Yes') {
+                            botBadge = '<span style="display: inline-block; padding: 0.25rem 0.75rem; background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem;">BoT Required: Yes</span>';
+                        } else if (botRequired === 'No') {
+                            botBadge = '<span style="display: inline-block; padding: 0.25rem 0.75rem; background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem;">BoT Required: No</span>';
+                        }
+                        
+                        return `
+                            <div class="backlog-card">
+                                <div class="backlog-card-header">
+                                    <h3 class="backlog-card-name">${projectName}</h3>
+                                </div>
+                                ${procurementBadge}
+                                ${botBadge}
+                                ${goLive && goLive !== 'TBD' ? `<div style="margin: 0.75rem 0; padding: 0.5rem; background: #f8f9fa; border-radius: 6px; font-size: 0.85rem; color: #374151;"><strong>Go Live:</strong> ${goLive}</div>` : ''}
+                                ${sponsor ? `<div style="margin: 0.75rem 0; padding: 0.5rem; background: #f8f9fa; border-radius: 6px; font-size: 0.85rem; color: #374151;"><strong>Sponsor/Owner:</strong> ${sponsor}</div>` : ''}
+                                ${vendor ? `<div style="margin: 0.75rem 0; padding: 0.5rem; background: #f8f9fa; border-radius: 6px; font-size: 0.85rem; color: #374151;"><strong>Vendor:</strong> ${vendor}</div>` : ''}
+                                ${notes ? `<div style="margin: 0.75rem 0; padding: 0.75rem; background: #f8f9fa; border-radius: 6px; font-size: 0.875rem; color: #4b5563; line-height: 1.5;"><strong>Description:</strong> ${notes}</div>` : ''}
+                            </div>
+                        `;
+                    }
+                    
+                    // Update summary statistics
+                    function updateBacklogSummary(data) {
+                        const total = data.length;
+                        const procurementYes = data.filter(item => item["Procurement?"] === "Yes").length;
+                        const procurementTbd = data.filter(item => item["Procurement?"] === "TBD").length;
+                        
+                        document.getElementById('backlog-total-count').textContent = total;
+                        document.getElementById('backlog-procurement-yes-count').textContent = procurementYes;
+                        document.getElementById('backlog-procurement-tbd-count').textContent = procurementTbd;
+                    }
+                    
+                    // Setup event listeners for filters
+                    function setupBacklogEventListeners() {
+                        const searchInput = document.getElementById('backlog-search');
+                        const procurementFilter = document.getElementById('backlog-procurement-filter');
+                        const goLiveFilter = document.getElementById('backlog-golive-filter');
+                        const botFilter = document.getElementById('backlog-bot-filter');
+                        
+                        // Search functionality
+                        searchInput.addEventListener('input', applyBacklogFilters);
+                        
+                        // Filter dropdowns
+                        procurementFilter.addEventListener('change', applyBacklogFilters);
+                        goLiveFilter.addEventListener('change', applyBacklogFilters);
+                        
+                        // BoT Required filter checkbox
+                        botFilter.addEventListener('change', applyBacklogFilters);
+                    }
+                    
+                    // Apply all filters
+                    function applyBacklogFilters() {
+                        const searchTerm = document.getElementById('backlog-search').value.toLowerCase();
+                        const procurementFilter = document.getElementById('backlog-procurement-filter').value;
+                        const goLiveFilter = document.getElementById('backlog-golive-filter').value;
+                        const botFilter = document.getElementById('backlog-bot-filter').checked;
+                        
+                        let filtered = [...backlogData];
+                        
+                        // Search filter
+                        if (searchTerm) {
+                            filtered = filtered.filter(item => 
+                                (item["Project Name"] || '').toLowerCase().includes(searchTerm)
+                            );
+                        }
+                        
+                        // Procurement filter
+                        if (procurementFilter) {
+                            filtered = filtered.filter(item => 
+                                item["Procurement?"] === procurementFilter
+                            );
+                        }
+                        
+                        // Go Live Date filter
+                        if (goLiveFilter) {
+                            filtered = filtered.filter(item => 
+                                item["Desired Go Live Date"] === goLiveFilter
+                            );
+                        }
+                        
+                        // BoT Required filter - show only projects with "Yes"
+                        if (botFilter) {
+                            filtered = filtered.filter(item => 
+                                item["BoT Required"] === "Yes"
+                            );
+                        }
+                        
+                        // Sort by Project Name (default)
+                        filtered.sort((a, b) => {
+                            return (a["Project Name"] || '').localeCompare(b["Project Name"] || '');
+                        });
+                        
+                        backlogFilteredData = filtered;
+                        renderBacklogDashboard(filtered);
+                        updateBacklogSummary(filtered);
+                    }
+                    
+                    // Escape HTML to prevent XSS
+                    function escapeHtml(text) {
+                        const div = document.createElement('div');
+                        div.textContent = text;
+                        return div.innerHTML;
+                    }
+                    
+                    // ============================================
+                    // BACKLOG EDITING VIEW FUNCTIONALITY
+                    // ============================================
+                    
+                    let backlogEditColumns = [];
+                    let backlogEditData = [];
+                    let backlogOriginalData = [];
+                    
+                    // Show password modal for Backlog Edit
+                    function showBacklogEditPasswordModal() {
+                        const modal = document.getElementById('password-modal');
+                        const passwordInput = document.getElementById('password-input');
+                        const errorDiv = document.getElementById('password-error');
+                        
+                        // Reset modal state
+                        errorDiv.textContent = '';
+                        passwordInput.value = '';
+                        modal.classList.add('show');
+                        passwordInput.focus();
+                        
+                        // Remove any existing event listeners by removing and re-adding
+                        const submitBtn = document.getElementById('password-submit');
+                        const cancelBtn = document.getElementById('password-cancel');
+                        const closeBtn = document.getElementById('password-modal-close');
+                        
+                        // Remove old handlers
+                        const newSubmitBtn = submitBtn.cloneNode(true);
+                        const newCancelBtn = cancelBtn.cloneNode(true);
+                        const newCloseBtn = closeBtn.cloneNode(true);
+                        submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
+                        cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+                        closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+                        
+                        // Update references
+                        const submitBtnNew = document.getElementById('password-submit');
+                        const cancelBtnNew = document.getElementById('password-cancel');
+                        const closeBtnNew = document.getElementById('password-modal-close');
+                        
+                        // Submit handler
+                        const handleSubmit = () => {
+                            const password = passwordInput.value.trim();
+                            if (password === 'OAIIB') {
+                                // Correct password - proceed with opening edit view
+                                modal.classList.remove('show');
+                                openBacklogEditView();
+                            } else {
+                                // Incorrect password
+                                errorDiv.textContent = 'Incorrect password. Please try again.';
+                                passwordInput.value = '';
+                                passwordInput.focus();
+                            }
+                        };
+                        
+                        // Cancel handler
+                        const handleCancel = () => {
+                            modal.classList.remove('show');
+                            passwordInput.value = '';
+                            errorDiv.textContent = '';
+                        };
+                        
+                        // Add event listeners
+                        submitBtnNew.addEventListener('click', handleSubmit);
+                        cancelBtnNew.addEventListener('click', handleCancel);
+                        closeBtnNew.addEventListener('click', handleCancel);
+                        
+                        // Handle Enter key in password input
+                        const handleKeyDown = (e) => {
+                            if (e.key === 'Enter') {
+                                handleSubmit();
+                            }
+                        };
+                        
+                        passwordInput.onkeydown = handleKeyDown;
+                        
+                        // Close on background click
+                        modal.onclick = (e) => {
+                            if (e.target === modal) {
+                                handleCancel();
+                            }
+                        };
+                    }
+                    
+                    // Initialize editing view
+                    function initBacklogEditView() {
+                        const editBtn = document.getElementById('backlog-edit-btn');
+                        const editView = document.getElementById('backlog-edit-view');
+                        const cancelBtn = document.getElementById('backlog-cancel-btn');
+                        const saveBtn = document.getElementById('backlog-save-btn');
+                        const addRowBtn = document.getElementById('backlog-add-row-btn');
+                        const addColBtn = document.getElementById('backlog-add-col-btn');
+                        
+                        if (!editBtn || !editView) return;
+                        
+                        // Open edit view with password protection
+                        editBtn.addEventListener('click', function() {
+                            showBacklogEditPasswordModal();
+                        });
+                        
+                        // Close edit view
+                        cancelBtn.addEventListener('click', function() {
+                            closeBacklogEditView();
+                        });
+                        
+                        // Save changes
+                        saveBtn.addEventListener('click', function() {
+                            saveBacklogEditChanges();
+                        });
+                        
+                        // Add row
+                        addRowBtn.addEventListener('click', function() {
+                            addBacklogEditRow();
+                        });
+                        
+                        // Add column
+                        addColBtn.addEventListener('click', function() {
+                            addBacklogEditColumn();
+                        });
+                    }
+                    
+                    // Open editing view
+                    function openBacklogEditView() {
+                        const editView = document.getElementById('backlog-edit-view');
+                        const headerSection = document.querySelector('.backlog-header');
+                        const summarySection = document.getElementById('backlog-summary');
+                        const controlsSection = document.querySelector('.backlog-controls');
+                        const resultsSection = document.getElementById('backlog-results');
+                        
+                        // Ensure data is loaded from localStorage
+                        loadBacklogData();
+                        
+                        // Store original data (use current backlogData which may have been loaded from localStorage)
+                        backlogOriginalData = JSON.parse(JSON.stringify(backlogFilteredData.length > 0 ? backlogFilteredData : backlogData));
+                        
+                        // Extract columns from data
+                        if (backlogOriginalData.length > 0) {
+                            backlogEditColumns = Object.keys(backlogOriginalData[0]);
+                        } else {
+                            // Default columns
+                            backlogEditColumns = ['Project Name', 'Procurement?', 'Desired Go Live Date', 'Sponsor/Owner', 'BoT Required', 'Vendor', 'Notes'];
+                        }
+                        
+                        // Copy data for editing
+                        backlogEditData = JSON.parse(JSON.stringify(backlogOriginalData));
+                        
+                        // Render edit table
+                        renderBacklogEditTable();
+                        
+                        // Show edit view, hide dashboard elements
+                        editView.style.display = 'flex';
+                        if (headerSection) headerSection.style.display = 'none';
+                        if (summarySection) summarySection.style.display = 'none';
+                        if (controlsSection) controlsSection.style.display = 'none';
+                        if (resultsSection) resultsSection.style.display = 'none';
+                    }
+                    
+                    // Close editing view
+                    function closeBacklogEditView() {
+                        const editView = document.getElementById('backlog-edit-view');
+                        const headerSection = document.querySelector('.backlog-header');
+                        const summarySection = document.getElementById('backlog-summary');
+                        const controlsSection = document.querySelector('.backlog-controls');
+                        const resultsSection = document.getElementById('backlog-results');
+                        
+                        if (confirm('Are you sure you want to cancel? All unsaved changes will be lost.')) {
+                            editView.style.display = 'none';
+                            if (headerSection) headerSection.style.display = '';
+                            if (summarySection) summarySection.style.display = '';
+                            if (controlsSection) controlsSection.style.display = '';
+                            if (resultsSection) resultsSection.style.display = '';
+                        }
+                    }
+                    
+                    // Render edit table
+                    function renderBacklogEditTable() {
+                        const thead = document.getElementById('backlog-edit-thead');
+                        const tbody = document.getElementById('backlog-edit-tbody');
+                        
+                        if (!thead || !tbody) return;
+                        
+                        // Render header
+                        let headerHTML = '<tr>';
+                        backlogEditColumns.forEach((col, index) => {
+                            const canRemove = backlogEditColumns.length > 1;
+                            headerHTML += `
+                                <th>
+                                    <div class="col-header-content">
+                                        <span>${escapeHtml(col)}</span>
+                                        ${canRemove ? `<button class="col-remove-btn" onclick="removeBacklogEditColumn(${index})" title="Remove Column">×</button>` : ''}
+                                    </div>
+                                </th>
+                            `;
+                        });
+                        headerHTML += '<th>Actions</th>';
+                        headerHTML += '</tr>';
+                        thead.innerHTML = headerHTML;
+                        
+                        // Render body
+                        let bodyHTML = '';
+                        backlogEditData.forEach((row, rowIndex) => {
+                            bodyHTML += '<tr>';
+                            backlogEditColumns.forEach(col => {
+                                const value = row[col] || '';
+                                const cellHTML = getBacklogCellInputHTML(col, value, rowIndex);
+                                bodyHTML += `<td>${cellHTML}</td>`;
+                            });
+                            bodyHTML += `
+                                <td>
+                                    <div class="row-actions">
+                                        <button class="row-delete-btn" onclick="deleteBacklogEditRow(${rowIndex})" title="Delete Row">Delete</button>
+                                    </div>
+                                </td>
+                            `;
+                            bodyHTML += '</tr>';
+                        });
+                        tbody.innerHTML = bodyHTML;
+                    }
+                    
+                    // Get appropriate input HTML for a cell
+                    function getBacklogCellInputHTML(column, value, rowIndex) {
+                        const colIndex = backlogEditColumns.indexOf(column);
+                        const inputId = `backlog-edit-${rowIndex}-${colIndex}`;
+                        
+                        // Special handling for certain columns
+                        if (column === 'Procurement?') {
+                            const options = ['Yes', 'No', 'TBD'];
+                            let selectHTML = `<select id="${inputId}" onchange="updateBacklogEditCell(${rowIndex}, '${column}', this.value)">`;
+                            selectHTML += `<option value="">--</option>`;
+                            options.forEach(opt => {
+                                selectHTML += `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`;
+                            });
+                            selectHTML += '</select>';
+                            return selectHTML;
+                        } else if (column === 'BoT Required') {
+                            const options = ['Yes', 'No'];
+                            let selectHTML = `<select id="${inputId}" onchange="updateBacklogEditCell(${rowIndex}, '${column}', this.value)">`;
+                            selectHTML += `<option value="">--</option>`;
+                            options.forEach(opt => {
+                                selectHTML += `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`;
+                            });
+                            selectHTML += '</select>';
+                            return selectHTML;
+                        } else if (column === 'Desired Go Live Date') {
+                            const options = ['Fall 2025', 'Spring 2025', 'Fall 2026', 'TBD'];
+                            let selectHTML = `<select id="${inputId}" onchange="updateBacklogEditCell(${rowIndex}, '${column}', this.value)">`;
+                            selectHTML += `<option value="">--</option>`;
+                            options.forEach(opt => {
+                                selectHTML += `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`;
+                            });
+                            selectHTML += '</select>';
+                            return selectHTML;
+                        } else if (column === 'Notes') {
+                            return `<textarea id="${inputId}" onchange="updateBacklogEditCell(${rowIndex}, '${column}', this.value)" onblur="updateBacklogEditCell(${rowIndex}, '${column}', this.value)">${escapeHtml(value)}</textarea>`;
+                        } else {
+                            return `<input type="text" id="${inputId}" value="${escapeHtml(value)}" onchange="updateBacklogEditCell(${rowIndex}, '${column}', this.value)" onblur="updateBacklogEditCell(${rowIndex}, '${column}', this.value)">`;
+                        }
+                    }
+                    
+                    // Update cell value
+                    function updateBacklogEditCell(rowIndex, column, value) {
+                        if (backlogEditData[rowIndex]) {
+                            backlogEditData[rowIndex][column] = value;
+                        }
+                    }
+                    
+                    // Add new row
+                    function addBacklogEditRow() {
+                        const newRow = {};
+                        backlogEditColumns.forEach(col => {
+                            newRow[col] = '';
+                        });
+                        backlogEditData.push(newRow);
+                        renderBacklogEditTable();
+                    }
+                    
+                    // Delete row
+                    function deleteBacklogEditRow(rowIndex) {
+                        if (confirm('Are you sure you want to delete this row?')) {
+                            backlogEditData.splice(rowIndex, 1);
+                            renderBacklogEditTable();
+                        }
+                    }
+                    
+                    // Add new column
+                    function addBacklogEditColumn() {
+                        const colName = prompt('Enter column name:');
+                        if (colName && colName.trim()) {
+                            const trimmedName = colName.trim();
+                            if (!backlogEditColumns.includes(trimmedName)) {
+                                backlogEditColumns.push(trimmedName);
+                                // Add empty value for all rows
+                                backlogEditData.forEach(row => {
+                                    row[trimmedName] = '';
+                                });
+                                renderBacklogEditTable();
+                            } else {
+                                alert('Column already exists!');
+                            }
+                        }
+                    }
+                    
+                    // Remove column
+                    function removeBacklogEditColumn(colIndex) {
+                        if (backlogEditColumns.length <= 1) {
+                            alert('Cannot remove the last column!');
+                            return;
+                        }
+                        
+                        if (confirm(`Are you sure you want to remove column "${backlogEditColumns[colIndex]}"?`)) {
+                            const colName = backlogEditColumns[colIndex];
+                            backlogEditColumns.splice(colIndex, 1);
+                            // Remove from all rows
+                            backlogEditData.forEach(row => {
+                                delete row[colName];
+                            });
+                            renderBacklogEditTable();
+                        }
+                    }
+                    
+                    // Save changes
+                    function saveBacklogEditChanges() {
+                        // Update the global data
+                        backlogData.length = 0;
+                        backlogData.push(...backlogEditData);
+                        
+                        backlogSortedData = JSON.parse(JSON.stringify(backlogEditData));
+                        backlogFilteredData = JSON.parse(JSON.stringify(backlogEditData));
+                        
+                        // Save to localStorage for persistence
+                        saveBacklogData();
+                        
+                        // Re-initialize dashboard with new data
+                        initBacklogDashboard();
+                        
+                        // Close edit view
+                        const editView = document.getElementById('backlog-edit-view');
+                        const headerSection = document.querySelector('.backlog-header');
+                        const summarySection = document.getElementById('backlog-summary');
+                        const controlsSection = document.querySelector('.backlog-controls');
+                        const resultsSection = document.getElementById('backlog-results');
+                        editView.style.display = 'none';
+                        if (headerSection) headerSection.style.display = '';
+                        if (summarySection) summarySection.style.display = '';
+                        if (controlsSection) controlsSection.style.display = '';
+                        if (resultsSection) resultsSection.style.display = '';
+                        
+                        // Show success message with persistence confirmation
+                        alert('Changes saved successfully! Your edits are now permanent and will persist after page refresh or reload.');
+                    }
+                    
+                    // Make functions globally accessible
+                    window.updateBacklogEditCell = updateBacklogEditCell;
+                    window.deleteBacklogEditRow = deleteBacklogEditRow;
+                    window.removeBacklogEditColumn = removeBacklogEditColumn;
+                    
+                    // Initialize when page loads
+                    if (document.getElementById('backlog')) {
+                        if (document.readyState === 'loading') {
+                            document.addEventListener('DOMContentLoaded', function() {
+                                initBacklogDashboard();
+                                setTimeout(initBacklogEditView, 500);
+                            });
+                        } else {
+                            initBacklogDashboard();
+                            setTimeout(initBacklogEditView, 500);
                         }
                     }
                 </script>
@@ -5564,7 +7941,7 @@
                             <h3>⚙️ Technical Model</h3>
                             <ul>
                                 <li>Hub-and-spoke governance architecture</li>
-                                <li>~$2.9M annual compute & storage operations</li>
+                                <li>($$ - see Contract) annual compute & storage operations</li>
                                 <li>HIPAA / FedRAMP compliance</li>
                                 <li>Full data ownership retained by CUNY</li>
                             </ul>
@@ -5583,9 +7960,9 @@
                         <div class="card">
                             <h3>💰 Year 1 Cost Structure</h3>
                             <ul>
-                                <li>Total: ~$4.72M</li>
-                                <li>$3.04M Google Cloud Enterprise Agreement</li>
-                                <li>$1.68M Professional Services (training, build, security)</li>
+                                <li>Total: ($$ - see Contract)</li>
+                                <li>($$ - see Contract) Google Cloud Enterprise Agreement</li>
+                                <li>($$ - see Contract) Professional Services (training, build, security)</li>
                             </ul>
                         </div>
                         <div class="card">
@@ -5653,6 +8030,156 @@
                                     <div class="timeline-box">Continuous AI expansion & CoP growth</div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Org Chart Dashboard -->
+            <div id="orgchart" class="dashboard-view">
+                <style>
+                    #orgchart {
+                        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                        background: #ffffff;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    #orgchart .container {
+                        max-width: 1100px;
+                        margin: 40px auto;
+                        background: #ffffff;
+                        border-radius: 16px;
+                        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+                        padding: 32px 40px;
+                    }
+                    #orgchart .header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        background: #0033A1;
+                        color: #fff;
+                        padding: 18px 24px;
+                        border-radius: 10px;
+                        margin-bottom: 32px;
+                    }
+                    #orgchart .header h1 {
+                        margin: 0;
+                        font-size: 22px;
+                        font-weight: 700;
+                    }
+                    #orgchart .section {
+                        margin-top: 28px;
+                    }
+                    #orgchart h2 {
+                        color: #0033A1;
+                        font-size: 20px;
+                        font-weight: 700;
+                        margin-bottom: 16px;
+                        border-bottom: 2px solid #0033A1;
+                        padding-bottom: 8px;
+                    }
+                    #orgchart p {
+                        font-size: 15px;
+                        line-height: 1.7;
+                        color: #333;
+                        margin-bottom: 16px;
+                    }
+                    #orgchart ul {
+                        list-style: none;
+                        padding-left: 0;
+                        margin: 16px 0;
+                    }
+                    #orgchart ul li {
+                        padding: 8px 0;
+                        padding-left: 24px;
+                        position: relative;
+                        font-size: 15px;
+                        line-height: 1.7;
+                        color: #333;
+                    }
+                    #orgchart ul li::before {
+                        content: "• ";
+                        color: #0033A1;
+                        font-weight: 700;
+                        position: absolute;
+                        left: 0;
+                    }
+                    #orgchart .card {
+                        background: #f0f4ff;
+                        border-left: 5px solid #0033A1;
+                        border-radius: 12px;
+                        padding: 24px;
+                        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+                        margin-top: 20px;
+                    }
+                    #orgchart .card h3 {
+                        color: #0033A1;
+                        font-size: 18px;
+                        font-weight: 700;
+                        margin: 0 0 16px 0;
+                    }
+                    #orgchart .status-badge {
+                        background: #FFB71B;
+                        color: #0033A1;
+                        font-weight: 600;
+                        font-size: 13px;
+                        padding: 8px 16px;
+                        border-radius: 20px;
+                        display: inline-block;
+                        margin-top: 16px;
+                    }
+                    @media (max-width: 768px) {
+                        #orgchart .container {
+                            padding: 24px 20px;
+                        }
+                        #orgchart .header {
+                            flex-direction: column;
+                            align-items: flex-start;
+                            gap: 12px;
+                        }
+                    }
+                </style>
+                <div class="container">
+                    <div class="header">
+                        <h1>OAA Org Chart Development Initiative</h1>
+                    </div>
+
+                    <div class="section">
+                        <h2>Overview</h2>
+                        <p>The Office of Academic Affairs is launching an initiative to develop updated organizational charts for all OAA units. This includes both high-level (supervisors and managers) charts and full comprehensive charts (all staff). The purpose is to ensure clarity, alignment, and transparency across divisions while creating an easily maintainable structure going forward.</p>
+                    </div>
+
+                    <div class="section">
+                        <h2>Collaboration</h2>
+                        <p>Richard Cardenas (OEVC) reached out regarding the development of new org charts and expressed interest in using an AI-driven platform to support the process. I will partner with Richard to prepare initial drafts, guide the setup, and ensure the charts are generated efficiently and accurately.</p>
+                    </div>
+
+                    <div class="section">
+                        <h2>Support Provided</h2>
+                        <ul>
+                            <li>Introduced an AI-based platform for dynamic org chart creation</li>
+                            <li>Offering technical and functional guidance to streamline chart development</li>
+                            <li>Preparing initial chart drafts ahead of review meetings</li>
+                            <li>Assisting with updates and ensuring future maintainability</li>
+                            <li>Coordinating with leadership to confirm structure, reporting lines, and chart accuracy</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h2>Next Steps</h2>
+                        <ul>
+                            <li>Await preliminary staff list from Richard</li>
+                            <li>Build initial org chart drafts using the AI platform</li>
+                            <li>Review drafts with Richard and Evan</li>
+                            <li>Finalize visual standards and update process</li>
+                            <li>Publish the finalized org charts to the OAA Dashboard for ongoing visibility</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <div class="card">
+                            <h3>Status</h3>
+                            <p style="margin: 0;">Initiative kickoff complete. Awaiting staffing details to begin initial chart build.</p>
                         </div>
                     </div>
                 </div>
@@ -5913,7 +8440,7 @@
                                 <span class="status-badge">Status update — <span id="commonapp-status-date">11/14/2025</span></span>
                             </div>
                             <div class="completion-indicator">
-                                <span class="completion-label completion-label-not-started">Not Started</span>
+                                <span class="completion-label">1% Completed</span>
                             </div>
                         </div>
                     </header>
@@ -5935,18 +8462,46 @@
                                 <div class="commonapp-accordion-content">
                                     <div class="commonapp-overview-layout">
                                         <div class="commonapp-overview-content">
-                                            <p class="commonapp-intro">The Common Application (Common App) is a widely used online undergraduate admissions platform that lets students apply to multiple colleges with a single application. More than <strong>1,100 institutions</strong> use it.</p>
+                                            <p class="commonapp-intro">CUNY is adapting the <strong>Common Application (Common App)</strong>—a widely used online undergraduate admissions platform that allows students to apply to multiple colleges with a single application.<br>
+                                            More than <strong>1,100 institutions</strong> use it.</p>
                                             
+                                            <div class="commonapp-features-container">
                                             <h3 class="commonapp-subheading">Key Features:</h3>
                                             <ul class="commonapp-feature-list">
-                                                <li><span class="commonapp-feature-icon">✓</span> One standardized application</li>
-                                                <li><span class="commonapp-feature-icon">✓</span> Integrated transcripts, recommendations, and document submission</li>
-                                                <li><span class="commonapp-feature-icon">✓</span> Built-in fee payment (Transact)</li>
-                                                <li><span class="commonapp-feature-icon">✓</span> Student dashboard</li>
-                                                <li><span class="commonapp-feature-icon">✓</span> College configuration tools</li>
-                                                <li><span class="commonapp-feature-icon">✓</span> Secure applicant data/doc delivery</li>
-                                                <li><span class="commonapp-feature-icon">✓</span> Increases access and reduces barriers</li>
+                                                    <li class="commonapp-feature-item">
+                                                        <span class="commonapp-feature-icon">✓</span>
+                                                        <span class="commonapp-feature-text">One standardized application</span>
+                                                    </li>
+                                                    <li class="commonapp-feature-item">
+                                                        <span class="commonapp-feature-icon">✓</span>
+                                                        <span class="commonapp-feature-text">Integrated transcripts, recommendations, and document submission</span>
+                                                    </li>
+                                                    <li class="commonapp-feature-item">
+                                                        <span class="commonapp-feature-icon">✓</span>
+                                                        <span class="commonapp-feature-text">Built-in fee payment (Transact)</span>
+                                                    </li>
+                                                    <li class="commonapp-feature-item">
+                                                        <span class="commonapp-feature-icon">✓</span>
+                                                        <span class="commonapp-feature-text">Student dashboard</span>
+                                                    </li>
+                                                    <li class="commonapp-feature-item">
+                                                        <span class="commonapp-feature-icon">✓</span>
+                                                        <span class="commonapp-feature-text">College configuration tools</span>
+                                                    </li>
+                                                    <li class="commonapp-feature-item">
+                                                        <span class="commonapp-feature-icon">✓</span>
+                                                        <span class="commonapp-feature-text">Secure applicant data/doc delivery</span>
+                                                    </li>
+                                                    <li class="commonapp-feature-item">
+                                                        <span class="commonapp-feature-icon">✓</span>
+                                                        <span class="commonapp-feature-text">Increases access and reduces barriers</span>
+                                                    </li>
+                                                    <li class="commonapp-feature-item">
+                                                        <span class="commonapp-feature-icon">✓</span>
+                                                        <span class="commonapp-feature-text">Allow students to apply to multiple colleges with a single application</span>
+                                                    </li>
                                             </ul>
+                                            </div>
                                         </div>
                                         <div class="commonapp-overview-visual">
                                             <div class="commonapp-visual-container">
@@ -6003,6 +8558,39 @@
                                                         <div class="commonapp-stat-content">
                                                             <div class="commonapp-stat-number">24/7</div>
                                                             <div class="commonapp-stat-label">Support</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="commonapp-stat-card">
+                                                        <div class="commonapp-stat-icon">
+                                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M7 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M17 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M4 10H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M5 6H19C20.1046 6 21 6.89543 21 8V20C21 21.1046 20.1046 22 19 22H5C3.89543 22 3 21.1046 3 20V8C3 6.89543 3.89543 6 5 6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M8 14H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </svg>
+                                                </div>
+                                                        <div class="commonapp-stat-content">
+                                                            <div class="commonapp-stat-number">6-Month</div>
+                                                            <div class="commonapp-stat-label">Implementation Timeline</div>
+                                            </div>
+                                        </div>
+
+                                                    <div class="commonapp-stat-card">
+                                                        <div class="commonapp-stat-icon">
+                                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M4.5 21C4.5 17.4101 7.41015 14.5 11 14.5H13C16.5899 14.5 19.5 17.4101 19.5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M17 3V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M21 5L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M7 3V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M3 5L7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="commonapp-stat-content">
+                                                            <div class="commonapp-stat-number">4+</div>
+                                                            <div class="commonapp-stat-label">Systems Integrated</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -6149,7 +8737,142 @@
                             </div>
                         </div>
 
-                        <!-- Accordion Item 5: Implementation Timeline -->
+                        <!-- Accordion Item 5: Workstreams -->
+                        <div class="commonapp-accordion-item" aria-expanded="false">
+                            <button class="commonapp-accordion-trigger">
+                                <div class="commonapp-accordion-title-wrapper">
+                                    <span class="commonapp-accordion-icon">👥</span>
+                                    <span class="commonapp-accordion-title">Workstreams</span>
+                                </div>
+                                <svg class="commonapp-accordion-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="commonapp-accordion-panel">
+                                <div class="commonapp-accordion-content">
+                                    <div class="commonapp-timeline-accordion">
+                                        
+                                        <!-- Program Management Workstream -->
+                                        <div class="commonapp-timeline-phase-item" aria-expanded="false">
+                                            <button class="commonapp-timeline-phase-trigger">
+                                                <div class="commonapp-timeline-phase-header">
+                                                    <span class="commonapp-timeline-phase-title">Program Management Workstream</span>
+                                                    <span class="commonapp-timeline-phase-owner">Owner: [Name]</span>
+                                                </div>
+                                                <svg class="commonapp-timeline-chevron" width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                            <div class="commonapp-timeline-phase-panel">
+                                                <div class="commonapp-timeline-phase-content">
+                                                    <ul style="margin: 0; padding-left: 1.5rem; color: #374151; line-height: 1.8;">
+                                                        <li>Coordinate timelines across workstreams</li>
+                                                        <li>Manage interdependencies</li>
+                                                        <li>Run regular status meetings</li>
+                                                        <li>Track deliverables and milestones</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Communication Workstream -->
+                                        <div class="commonapp-timeline-phase-item" aria-expanded="false">
+                                            <button class="commonapp-timeline-phase-trigger">
+                                                <div class="commonapp-timeline-phase-header">
+                                                    <span class="commonapp-timeline-phase-title">Communication Workstream</span>
+                                                    <span class="commonapp-timeline-phase-owner">Owner: [Name]</span>
+                                                </div>
+                                                <svg class="commonapp-timeline-chevron" width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                            <div class="commonapp-timeline-phase-panel">
+                                                <div class="commonapp-timeline-phase-content">
+                                                    <ul style="margin: 0; padding-left: 1.5rem; color: #374151; line-height: 1.8;">
+                                                        <li>Send regular update newsletters</li>
+                                                        <li>Create a central FAQ</li>
+                                                        <li>Organize informational webinars</li>
+                                                        <li>Maintain a communication channel for feedback</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Training Workstream -->
+                                        <div class="commonapp-timeline-phase-item" aria-expanded="false">
+                                            <button class="commonapp-timeline-phase-trigger">
+                                                <div class="commonapp-timeline-phase-header">
+                                                    <span class="commonapp-timeline-phase-title">Training Workstream</span>
+                                                    <span class="commonapp-timeline-phase-owner">Owner: [Name]</span>
+                                                </div>
+                                                <svg class="commonapp-timeline-chevron" width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                            <div class="commonapp-timeline-phase-panel">
+                                                <div class="commonapp-timeline-phase-content">
+                                                    <ul style="margin: 0; padding-left: 1.5rem; color: #374151; line-height: 1.8;">
+                                                        <li>Training plan</li>
+                                                        <li>Schedule live training sessions</li>
+                                                        <li>Save recordings and monitor expiration date</li>
+                                                        <li>Provide and maintain a Q&A repository</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Integration Workstream -->
+                                        <div class="commonapp-timeline-phase-item" aria-expanded="false">
+                                            <button class="commonapp-timeline-phase-trigger">
+                                                <div class="commonapp-timeline-phase-header">
+                                                    <span class="commonapp-timeline-phase-title">Integration Workstream</span>
+                                                    <span class="commonapp-timeline-phase-owner">Owner: [Name]</span>
+                                                </div>
+                                                <svg class="commonapp-timeline-chevron" width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                            <div class="commonapp-timeline-phase-panel">
+                                                <div class="commonapp-timeline-phase-content">
+                                                    <ul style="margin: 0; padding-left: 1.5rem; color: #374151; line-height: 1.8;">
+                                                        <li>Map systems that need integration</li>
+                                                        <li>Test integrations in a sandbox</li>
+                                                        <li>Ensure smooth data flow between systems</li>
+                                                        <li>Document integration processes</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Data Migration Workstream -->
+                                        <div class="commonapp-timeline-phase-item" aria-expanded="false">
+                                            <button class="commonapp-timeline-phase-trigger">
+                                                <div class="commonapp-timeline-phase-header">
+                                                    <span class="commonapp-timeline-phase-title">Data Migration Workstream</span>
+                                                    <span class="commonapp-timeline-phase-owner">Owner: [Name]</span>
+                                                </div>
+                                                <svg class="commonapp-timeline-chevron" width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                            <div class="commonapp-timeline-phase-panel">
+                                                <div class="commonapp-timeline-phase-content">
+                                                    <ul style="margin: 0; padding-left: 1.5rem; color: #374151; line-height: 1.8;">
+                                                        <li>Identify data to be migrated</li>
+                                                        <li>Create a data clean-up plan</li>
+                                                        <li>Validate data post-migration</li>
+                                                        <li>Monitor data accuracy and consistency</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 6: Implementation Timeline -->
                         <div class="commonapp-accordion-item" aria-expanded="false">
                             <button class="commonapp-accordion-trigger">
                                 <div class="commonapp-accordion-title-wrapper">
